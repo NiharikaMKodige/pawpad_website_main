@@ -45,50 +45,16 @@ function ExperienceHero() {
       `));
 }
 function StepJourney() {
-  const [active, setActive] = useStateE(0);
-  const stepsRef = useRefE([]);
-  useEffectE(() => {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && e.intersectionRatio > 0.5) {
-          const i = parseInt(e.target.dataset.idx, 10);
-          if (!isNaN(i)) setActive(i);
+  return /* @__PURE__ */ React.createElement("section", { className: "journey" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "journey-main" }, EXPERIENCE_STEPS.map((s, i) => /* @__PURE__ */ React.createElement("article", { key: s.no, className: "j-step reveal" }, /* @__PURE__ */ React.createElement("div", { className: "j-step-img blob-1" }, /* @__PURE__ */ React.createElement("img", { src: s.img, alt: s.title, style: { objectPosition: s.pos || "center center" } }), /* @__PURE__ */ React.createElement("span", { className: "j-step-no" }, s.no)), /* @__PURE__ */ React.createElement("div", { className: "j-step-text" }, /* @__PURE__ */ React.createElement("h3", { className: "h-2" }, s.title), /* @__PURE__ */ React.createElement("p", null, s.body)))))), /* @__PURE__ */ React.createElement("style", null, `
+        .journey { background: var(--champagne-soft); padding: 40px 0 80px; }
+        .journey-main {
+          max-width: 1060px;
+          margin-left: auto;
         }
-      });
-    }, { threshold: [0.5, 0.6, 0.7] });
-    stepsRef.current.forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
-  }, []);
-  return /* @__PURE__ */ React.createElement("section", { className: "journey" }, /* @__PURE__ */ React.createElement("div", { className: "container journey-grid" }, /* @__PURE__ */ React.createElement("aside", { className: "journey-side" }, /* @__PURE__ */ React.createElement("div", { className: "journey-sticky" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Step by step"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "14ch" } }, "What to expect"), /* @__PURE__ */ React.createElement("div", { className: "journey-progress" }, EXPERIENCE_STEPS.map((s, i) => /* @__PURE__ */ React.createElement("button", {
-    key: s.no, className: "j-prog " + (i === active ? "on" : i < active ? "done" : ""), onClick: () => {
-      var _a;
-      (_a = stepsRef.current[i]) == null ? void 0 : _a.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  }, /* @__PURE__ */ React.createElement("span", { className: "j-prog-no" }, s.no), /* @__PURE__ */ React.createElement("span", { className: "j-prog-title" }, s.title), /* @__PURE__ */ React.createElement("span", { className: "j-prog-bar" })))))), /* @__PURE__ */ React.createElement("div", { className: "journey-main" }, EXPERIENCE_STEPS.map((s, i) => /* @__PURE__ */ React.createElement("article", { key: s.no, className: "j-step reveal", ref: (el) => stepsRef.current[i] = el, "data-idx": i }, /* @__PURE__ */ React.createElement("div", { className: "j-step-img blob-1" }, /* @__PURE__ */ React.createElement("img", { src: s.img, alt: s.title, style: { objectPosition: s.pos || "center center" } }), /* @__PURE__ */ React.createElement("span", { className: "j-step-no" }, s.no)), /* @__PURE__ */ React.createElement("div", { className: "j-step-text" }, /* @__PURE__ */ React.createElement("h3", { className: "h-2" }, s.title), /* @__PURE__ */ React.createElement("p", null, s.body)))))), /* @__PURE__ */ React.createElement("style", null, `
-        .journey { background: var(--champagne-soft); }
-        .journey-grid { display: grid; grid-template-columns: 340px 1fr; gap: 56px; align-items: start; }
-        .journey-side { position: relative; }
-        .journey-sticky { position: sticky; top: 120px; }
-        .journey-progress { margin-top: 36px; display: flex; flex-direction: column; gap: 6px; }
-        .j-prog {
-          display: grid; grid-template-columns: 40px 1fr; gap: 12px;
-          padding: 14px 0; align-items: center;
-          text-align: left;
-          color: var(--ink-mute);
-          position: relative;
-          transition: color var(--t-fast) var(--ease);
-        }
-        .j-prog .j-prog-no { font-family: var(--f-display); font-size: 18px; }
-        .j-prog .j-prog-title { font-size: 14px; }
-        .j-prog .j-prog-bar { display: none; }
-        .j-prog.on { color: var(--ink); }
-        .j-prog.on .j-prog-no { color: var(--driftwood); font-size: 22px; }
-        .j-prog.done { color: color-mix(in oklab, var(--ink), transparent 50%); }
-        .j-prog:hover { color: var(--ink); }
         .j-step {
-          display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+          display: grid; grid-template-columns: minmax(300px, 440px) 1fr; gap: clamp(32px, 5vw, 64px);
           align-items: center;
-          padding: 20px 0;
+          padding: 48px 0;
           border-bottom: 1px dashed color-mix(in oklab, var(--ink), transparent 85%);
         }
         .j-step:last-child { border-bottom: 0; }
@@ -107,19 +73,17 @@ function StepJourney() {
           text-shadow: 0 4px 24px color-mix(in oklab, var(--ink), transparent 40%);
           line-height: 1;
         }
-        .j-step:nth-child(even) { direction: rtl; }
-        .j-step:nth-child(even) > * { direction: ltr; }
-        .j-step-text p { margin-top: 18px; font-size: 17px; line-height: 1.7; max-width: 44ch; }
-        @media (max-width: 1000px) {
-          .journey-grid { grid-template-columns: 1fr; }
-          .journey-sticky { position: static; }
-          .journey-progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 24px; }
-          .j-prog { grid-template-columns: 1fr; gap: 6px; padding: 8px; background: var(--white); border-radius: 12px; }
-          .j-prog .j-prog-title { font-size: 11px; }
+        .j-step-text h3 {
+          font-family: var(--f-display);
+          font-size: clamp(32px, 3.5vw, 46px);
+          line-height: 1.1;
+          color: var(--ink);
+          margin: 0;
         }
-        @media (max-width: 700px) {
+        .j-step-text p { margin-top: 18px; font-size: 17px; line-height: 1.7; max-width: 48ch; }
+        @media (max-width: 768px) {
           .j-step { grid-template-columns: 1fr; gap: 28px; padding: 32px 0; }
-          .j-step:nth-child(even) { direction: ltr; }
+          .journey-main { margin-left: 0; }
         }
       `));
 }
