@@ -162,7 +162,7 @@ function TopNav({ route, onBook }) {
       <header className={"nav " + (scrolled ? "scrolled" : "")}>
         <div className="container nav-inner">
           <a href="#/home" className="nav-brand" aria-label="Pawpad home">
-            <img src="assets/img/logo-sage.png" alt="Pawpad" />
+            <img src="assets/img/logo-pawpad-text-transparent.png" alt="Pawpad" />
           </a>
           <nav className="nav-links desktop-only" aria-label="Primary">
             {NAV_ITEMS.map(item => (

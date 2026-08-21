@@ -8,7 +8,7 @@ const GROOM_PACKAGES = [
     key: "puppy-short",
     title: "Puppy Grooming | Short Hair",
     sub: "Gentle introductions for puppies below 3 months",
-    price: "₹1000 onwards",
+    price: "₹1,000",
     duration: "Gentle intro",
     img: "assets/img/pawpad/grooming-page-puppy-short-hair-image.webp",
     includes: ["Eye & ear cleaning", "Teeth brushing", "Nail clipping", "Bath & coat conditioning", "Complete blow dry", "Coat brushing", "Paw & snout butter", "Organic leave-in conditioner"],
@@ -19,7 +19,7 @@ const GROOM_PACKAGES = [
     key: "puppy-long",
     title: "Puppy Grooming | Long Hair",
     sub: "Extra coat care for long-coated puppies",
-    price: "₹1500 onwards",
+    price: "₹1,500",
     duration: "Long coat care",
     img: "assets/img/pawpad/grooming-page-puppy-long-hair-image.webp",
     includes: ["Eye & ear cleaning", "Teeth brushing", "Nail clipping", "Bath & coat conditioning", "Complete blow dry", "Coat brushing & deshedding", "Hygiene clip", "Face trimming", "Paw & snout butter", "Organic leave-in conditioner"],
@@ -30,7 +30,7 @@ const GROOM_PACKAGES = [
     key: "dog-short",
     title: "Dog Grooming | Short Hair",
     sub: "Clean, comfortable care for short coats",
-    price: "Enquire",
+    price: "₹1,600",
     duration: "Coat care",
     img: "assets/img/pawpad/grooming-page-dog-short-hair-image.webp",
     includes: ["Bath & coat conditioning", "Complete blow dry", "Coat brushing", "Eye & ear cleaning", "Nail clipping", "Paw care"],
@@ -41,51 +41,18 @@ const GROOM_PACKAGES = [
     key: "dog-long",
     title: "Dog Grooming | Long Hair",
     sub: "Maintenance for longer coats",
-    price: "Enquire",
+    price: "₹2,000",
     duration: "Detailed coat care",
     img: "assets/img/pawpad/grooming-page-gromming-long-hair-dog.webp",
     includes: ["Bath & conditioning", "Full blow dry", "Coat brushing", "Deshedding support", "Face trimming", "Hygiene clip"],
     note: "For dogs who need more detailed coat work, careful brushing, and slow handling so longer sessions remain comfortable.",
   },
   {
-    cat: "Care",
-    key: "hygiene-clip",
-    title: "Hygiene Clip",
-    sub: "Focused hygiene maintenance",
-    price: "Enquire",
-    duration: "Targeted care",
-    img: "assets/img/pawpad/grooming-page-grooming-hygine-clip.webp",
-    includes: ["Sanitary trimming", "Paw tidying", "Comfort-led handling", "Coat check"],
-    note: "A targeted service for pets who need hygiene-focused trimming without a full grooming session.",
-  },
-  {
-    cat: "Care",
-    key: "nail-clipping",
-    title: "Nail Clipping",
-    sub: "Slow, gentle nail care",
-    price: "Enquire",
-    duration: "Quick visit",
-    img: "assets/img/pawpad/grooming-nail-clipping-new.jpg",
-    includes: ["Nail trimming", "Paw handling support", "Breaks for anxious pets", "Comfort checks"],
-    note: "Gentle nail care for pets who need a quick maintenance visit or extra patience around paw handling.",
-  },
-  {
-    cat: "Wellness",
-    key: "massage",
-    title: "Massage",
-    sub: "Pre & post grooming wellness add-on",
-    price: "Enquire",
-    duration: "Wellness add-on",
-    img: "assets/img/pawpad/grooming-page-grooming-massage.webp",
-    includes: ["Gentle pre-grooming settling", "Grooming begins only when they're ready", "Post-grooming relaxation massage", "Led by your dog's comfort, never the clock"],
-    note: "A quiet moment of care that helps your dog settle before grooming and gently unwind afterwards. Available exclusively as a pre and post grooming add-on.",
-  },
-  {
     cat: "Styling",
     key: "dog-grooming-long-hair",
     title: "Dog Grooming Long Hair with haircut",
     sub: "Full styling session for long-coated dogs",
-    price: "Enquire",
+    price: "₹2,500",
     duration: "Styling session",
     img: "assets/img/pawpad/grooming-page-gromming-long-hair-dog.webp",
     includes: ["Bath & Conditioning", "Coat trimming & scissoring", "Face and paw tidying", "Breed-aware styling", "Comfort breaks", "Deshedding support", "Finish & coat treatment"],
@@ -96,19 +63,18 @@ const GROOM_PACKAGES = [
     key: "matted-dogs",
     title: "Matted Dogs",
     sub: "Careful support for tangled coats",
-    price: "Enquire",
+    price: "₹850",
     duration: "Assessment first",
     img: "assets/img/pawpad/grooming-page-grooming-matted-dogs.webp",
     includes: ["Coat assessment", "Gentle dematting where possible", "Clip-down when needed", "Aftercare guidance"],
     note: "For coats with matting or tangles. We prioritise comfort and skin safety over cosmetic results.",
   },
-
   {
     cat: "Cat",
     key: "cat-short",
     title: "Cat Grooming | Short Hair",
     sub: "Calm coat and hygiene care for short-haired cats",
-    price: "Enquire",
+    price: "₹1,500",
     duration: "Feline care",
     img: "assets/img/pawpad/cat-grooming-short-hair.jpg",
     includes: ["Coat brushing", "Eye & ear cleaning", "Nail clipping", "Gentle bath", "Hygiene check", "Low-stress handling"],
@@ -119,11 +85,55 @@ const GROOM_PACKAGES = [
     key: "cat-long",
     title: "Cat Grooming | Long Hair",
     sub: "Extra support for long coats and tangles",
-    price: "Enquire",
+    price: "₹2,000",
     duration: "Detailed feline care",
     img: "assets/img/pawpad/cat-grooming-long-hair.jpg",
     includes: ["Coat brushing", "Mat assessment", "Gentle dematting where possible", "Sanitary trim", "Nail clipping", "Gentle bath", "Aftercare guidance"],
     note: "For long-haired cats who need detailed coat work, with comfort and consent guiding every step.",
+  },
+  {
+    cat: "Cat",
+    key: "cat-haircut",
+    title: "Cat Hair Cut",
+    sub: "Complete haircut and hygiene care for cats",
+    price: "₹1,500",
+    duration: "Feline styling",
+    img: "assets/img/pawpad/cat-grooming-long-hair.jpg",
+    includes: ["Nail clipping", "Hair cut", "Ear cleaning", "Eye cleaning"],
+    note: "A complete haircut and gentle care session for cats, including nail clipping, hair cut, ear cleaning, and eye cleaning with patient handling.",
+  },
+  {
+    cat: "Care",
+    key: "hygiene-clip",
+    title: "Hygiene Clip",
+    sub: "Focused hygiene maintenance",
+    price: "₹850",
+    duration: "Targeted care",
+    img: "assets/img/pawpad/grooming-page-grooming-hygine-clip.webp",
+    includes: ["Sanitary trimming", "Paw tidying", "Comfort-led handling", "Coat check"],
+    note: "A targeted service for pets who need hygiene-focused trimming without a full grooming session.",
+  },
+  {
+    cat: "Care",
+    key: "nail-clipping",
+    title: "Nail Clipping",
+    sub: "Slow, gentle nail care",
+    price: "₹250",
+    duration: "Quick visit",
+    img: "assets/img/pawpad/grooming-nail-clipping-new.jpg",
+    includes: ["Nail trimming", "Paw handling support", "Breaks for anxious pets", "Comfort checks"],
+    note: "Gentle nail care for pets who need a quick maintenance visit or extra patience around paw handling.",
+  },
+  {
+    cat: "Wellness",
+    key: "massage",
+    title: "Massage",
+    sub: "Pre & post grooming wellness add-on",
+    price: "₹1,500",
+    duration: "Wellness add-on",
+    img: "assets/img/pawpad/grooming-page-grooming-massage.webp",
+    includes: ["Gentle pre-grooming settling", "Grooming begins only when they're ready", "Post-grooming relaxation massage", "Led by your dog's comfort, never the clock"],
+    note: "A quiet moment of care that helps your dog settle before grooming and gently unwind afterwards. Available exclusively as a pre and post grooming add-on.",
   },
 ];
 
@@ -240,7 +250,7 @@ function GroomingPackages({ onBook }) {
         </div>
         <p className="g-pkg-footnote reveal">
           <PawIcon size={14} color="var(--driftwood)" />
-          Please refer to the notes below for grooming duration, appointment policies, and important grooming guidelines.
+          Please refer to the notes below for grooming duration, appointment policies, and important grooming guidelines. Add-on services are available exclusively alongside a full grooming package.
         </p>
       </div>
       <style>{`
@@ -362,12 +372,15 @@ function AddOnsSection() {
         <div className="addons-grid reveal">
           {ADD_ONS.map((a, i) => (
             <div key={a.name} className="addon-row">
-              <PawIcon size={14} color="var(--driftwood)" />
+               <PawIcon size={14} color="var(--driftwood)" />
               <span className="addon-name">{a.name}</span>
               <span className="addon-price">{a.price}</span>
             </div>
           ))}
         </div>
+        <p className="addons-disclaimer reveal">
+          <PawIcon size={13} color="var(--driftwood)" /> Disclaimer: Add-on services are available exclusively alongside a full grooming session and cannot be booked as standalone treatments.
+        </p>
       </div>
       <style>{`
         .addons { background: var(--champagne-soft); }
@@ -382,6 +395,19 @@ function AddOnsSection() {
         .addon-row:hover { padding-left: 8px; }
         .addon-name { font-size: 16px; }
         .addon-price { font-family: var(--f-display); font-size: 22px; color: var(--driftwood); }
+        .addons-disclaimer {
+          margin-top: 36px;
+          display: flex; align-items: center; gap: 10px;
+          font-size: 13px; color: var(--ink-mute);
+          padding: 14px 18px;
+          background: color-mix(in oklab, var(--white), transparent 30%);
+          border-radius: 12px;
+          border: 1px solid color-mix(in oklab, var(--ink), transparent 90%);
+          width: fit-content;
+        }
+        body[data-palette="dark"] .addons-disclaimer {
+          background: color-mix(in oklab, var(--champagne), black 8%);
+        }
         @media (max-width: 700px) {
           .addons-grid { grid-template-columns: 1fr; }
         }

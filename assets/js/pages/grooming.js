@@ -6,7 +6,7 @@ const GROOM_PACKAGES = [
     key: "puppy-short",
     title: "Puppy Grooming | Short Hair",
     sub: "Gentle introductions for puppies below 3 months",
-    price: "\u20B91000 onwards",
+    price: "\u20B91,000",
     duration: "Gentle intro",
     img: "assets/img/pawpad/grooming-page-puppy-short-hair-image.webp",
     includes: ["Eye & ear cleaning", "Teeth brushing", "Nail clipping", "Bath & coat conditioning", "Complete blow dry", "Coat brushing", "Paw & snout butter", "Organic leave-in conditioner"],
@@ -17,7 +17,7 @@ const GROOM_PACKAGES = [
     key: "puppy-long",
     title: "Puppy Grooming | Long Hair",
     sub: "Extra coat care for long-coated puppies",
-    price: "\u20B91500 onwards",
+    price: "\u20B91,500",
     duration: "Long coat care",
     img: "assets/img/pawpad/grooming-page-puppy-long-hair-image.webp",
     includes: ["Eye & ear cleaning", "Teeth brushing", "Nail clipping", "Bath & coat conditioning", "Complete blow dry", "Coat brushing & deshedding", "Hygiene clip", "Face trimming", "Paw & snout butter", "Organic leave-in conditioner"],
@@ -28,7 +28,7 @@ const GROOM_PACKAGES = [
     key: "dog-short",
     title: "Dog Grooming | Short Hair",
     sub: "Clean, comfortable care for short coats",
-    price: "Enquire",
+    price: "\u20B91,600",
     duration: "Coat care",
     img: "assets/img/pawpad/grooming-page-dog-short-hair-image.webp",
     includes: ["Bath & coat conditioning", "Complete blow dry", "Coat brushing", "Eye & ear cleaning", "Nail clipping", "Paw care"],
@@ -39,51 +39,18 @@ const GROOM_PACKAGES = [
     key: "dog-long",
     title: "Dog Grooming | Long Hair",
     sub: "Maintenance for longer coats",
-    price: "Enquire",
+    price: "\u20B92,000",
     duration: "Detailed coat care",
     img: "assets/img/pawpad/grooming-page-gromming-long-hair-dog.webp",
     includes: ["Bath & conditioning", "Full blow dry", "Coat brushing", "Deshedding support", "Face trimming", "Hygiene clip"],
     note: "For dogs who need more detailed coat work, careful brushing, and slow handling so longer sessions remain comfortable."
   },
   {
-    cat: "Care",
-    key: "hygiene-clip",
-    title: "Hygiene Clip",
-    sub: "Focused hygiene maintenance",
-    price: "Enquire",
-    duration: "Targeted care",
-    img: "assets/img/pawpad/grooming-page-grooming-hygine-clip.webp",
-    includes: ["Sanitary trimming", "Paw tidying", "Comfort-led handling", "Coat check"],
-    note: "A targeted service for pets who need hygiene-focused trimming without a full grooming session."
-  },
-  {
-    cat: "Care",
-    key: "nail-clipping",
-    title: "Nail Clipping",
-    sub: "Slow, gentle nail care",
-    price: "Enquire",
-    duration: "Quick visit",
-    img: "assets/img/pawpad/grooming-nail-clipping-new.webp",
-    includes: ["Nail trimming", "Paw handling support", "Breaks for anxious pets", "Comfort checks"],
-    note: "Gentle nail care for pets who need a quick maintenance visit or extra patience around paw handling."
-  },
-  {
-    cat: "Wellness",
-    key: "massage",
-    title: "Massage",
-    sub: "Pre & post grooming wellness add-on",
-    price: "Enquire",
-    duration: "Wellness add-on",
-    img: "assets/img/pawpad/grooming-page-grooming-massage.webp",
-    includes: ["Gentle pre-grooming settling", "Grooming begins only when they're ready", "Post-grooming relaxation massage", "Led by your dog's comfort, never the clock"],
-    note: "A quiet moment of care that helps your dog settle before grooming and gently unwind afterwards. Available exclusively as a pre and post grooming add-on."
-  },
-  {
     cat: "Styling",
     key: "dog-grooming-long-hair",
     title: "Dog Grooming Long Hair with haircut",
     sub: "Full styling session for long-coated dogs",
-    price: "Enquire",
+    price: "\u20B92,500",
     duration: "Styling session",
     img: "assets/img/pawpad/grooming-page-gromming-long-hair-dog.webp",
     includes: ["Bath & Conditioning", "Coat trimming & scissoring", "Face and paw tidying", "Breed-aware styling", "Comfort breaks", "Deshedding support", "Finish & coat treatment"],
@@ -94,7 +61,7 @@ const GROOM_PACKAGES = [
     key: "matted-dogs",
     title: "Matted Dogs",
     sub: "Careful support for tangled coats",
-    price: "Enquire",
+    price: "\u20B9850",
     duration: "Assessment first",
     img: "assets/img/pawpad/grooming-page-grooming-matted-dogs.webp",
     includes: ["Coat assessment", "Gentle dematting where possible", "Clip-down when needed", "Aftercare guidance"],
@@ -105,7 +72,7 @@ const GROOM_PACKAGES = [
     key: "cat-short",
     title: "Cat Grooming | Short Hair",
     sub: "Calm coat and hygiene care for short-haired cats",
-    price: "Enquire",
+    price: "\u20B91,500",
     duration: "Feline care",
     img: "assets/img/pawpad/cat-grooming-short-hair.webp",
     includes: ["Coat brushing", "Eye & ear cleaning", "Nail clipping", "Gentle bath", "Hygiene check", "Low-stress handling"],
@@ -116,11 +83,55 @@ const GROOM_PACKAGES = [
     key: "cat-long",
     title: "Cat Grooming | Long Hair",
     sub: "Extra support for long coats and tangles",
-    price: "Enquire",
+    price: "\u20B92,000",
     duration: "Detailed feline care",
     img: "assets/img/pawpad/cat-grooming-long-hair.webp",
     includes: ["Coat brushing", "Mat assessment", "Gentle dematting where possible", "Sanitary trim", "Nail clipping", "Gentle bath", "Aftercare guidance"],
     note: "For long-haired cats who need detailed coat work, with comfort and consent guiding every step."
+  },
+  {
+    cat: "Cat",
+    key: "cat-haircut",
+    title: "Cat Hair Cut",
+    sub: "Complete haircut and hygiene care for cats",
+    price: "\u20B91,500",
+    duration: "Feline styling",
+    img: "assets/img/pawpad/cat-grooming-long-hair.webp",
+    includes: ["Nail clipping", "Hair cut", "Ear cleaning", "Eye cleaning"],
+    note: "A complete haircut and gentle care session for cats, including nail clipping, hair cut, ear cleaning, and eye cleaning with patient handling."
+  },
+  {
+    cat: "Care",
+    key: "hygiene-clip",
+    title: "Hygiene Clip",
+    sub: "Focused hygiene maintenance",
+    price: "\u20B9850",
+    duration: "Targeted care",
+    img: "assets/img/pawpad/grooming-page-grooming-hygine-clip.webp",
+    includes: ["Sanitary trimming", "Paw tidying", "Comfort-led handling", "Coat check"],
+    note: "A targeted service for pets who need hygiene-focused trimming without a full grooming session."
+  },
+  {
+    cat: "Care",
+    key: "nail-clipping",
+    title: "Nail Clipping",
+    sub: "Slow, gentle nail care",
+    price: "\u20B9250",
+    duration: "Quick visit",
+    img: "assets/img/pawpad/grooming-nail-clipping-new.webp",
+    includes: ["Nail trimming", "Paw handling support", "Breaks for anxious pets", "Comfort checks"],
+    note: "Gentle nail care for pets who need a quick maintenance visit or extra patience around paw handling."
+  },
+  {
+    cat: "Wellness",
+    key: "massage",
+    title: "Massage",
+    sub: "Pre & post grooming wellness add-on",
+    price: "\u20B91,500",
+    duration: "Wellness add-on",
+    img: "assets/img/pawpad/grooming-page-grooming-massage.webp",
+    includes: ["Gentle pre-grooming settling", "Grooming begins only when they're ready", "Post-grooming relaxation massage", "Led by your dog's comfort, never the clock"],
+    note: "A quiet moment of care that helps your dog settle before grooming and gently unwind afterwards. Available exclusively as a pre and post grooming add-on."
   }
 ];
 const ADD_ONS = [
@@ -160,7 +171,7 @@ function GroomingPackages({ onBook }) {
   return /* @__PURE__ */ React.createElement("section", { className: "g-packages", id: "packages" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-head reveal" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Grooming Categories"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "16ch" } }, "Grooming care ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "for every coat"))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-filter" }, ["All", ...cats].map((c) => /* @__PURE__ */ React.createElement("button", { key: c, className: "g-filter-btn " + (filter === c ? "on" : ""), onClick: () => setFilter(c) }, c)))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-grid" }, filtered.map((p, i) => {
     const isOpen = open === p.key;
     return /* @__PURE__ */ React.createElement("article", { key: p.key, className: "g-pkg-card " + (isOpen ? "open" : ""), style: { transitionDelay: `${i * 60}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-img" }, /* @__PURE__ */ React.createElement("img", { src: p.img, alt: p.title }), /* @__PURE__ */ React.createElement("span", { className: "tag" }, p.cat)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-body" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-top" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, p.title), /* @__PURE__ */ React.createElement("p", { className: "mute", style: { margin: "4px 0 0", fontSize: 13 } }, p.sub)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-price" }, /* @__PURE__ */ React.createElement("strong", null, p.price), /* @__PURE__ */ React.createElement("span", null, p.duration))), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-note" }, p.note), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-details" }, /* @__PURE__ */ React.createElement("h5", null, "Included"), /* @__PURE__ */ React.createElement("ul", null, p.includes.map((inc) => /* @__PURE__ */ React.createElement("li", { key: inc }, /* @__PURE__ */ React.createElement(PawIcon, { size: 10, color: "var(--driftwood)" }), " ", inc)))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-actions" }, /* @__PURE__ */ React.createElement("button", { className: "g-pkg-toggle", onClick: () => setOpen(isOpen ? null : p.key) }, isOpen ? "Show less" : "What's included", " ", /* @__PURE__ */ React.createElement("span", { className: "g-pkg-arrow" }, isOpen ? "\u2212" : "+")), /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary btn-sm", onClick: () => onBook(p.key) }, "Book ", p.cat.toLowerCase(), " ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 })))));
-  })), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-footnote reveal" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }), "Please refer to the notes below for grooming duration, appointment policies, and important grooming guidelines.")), /* @__PURE__ */ React.createElement("style", null, `
+  })), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-footnote reveal" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }), "Please refer to the notes below for grooming duration, appointment policies, and important grooming guidelines. Add-on services are available exclusively alongside a full grooming package.")), /* @__PURE__ */ React.createElement("style", null, `
         .g-packages { background: var(--cream-bg); padding-top: 0; }
         .g-pkg-head {
           display: flex; justify-content: space-between; align-items: end; gap: 32px;
@@ -264,7 +275,7 @@ function GroomingPackages({ onBook }) {
       `));
 }
 function AddOnsSection() {
-  return /* @__PURE__ */ React.createElement("section", { className: "addons" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "addons-head reveal" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Add-ons"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "18ch" } }, "Little extras ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "Big difference"))), /* @__PURE__ */ React.createElement("div", { className: "addons-grid reveal" }, ADD_ONS.map((a, i) => /* @__PURE__ */ React.createElement("div", { key: a.name, className: "addon-row" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }), /* @__PURE__ */ React.createElement("span", { className: "addon-name" }, a.name), /* @__PURE__ */ React.createElement("span", { className: "addon-price" }, a.price))))), /* @__PURE__ */ React.createElement("style", null, `
+  return /* @__PURE__ */ React.createElement("section", { className: "addons" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "addons-head reveal" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Add-ons"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "18ch" } }, "Little extras ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "Big difference"))), /* @__PURE__ */ React.createElement("div", { className: "addons-grid reveal" }, ADD_ONS.map((a, i) => /* @__PURE__ */ React.createElement("div", { key: a.name, className: "addon-row" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }), /* @__PURE__ */ React.createElement("span", { className: "addon-name" }, a.name), /* @__PURE__ */ React.createElement("span", { className: "addon-price" }, a.price)))), /* @__PURE__ */ React.createElement("p", { className: "addons-disclaimer reveal" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 13, color: "var(--driftwood)" }), " Disclaimer: Add-on services are available exclusively alongside a full grooming session and cannot be booked as standalone treatments.")), /* @__PURE__ */ React.createElement("style", null, `
         .addons { background: var(--champagne-soft); }
         .addons-head { max-width: 720px; margin-bottom: 48px; }
         .addons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
@@ -277,6 +288,19 @@ function AddOnsSection() {
         .addon-row:hover { padding-left: 8px; }
         .addon-name { font-size: 16px; }
         .addon-price { font-family: var(--f-display); font-size: 22px; color: var(--driftwood); }
+        .addons-disclaimer {
+          margin-top: 36px;
+          display: flex; align-items: center; gap: 10px;
+          font-size: 13px; color: var(--ink-mute);
+          padding: 14px 18px;
+          background: color-mix(in oklab, var(--white), transparent 30%);
+          border-radius: 12px;
+          border: 1px solid color-mix(in oklab, var(--ink), transparent 90%);
+          width: fit-content;
+        }
+        body[data-palette="dark"] .addons-disclaimer {
+          background: color-mix(in oklab, var(--champagne), black 8%);
+        }
         @media (max-width: 700px) {
           .addons-grid { grid-template-columns: 1fr; }
         }
