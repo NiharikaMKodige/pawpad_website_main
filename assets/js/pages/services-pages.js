@@ -1,130 +1,64 @@
-
 const { useState: useStateP } = React;
 const COURSE_LIST = [
   {
-    key: "professional-pet-4week",
-    title: "4-Week Professional Pet Grooming Certificate (Dogs & Cats)",
-    duration: "4 weeks \xB7 Monday\u2013Friday",
-    summary: "Professional hands-on training in both dog and cat grooming",
-    spots: "Small batches \xB7 Hands-on training",
-    price: "Rs.",
-    img: "assets/img/pawpad/courses-cover-new.webp",
-    for: "Aspiring professional pet groomers who want comprehensive training in both dog and cat grooming, with the confidence to work in salons or establish their own grooming studio.",
-    learn: "Professional grooming techniques, pet handling, breed and coat assessment, grooming equipment and hygiene, pet first aid, studio operations, customer communication, branding, and business fundamentals.",
-    includes: "Professional Certificate upon successful practical assessment, placement facilitation, and guidance on setting up your own grooming studio."
+    key: "foundation-grooming",
+    title: "Foundation Course in Grooming",
+    price: "₹95,000",
+    priceNum: 95000,
+    duration: "7 weeks",
+    knowMoreUrl: "course-foundations.html",
+    enrollUrl: "enroll-foundations.html",
+    desc: "A 7-week foundation-level grooming certification for complete beginners building toward a professional grooming career with both dogs and cats. Learn consent-based handling, anatomy, stress signals, bathing, coat care, scissoring, and clipping without restraint or force.",
+    for: "Complete beginners building toward a professional grooming career with both dogs and cats.",
+    learn: "Consent-based handling, canine and feline anatomy, stress signals, bathing, coat care, scissoring, and clipping without restraint or force."
   },
   {
-    key: "professional-dog-3week",
-    title: "3-Week Professional Dog Grooming Certificate",
-    duration: "3 weeks \xB7 Monday\u2013Friday",
-    summary: "Professional hands-on training focused on dog grooming",
-    spots: "Small batches \xB7 Hands-on training",
-    price: "Rs.",
-    img: "assets/img/pawpad/course-dog-grooming.webp",
-    for: "Beginners and aspiring professional dog groomers looking to build industry-ready practical skills and begin a career in dog grooming.",
-    learn: "Breed-specific grooming, bathing, drying, de-shedding, coat care, scissoring techniques, nail trimming, pet handling, equipment maintenance, first aid, and professional salon practices.",
-    includes: "Professional Certificate upon successful practical assessment, placement facilitation, and business guidance for those looking to establish their own grooming studio."
+    key: "essentials-dog-grooming",
+    title: "Essentials Dog Grooming",
+    price: "₹30,000",
+    priceNum: 30000,
+    duration: "5 days",
+    knowMoreUrl: "course-essentials-dog.html",
+    enrollUrl: "enroll-essentials-dog.html",
+    desc: "A fast, 5-day hands-on introduction to professional dog grooming for complete beginners. Work directly with live dogs from day one under expert supervision to learn bathing, drying, brushing, ear cleaning, and coat-care fundamentals.",
+    for: "Complete beginners looking for a fast, practical introduction to canine grooming.",
+    learn: "Live dog handling, bathing, drying, brushing, ear cleaning, and coat-care fundamentals under expert supervision."
   },
   {
-    key: "professional-cat-3week",
-    title: "3-Week Professional Cat Grooming Certificate",
-    duration: "3 weeks \xB7 Monday\u2013Friday",
-    summary: "Professional hands-on training focused on cat grooming",
-    spots: "Small batches \xB7 Hands-on training",
-    price: "Rs.",
-    img: "assets/img/pawpad/course-cat-grooming.webp",
-    for: "Beginners and aspiring professional cat groomers who want specialised feline grooming skills in a practical studio environment.",
-    learn: "Cat handling, coat assessment, bathing, drying, de-matting, hygiene grooming, nail trimming, equipment care, feline first aid awareness, and professional grooming practices.",
-    includes: "Professional Certificate upon successful practical assessment, placement facilitation, and business guidance for setting up your own grooming studio."
+    key: "essentials-cat-grooming",
+    title: "Essentials Cat Grooming",
+    price: "₹30,000",
+    priceNum: 30000,
+    duration: "5 days",
+    knowMoreUrl: "course-essentials-cat.html",
+    enrollUrl: "enroll-essentials-cat.html",
+    desc: "A 5-day hands-on introductory course covering feline-specific grooming and handling techniques. Build entry-level competence in cat body language, bathing, drying, brushing, de-matting, and ear care under close instructor guidance.",
+    for: "Beginners wanting specialised feline handling and grooming basics.",
+    learn: "Cat body language, low-stress handling, bathing, drying, brushing, de-matting, and ear care under close instructor guidance."
   },
   {
-    key: "weekend-professional-pet",
-    title: "Weekend Professional Pet Grooming Certificate (Dogs & Cats)",
-    duration: "8 weekends (16 sessions) \xB7 Saturdays & Sundays \xB7 9:30 AM\u20135:30 PM",
-    summary: "Professional hands-on training covering both dog and cat grooming",
-    spots: "Flexible weekend learning",
-    price: "Rs.",
-    img: "assets/img/pawpad/courses-cover-new.webp",
-    for: "Working professionals, students, or career changers who want to become professional pet groomers without stepping away from their weekday commitments. This course follows the same curriculum, practical training, and professional certification as the weekday intensive programme, delivered over weekends."
+    key: "practitioner-dog-grooming",
+    title: "Practitioner Dog Grooming",
+    price: "₹50,000",
+    priceNum: 50000,
+    duration: "3 weeks",
+    knowMoreUrl: "course-practitioner-dog.html",
+    enrollUrl: "enroll-practitioner-dog.html",
+    desc: "A 3-week practitioner-level programme designed to build industry-ready technical grounding in canine grooming. Master bathing and coat care, advance to live-dog nail trimming and hygiene clipping, and practice full scissoring techniques on training models.",
+    for: "Groomers and serious beginners seeking industry-ready canine grooming proficiency.",
+    learn: "Bathing, coat care, live-dog nail trimming, hygiene clipping, and full scissoring techniques on training models."
   },
   {
-    key: "weekend-professional-dog",
-    title: "Weekend Professional Dog Grooming Certificate",
-    duration: "6 weekends (12 sessions) \xB7 Saturdays & Sundays \xB7 9:30 AM\u20135:30 PM",
-    summary: "Professional hands-on training focused on dog grooming",
-    spots: "Flexible weekend learning",
-    price: "Rs.",
-    img: "assets/img/pawpad/course-dog-grooming.webp",
-    for: "Beginners, pet parents, and aspiring dog groomers who need the flexibility of weekend learning while developing practical, industry-ready dog grooming skills. The course mirrors the weekday programme but is spread across weekend sessions for greater convenience."
-  },
-  {
-    key: "weekend-professional-cat",
-    title: "Weekend Professional Cat Grooming Certificate",
-    duration: "6 weekends (12 sessions) \xB7 Saturdays & Sundays \xB7 9:30 AM\u20135:30 PM",
-    summary: "Professional hands-on training focused on cat grooming",
-    spots: "Flexible weekend learning",
-    price: "Rs.",
-    img: "assets/img/pawpad/course-cat-grooming.webp",
-    for: "Beginners, pet parents, and aspiring cat groomers looking to build professional feline grooming skills while balancing work, studies, or other commitments. This flexible weekend programme delivers the same hands-on learning and professional certification as the weekday course."
-  },
-  {
-    key: "dog-1week",
-    title: "1-Week Dog Grooming \u2013 Foundation Certificate",
-    duration: "5 days \xB7 Monday\u2013Friday",
-    spots: "Maximum of two students at a time",
-    price: "Rs. 35,000",
-    deposit: "Non-refundable deposit: Rs. 14,000",
-    balance: "Balance Rs. 21,000 payable on Day 1",
-    img: "assets/img/pawpad/course-dog-grooming.webp",
-    for: "Beginners who want hands-on, practical grooming skills in a shorter, intensive format. Practical sessions use dogs already accustomed to grooming and handling. This is a narrower-scope certificate than our 3-week Professional Certificate \u2014 it does not include the studio-setup/business module or placement facilitation.",
-    curriculum: [
-      { day: "Day 1 \u2014 Equipment, Safety & Assessment", items: ["Use, clean and sterilise grooming equipment", "Canine anatomy basics", "Breed and coat type identification", "Handling techniques for calm dogs"] },
-      { day: "Day 2 \u2014 Bathing & Coat Care", items: ["Bathing technique", "Drying techniques", "Deshedding", "Ear and eye cleaning"] },
-      { day: "Day 3 \u2014 Maintenance Skills", items: ["Nail clipping", "Brush and comb technique", "Dematting and knot removal", "Hygiene clip"] },
-      { day: "Day 4 \u2014 Scissoring Fundamentals", items: ["Scissoring technique for light shaping and finishing touches \u2014 taught and practiced on a training model, not a live dog. Does not cover a complete haircut or face trimming."] },
-      { day: "Day 5 \u2014 First Aid & Assessment", items: ["First aid essentials \u2014 preparing for emergencies, recognising signs of distress", "Practical skills assessment covering bathing, drying, brushing, nail trim and hygiene clip on live dogs", "Scissoring is assessed as a finishing touch on the training model \u2014 light shaping and blending, not a complete haircut or face trimming, which require more time than this format allows", "Foundation Certificate awarded"] }
-    ],
-    certificate: "On successful completion, students receive a Foundation Certificate in Dog Grooming. Please note: this reflects course attendance and practical skill-building, and is distinct from our 3-week Professional Certificate.",
-    cancellation: "The booking deposit is non-refundable. Once the course begins, the balance fee is non-refundable and non-transferable to another person. A missed day within the 5-day course cannot be made up within that batch, as the format is sequential and each day builds on the last. At Pawpad's discretion, a student may repeat the missed day(s) in a later batch at an additional fee, or repeat the full course at a reduced re-enrolment rate. No refund is made for days not attended."
-  },
-  {
-    key: "cat-1week",
-    title: "1-Week Cat Grooming \u2013 Foundation Certificate",
-    duration: "5 days \xB7 Monday\u2013Friday",
-    spots: "Maximum of two students at a time",
-    price: "Rs. 35,000",
-    deposit: "Non-refundable deposit: Rs. 14,000",
-    balance: "Balance Rs. 21,000 payable on Day 1",
-    img: "assets/img/pawpad/course-cat-grooming.webp",
-    for: "Beginners who want hands-on, practical cat grooming skills in a shorter, intensive format. This is a narrower-scope certificate than our 3-week Professional Certificate \u2014 it does not include the studio-setup/business module or placement facilitation.",
-    curriculum: [
-      { day: "Day 1 \u2014 Feline Handling & Assessment", items: ["Feline anatomy basics", "Reading feline stress signals", "Low-stress restraint and handling", "Grooming equipment"] },
-      { day: "Day 2 \u2014 Bathing & Coat Care", items: ["Bathing technique", "Ear and eye cleaning", "Nail trimming"] },
-      { day: "Day 3 \u2014 Maintenance Skills", items: ["Brushing technique", "Dematting", "Deshedding"] },
-      { day: "Day 4 \u2014 Clip Demonstration, Skills Review & First Aid", items: ["Sanitary clip and basic lion-clip technique \u2014 demonstrated by the facilitator only", "Supervised review and practice of bathing, brushing, dematting and nail trim technique", "First aid essentials \u2014 preparing for emergencies, recognising signs of distress"] },
-      { day: "Day 5 \u2014 Assessment", items: ["Practical skills assessment", "Foundation Certificate awarded"] }
-    ],
-    certificate: "On successful completion, students receive a Foundation Certificate in Cat Grooming. Please note: this reflects course attendance and practical skill-building, and is distinct from our 3-week Professional Certificate.",
-    cancellation: "The booking deposit is non-refundable. Once the course begins, the balance fee is non-refundable and non-transferable to another person. A missed day within the 5-day course cannot be made up within that batch, as the format is sequential and each day builds on the last. At Pawpad's discretion, a student may repeat the missed day(s) in a later batch at an additional fee, or repeat the full course at a reduced re-enrolment rate. No refund is made for days not attended."
-  },
-  {
-    key: "anxious-pets",
-    title: "At-Home Grooming & Handling Course for Anxious Pets",
-    duration: "2 weekends \xB7 4 days \xB7 Saturdays & Sundays",
-    spots: "Tailored to your dog's pace",
-    price: "Rs. 30,000",
-    deposit: "Non-refundable deposit: Rs. 15,000",
-    balance: "Balance Rs. 15,000 payable on Day 1",
-    img: "assets/img/pawpad/course-at-home.webp",
-    for: "Pet parents of anxious, fearful or reactive dogs who want to build home grooming and handling skills at their pet's own pace \u2014 no restraint, no cage, dog-paced, behaviour-led. This is not a professional grooming qualification.",
-    curriculum: [
-      { day: "Weekend 1, Day 1 \u2014 Reading the Dog", items: ["Recognising fear, stress and anxiety body language", "Consent-based handling \u2014 pause points and reading readiness", "Tool desensitisation (brush, clippers, dryer, nail trimmer \u2014 introduced without use)", "A brief, procedure-free studio visit with your own dog to build early comfort with the space"] },
-      { day: "Weekend 1, Day 2 \u2014 Core Maintenance Technique", items: ["Brushing and dematting technique", "Nail trim technique \u2014 locating the quick, recognising a bad trim early", "Ear cleaning technique and spotting infection", "Full bathing and drying sequence", "Technique practiced hands-on", "Take-home tool desensitisation exercises for the week ahead"] },
-      { day: "Weekend 2, Day 3 \u2014 Your Dog's Second Visit", items: ["A guided, pace-matched session applying Weekend 1's brushing, nail and ear technique with your own dog \u2014 timed to your dog's individual readiness, not the clock"] },
-      { day: "Weekend 2, Day 4 \u2014 Haircut Fundamentals & Home Plan", items: ["Scissoring and clipping fundamentals, tool safety near skin, and sanitary-area clipping \u2014 practiced on a training model", "A guided session applying what's realistic for your dog that day", "An individual consult covering your dog's specific triggers, a written home-care plan, and honest guidance on which grooming tasks to continue at home versus when to book a professional groomer"] }
-    ],
-    certificate: "Participants receive a Certificate of Participation, along with a written home-care plan specific to their pet. This certificate reflects course attendance and is not a professional grooming qualification.",
-    cancellation: "The booking deposit is non-refundable. Once the course begins, the balance fee is non-refundable and non-transferable to another person. This course is structured around each dog's individual pace \u2014 Day 3 and Day 4 content is adapted to what the dog is ready for on that day, at the facilitator's discretion, and may mean a modified session rather than the full activity described in the curriculum. Course fee covers instruction, guidance and the written home-care plan; it does not guarantee a specific behavioural outcome or that a given dog will be ready for hands-on grooming work by Day 4. No refund is issued if a dog's pace requires a modified Day 3 or Day 4 session."
+    key: "practitioner-cat-grooming",
+    title: "Practitioner Cat Grooming",
+    price: "₹50,000",
+    priceNum: 50000,
+    duration: "3 weeks",
+    knowMoreUrl: "course-practitioner-cat.html",
+    enrollUrl: "enroll-practitioner-cat.html",
+    desc: "An intensive 3-week practitioner course providing hands-on feline grooming mastery. Progress from bathing and coat care to live nail trimming, hygiene clipping, and full haircuts performed directly on live cats.",
+    for: "Groomers and serious beginners seeking intensive feline grooming mastery.",
+    learn: "Bathing, coat care, live nail trimming, hygiene clipping, and full haircuts performed directly on live cats."
   }
 ];
 function CoursesHero() {
@@ -137,84 +71,192 @@ function CoursesHero() {
       `));
 }
 function CourseCards({ onBook }) {
-  const [open, setOpen] = useStateP(null);
-  return /* @__PURE__ */ React.createElement("section", { className: "course-cards" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "cc-head reveal" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Course Overview"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "22ch" } }, "Hands-on training in ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "conscious grooming"))), /* @__PURE__ */ React.createElement("div", { className: "cc-grid" }, COURSE_LIST.map((c, i) => {
-    var _a;
-    const isOpen = open === c.key;
-    return /* @__PURE__ */ React.createElement("article", { key: c.key, className: "cc-card reveal " + (isOpen ? "open" : "") }, /* @__PURE__ */ React.createElement("div", { className: "cc-img" }, /* @__PURE__ */ React.createElement("img", { src: c.img, alt: c.title })), /* @__PURE__ */ React.createElement("div", { className: "cc-body" }, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, c.title), /* @__PURE__ */ React.createElement("div", { className: "cc-meta" }, /* @__PURE__ */ React.createElement("span", null, c.duration), /* @__PURE__ */ React.createElement("span", null, c.spots)), c.summary && /* @__PURE__ */ React.createElement("p", { className: "cc-summary" }, c.summary), (c.deposit || c.balance) && /* @__PURE__ */ React.createElement("div", { className: "cc-fees" }, c.deposit && /* @__PURE__ */ React.createElement("span", { className: "cc-deposit" }, c.deposit), c.balance && /* @__PURE__ */ React.createElement("span", { className: "cc-balance" }, c.balance)), /* @__PURE__ */ React.createElement("p", { className: "cc-for" }, /* @__PURE__ */ React.createElement("strong", null, "Who this is for:"), " ", c.for), isOpen && /* @__PURE__ */ React.createElement("div", { className: "cc-detail" }, c.learn && /* @__PURE__ */ React.createElement("p", { className: "cc-for" }, /* @__PURE__ */ React.createElement("strong", null, "You'll learn:"), " ", c.learn), c.includes && /* @__PURE__ */ React.createElement("p", { className: "cc-for" }, /* @__PURE__ */ React.createElement("strong", null, "Includes:"), " ", c.includes), c.curriculum && /* @__PURE__ */ React.createElement("h5", null, "Curriculum"), (_a = c.curriculum) == null ? void 0 : _a.map((day) => /* @__PURE__ */ React.createElement("div", { key: day.day, className: "cc-day" }, /* @__PURE__ */ React.createElement("p", { className: "cc-day-title" }, day.day), /* @__PURE__ */ React.createElement("ul", null, day.items.map((item, idx) => /* @__PURE__ */ React.createElement("li", { key: idx }, /* @__PURE__ */ React.createElement(PawIcon, { size: 10, color: "var(--driftwood)" }), " ", item))))), (c.certificate || c.cancellation) && /* @__PURE__ */ React.createElement("div", { className: "cc-cert-block" }, c.certificate && /* @__PURE__ */ React.createElement("p", { className: "cc-for" }, /* @__PURE__ */ React.createElement("strong", null, "Certificate:"), " ", c.certificate), c.cancellation && /* @__PURE__ */ React.createElement("p", { className: "cc-for" }, /* @__PURE__ */ React.createElement("strong", null, "Cancellation & Withdrawal:"), " ", c.cancellation))), /* @__PURE__ */ React.createElement("div", { className: "cc-foot" }, /* @__PURE__ */ React.createElement("span", { className: "cc-price" }, c.price), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" } }, /* @__PURE__ */ React.createElement("button", { className: "g-pkg-toggle", "aria-expanded": isOpen, onClick: () => setOpen((current) => current === c.key ? null : c.key) }, isOpen ? "Show less" : "Course details", " ", /* @__PURE__ */ React.createElement("span", { className: "g-pkg-arrow" }, isOpen ? "\u2212" : "+")), /* @__PURE__ */ React.createElement("button", {
-      className: "btn btn-ghost btn-sm", onClick: () => {
-        if (window.addToCart) {
-          const parsedPrice = c.price.includes("35,000") ? 35000 : c.price.includes("30,000") ? 30000 : 25000;
-          window.addToCart({
-            id: c.key,
-            title: c.title,
-            category: "Courses",
-            price: parsedPrice,
-            priceDisplay: c.price,
-            desc: c.summary || c.duration,
-            requiresPetInfo: c.key === "anxious-pets",
-            img: c.img
-          });
-        }
-      }
-    }, "+ Add to Cart")))));
-  }))), /* @__PURE__ */ React.createElement("style", null, `
-        .course-cards { background: var(--cream-bg); padding-top: 0; }
+  return /* @__PURE__ */ React.createElement(
+    "section",
+    { className: "course-cards" },
+    /* @__PURE__ */ React.createElement(
+      "div",
+      { className: "container" },
+      /* @__PURE__ */ React.createElement(
+        "div",
+        { className: "cc-head reveal" },
+        /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "COURSE OVERVIEW"),
+        /* @__PURE__ */ React.createElement(
+          "h2",
+          { className: "h-1", style: { marginTop: 18, maxWidth: "22ch" } },
+          "Hands-on training in ",
+          /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "conscious grooming")
+        )
+      ),
+      /* @__PURE__ */ React.createElement(
+        "div",
+        { className: "cc-grid" },
+        COURSE_LIST.map((c, i) =>
+          /* @__PURE__ */ React.createElement(
+            "article",
+            { key: c.key, className: "cc-card reveal", style: { transitionDelay: `${i * 50}ms` } },
+            /* @__PURE__ */ React.createElement("h3", { className: "cc-card-title" }, c.title),
+            /* @__PURE__ */ React.createElement("div", { className: "cc-card-price" }, c.price),
+            /* @__PURE__ */ React.createElement("p", { className: "cc-card-desc" }, c.desc),
+            /* @__PURE__ */ React.createElement(
+              "div",
+              { className: "cc-card-actions" },
+              /* @__PURE__ */ React.createElement(
+                "a",
+                {
+                  href: c.knowMoreUrl,
+                  className: "btn-know-more"
+                },
+                "Know More"
+              ),
+              /* @__PURE__ */ React.createElement(
+                "a",
+                {
+                  href: c.enrollUrl,
+                  className: "btn-enroll-now"
+                },
+                "Enroll Now ",
+                /* @__PURE__ */ React.createElement("span", { className: "btn-arrow" }, "→")
+              )
+            )
+          )
+        )
+      )
+    ),
+    /* @__PURE__ */ React.createElement(
+      "style",
+      null,
+      `
+        .course-cards { background: var(--cream-bg); padding: 40px 0 80px; }
         .cc-head { margin-bottom: 48px; max-width: 720px; }
-        .cc-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+        .cc-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
         .cc-card {
-          background: var(--white); border-radius: 26px; overflow: hidden;
+          background: var(--white);
+          border-radius: 24px;
+          padding: 36px 30px 32px;
           border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
-          display: grid; grid-template-columns: minmax(280px, 420px) 1fr;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+          display: flex;
+          flex-direction: column;
+          transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+        }
+        body[data-palette="dark"] .cc-card {
+          background: color-mix(in oklab, var(--champagne), black 5%);
+          border-color: color-mix(in oklab, var(--champagne), transparent 85%);
+        }
+        .cc-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 24px 48px -24px color-mix(in oklab, var(--ink), transparent 70%);
+        }
+        .cc-card-title {
+          font-family: var(--f-display);
+          font-size: 22px;
+          font-weight: 500;
+          color: var(--ink);
+          line-height: 1.25;
+          margin: 0 0 12px;
+        }
+        .cc-card-price {
+          font-family: var(--f-display);
+          font-size: 24px;
+          color: var(--driftwood);
+          font-weight: 400;
+          margin: 0 0 20px;
+        }
+        .cc-card-desc {
+          font-family: var(--f-body);
+          font-size: 14px;
+          line-height: 1.65;
+          color: var(--ink-soft);
+          margin: 0 0 32px;
+          flex: 1;
+        }
+        .cc-card-actions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: auto;
+          flex-wrap: wrap;
+        }
+        .btn-know-more {
+          font-family: var(--f-body);
+          font-size: 13.5px;
+          font-weight: 600;
+          padding: 10px 22px;
+          border-radius: 9999px;
+          background: transparent;
+          color: var(--ink);
+          border: 1.5px solid color-mix(in oklab, var(--ink), transparent 70%);
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
           transition: all var(--t-fast) var(--ease);
         }
-        body[data-palette="dark"] .cc-card { background: color-mix(in oklab, var(--champagne), black 5%); }
-        .cc-card:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -40px color-mix(in oklab, var(--ink), transparent 60%); }
-        .cc-img { aspect-ratio: auto; min-height: 100%; overflow: hidden; }
-        .cc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
-        .cc-card:hover .cc-img img { transform: scale(1.04); }
-        .cc-body { padding: 28px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
-        .cc-meta { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-mute); }
-        .cc-fees { display: flex; flex-direction: column; gap: 2px; }
-        .cc-summary { margin: 0; color: var(--ink); font-size: 14px; font-weight: 600; line-height: 1.5; }
-        .cc-deposit, .cc-balance { font-size: 12.5px; color: var(--driftwood); font-weight: 600; }
-        .cc-for { font-size: 13.5px; margin: 0; color: var(--ink-soft); line-height: 1.55; }
-        .cc-for strong { color: var(--driftwood); }
-        .cc-detail { display: flex; flex-direction: column; gap: 12px; }
-        .cc-detail h5 {
-          font-family: var(--f-body); font-size: 11px; font-weight: 700;
-          letter-spacing: .2em; text-transform: uppercase; color: var(--ink-mute); margin: 12px 0 16px;
+        .btn-know-more:hover {
+          background: var(--champagne-soft);
+          border-color: var(--ink);
+          color: var(--ink);
+          text-decoration: none;
         }
-        .cc-day { margin-bottom: 18px; }
-        .cc-day-title {
-          font-size: 12px; font-weight: 700; letter-spacing: .06em;
-          color: var(--ink); margin: 0 0 8px; text-transform: uppercase;
+        body[data-palette="dark"] .btn-know-more {
+          border-color: color-mix(in oklab, var(--champagne), transparent 50%);
+          color: var(--champagne);
         }
-        .cc-day ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
-        .cc-day li { display: flex; align-items: flex-start; gap: 8px; color: var(--ink-soft); line-height: 1.5; }
-        .cc-cert-block {
-          margin-top: 18px; padding-top: 18px;
-          border-top: 1px dashed color-mix(in oklab, var(--ink), transparent 80%);
-          display: flex; flex-direction: column; gap: 10px;
+        body[data-palette="dark"] .btn-know-more:hover {
+          background: color-mix(in oklab, var(--champagne), transparent 85%);
+          border-color: var(--champagne);
+          color: var(--champagne);
+          text-decoration: none;
         }
-        .cc-foot {
-          margin-top: auto; padding-top: 18px;
-          border-top: 1px dashed color-mix(in oklab, var(--ink), transparent 80%);
-          display: flex; justify-content: space-between; align-items: center;
-          gap: 14px; flex-wrap: wrap;
+        .btn-enroll-now {
+          font-family: var(--f-body);
+          font-size: 13.5px;
+          font-weight: 600;
+          padding: 10px 22px;
+          border-radius: 9999px;
+          background: var(--ink);
+          color: var(--white) !important;
+          border: 1.5px solid var(--ink);
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          text-decoration: none;
+          transition: all var(--t-fast) var(--ease);
         }
-        .cc-price { font-family: var(--f-display); font-size: 26px; color: var(--driftwood); }
-        .g-pkg-toggle {
-          font-size: 13px; font-weight: 600;
-          display: inline-flex; align-items: center; gap: 8px; color: var(--ink);
+        .btn-enroll-now:hover {
+          background: var(--driftwood);
+          border-color: var(--driftwood);
+          color: var(--white) !important;
+          transform: translateX(2px);
+          text-decoration: none;
         }
-        .g-pkg-arrow {
-          font-family: var(--f-body); font-size: 16px; font-weight: 600;
-          width: 26px; height: 26px; background: var(--champagne);
-          border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+        .btn-arrow {
+          font-size: 15px;
+          transition: transform var(--t-fast) var(--ease);
         }
-        @media (max-width: 860px) { .cc-card { grid-template-columns: 1fr; } .cc-img { aspect-ratio: 4/3; } }
-      `));
+        .btn-enroll-now:hover .btn-arrow {
+          transform: translateX(3px);
+        }
+        @media (max-width: 980px) {
+          .cc-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+          .cc-grid { grid-template-columns: 1fr; }
+          .cc-card { padding: 28px 22px 24px; }
+          .cc-card-actions { flex-direction: column; align-items: stretch; }
+          .btn-know-more, .btn-enroll-now { justify-content: center; text-align: center; }
+        }
+      `
+    )
+  );
 }
 function CredibilityStrip() {
   return /* @__PURE__ */ React.createElement("section", { className: "cred" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "cred-grid" }, /* @__PURE__ */ React.createElement("div", { className: "cred-text reveal" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Why Learn With Pawpad?"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "16ch" } }, "Learn directly ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "from Leena")), /* @__PURE__ */ React.createElement("p", { style: { marginTop: 28, maxWidth: "56ch" } }, "Learn directly from Leena Munikempanna, founder of Pawpad and a professional groomer with over a decade of industry experience. Students benefit not only from technical grooming knowledge, but also from Pawpad's philosophy of behaviour-led, compassionate animal care."), /* @__PURE__ */ React.createElement("ul", { className: "cred-bullets" }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "Learn through real-world experience."), " Training combines theory with practical, hands-on grooming experience alongside professional groomers."), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "Small batches, personalised attention."), " A maximum of two students at a time allows for focused guidance and personalised feedback."), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "Train in both dogs and cats."), " Pawpad offers the opportunity to learn both canine and feline grooming for a broader professional skill set."), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "Leena's qualifications."), " Certified Master Cat Groomer (PCGAA), PetCPR+ Certified, Certified Canine Esthetician, and Certified Coat Expert."))), /* @__PURE__ */ React.createElement("div", { className: "cred-images reveal" }, /* @__PURE__ */ React.createElement("div", { className: "cred-portrait blob-1" }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/pawpad/courses-learn-from-leena.webp", alt: "Leena Munikempanna, founder of Pawpad", loading: "lazy", decoding: "async" }))))), /* @__PURE__ */ React.createElement("style", null, `

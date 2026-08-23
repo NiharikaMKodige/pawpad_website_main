@@ -3,44 +3,54 @@ const { useState: useStateC, useEffect: useEffectC, useRef: useRefC } = React;
 
 const CART_CATALOG = [
   {
-    id: "dog-1week",
-    title: "1-Week Dog Grooming – Foundation Certificate",
+    id: "foundation-grooming",
+    title: "Foundation Course in Grooming",
     category: "Courses",
-    price: 35000,
-    priceDisplay: "₹35,000",
-    desc: "Hands-on foundation training in dog bathing, handling, and coat care",
+    price: 95000,
+    priceDisplay: "₹95,000",
+    desc: "7-week foundation-level grooming certification for beginners (dogs & cats)",
+    requiresPetInfo: false,
+    img: "assets/img/pawpad/courses-cover-new.webp"
+  },
+  {
+    id: "essentials-dog-grooming",
+    title: "Essentials Dog Grooming",
+    category: "Courses",
+    price: 30000,
+    priceDisplay: "₹30,000",
+    desc: "5-day hands-on introduction to professional dog grooming",
     requiresPetInfo: false,
     img: "assets/img/pawpad/course-dog-grooming.webp"
   },
   {
-    id: "cat-1week",
-    title: "1-Week Cat Grooming – Foundation Certificate",
+    id: "essentials-cat-grooming",
+    title: "Essentials Cat Grooming",
     category: "Courses",
-    price: 35000,
-    priceDisplay: "₹35,000",
-    desc: "Specialised hands-on feline handling, bathing, and low-stress grooming",
+    price: 30000,
+    priceDisplay: "₹30,000",
+    desc: "5-day hands-on introductory course in feline grooming and handling",
     requiresPetInfo: false,
     img: "assets/img/pawpad/course-cat-grooming.webp"
   },
   {
-    id: "anxious-pets",
-    title: "At-Home Grooming for Anxious Pets",
+    id: "practitioner-dog-grooming",
+    title: "Practitioner Dog Grooming",
     category: "Courses",
-    price: 30000,
-    priceDisplay: "₹30,000",
-    desc: "Dog-paced, behaviour-led handling and home grooming for pet parents",
-    requiresPetInfo: true,
-    img: "assets/img/pawpad/course-at-home.webp"
+    price: 50000,
+    priceDisplay: "₹50,000",
+    desc: "3-week practitioner-level programme in canine grooming and scissoring",
+    requiresPetInfo: false,
+    img: "assets/img/pawpad/course-dog-grooming.webp"
   },
   {
-    id: "professional-pet-4week",
-    title: "4-Week Professional Pet Grooming Certificate",
+    id: "practitioner-cat-grooming",
+    title: "Practitioner Cat Grooming",
     category: "Courses",
-    price: 75000,
-    priceDisplay: "Enquiry / ₹75,000",
-    desc: "Comprehensive professional career course in both dog and cat grooming",
+    price: 50000,
+    priceDisplay: "₹50,000",
+    desc: "3-week intensive feline grooming mastery and live styling",
     requiresPetInfo: false,
-    img: "assets/img/pawpad/courses-cover-new.webp"
+    img: "assets/img/pawpad/course-cat-grooming.webp"
   }
 ];
 

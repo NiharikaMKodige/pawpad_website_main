@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCGPC Application — Pawpad Canine Grooming Practitioner Certificate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--bg: #F8F6EF;--ink: #1C1B19;--ink-soft:#5B5546;--gold: #B08D4E;--gold-deep: #96702E;--rule:#E3DCC9;--field-bg:#FFFFFF;--max:680px;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .page{max-width:var(--max);margin:0 auto;padding:80px 24px 100px;}
+  .eyebrow{font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:16px;}
+  h1{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(28px,4vw,38px);line-height:1.2;margin:0 0 12px;}
+  .sub{color:var(--ink-soft);font-size:16px;margin-bottom:36px;}
+  hr{border:none;border-top:1px solid var(--rule);margin:0 0 36px;}
+  fieldset{border:none;padding:0;margin:0 0 40px;}
+  legend{font-family:"Fraunces",serif;font-weight:500;font-size:20px;margin-bottom:18px;padding:0;}
+  .field{margin-bottom:20px;}
+  label{display:block;font-weight:600;font-size:15px;margin-bottom:6px;}
+  .hint{font-weight:400;color:var(--ink-soft);font-size:13px;margin-top:4px;}
+  input[type=text],input[type=email],input[type=tel],textarea{
+    width:100%;padding:11px 12px;border:1px solid var(--rule);border-radius:4px;
+    background:var(--field-bg);font-family:"Source Serif 4",serif;font-size:15px;color:var(--ink);
+  }
+  textarea{min-height:80px;resize:vertical;}
+  .radio-row, .check-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:15px;}
+  .radio-row input, .check-row input{margin-top:4px;flex-shrink:0;}
+  .ack{background:#FDF8EC;border:1px solid var(--rule);border-radius:6px;padding:16px 18px;margin-bottom:14px;}
+  .cta{display:inline-block;margin-top:16px;background:#1C1B19; color:#FDF8EC;font-weight:600;font-size:15px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;padding:15px 34px;border:none;border-radius:4px;cursor:pointer;}
+  .cta:hover{background:#3A3835;}
+  .note{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-soft);font-style:italic;}
+  .back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:#EFEAD8;
+    color:var(--ink);
+    font-family:"Source Serif 4", Georgia, serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:4px;
+    margin-bottom:28px;
+    transition:background .15s ease, color .15s ease;
+  }
+  .back-btn:hover{
+    background:#E3DCC9;
+    color:var(--ink);
+  }
+  @media (max-width:600px){.page{padding:48px 20px 70px;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <a href="courses.html" class="back-btn">&larr; BACK TO COURSES</a>
+  <div class="eyebrow">Application · PCGPC</div>
+  <h1>Pawpad Canine Grooming Practitioner Certificate</h1>
+  <p class="sub">3-week programme · ₹50,000 · Cohort of 5 · Stage 1 of 4 in our admissions process</p>
+  <hr>
+
+  <form action="#" method="POST">
+
+    <fieldset>
+      <legend>Your details</legend>
+      <div class="field"><label for="name">Full name</label><input type="text" id="name" name="name" required></div>
+      <div class="field"><label for="phone">Phone number</label><input type="tel" id="phone" name="phone" required></div>
+      <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
+      <div class="field"><label for="city">City</label><input type="text" id="city" name="city" required>
+        <div class="hint">This is an in-person programme run in Bengaluru.</div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>About you</legend>
+      <div class="field"><label for="why">Why do you want to take this course?</label><textarea id="why" name="why" required></textarea></div>
+      <div class="field"><label for="experience">Any prior experience with grooming, or hands-on work with dogs? Have you completed PCGEC?</label><textarea id="experience" name="experience"></textarea>
+        <div class="hint">PCGEC isn't required to apply, but tell us if you've done it.</div></div>
+      <div class="field"><label for="handling">How would you currently handle a dog that's resisting or struggling during a task?</label><textarea id="handling" name="handling" required></textarea></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Fit &amp; expectations</legend>
+      <div class="field">
+        <label>This is a career-pathway programme, not designed for personal/hobbyist use. Does this match what you're looking for?</label>
+        <div class="radio-row"><input type="radio" id="career-yes" name="career_fit" value="yes" required><label for="career-yes" style="font-weight:400;">Yes</label></div>
+        <div class="radio-row"><input type="radio" id="career-no" name="career_fit" value="no"><label for="career-no" style="font-weight:400;">No</label></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>What this course actually involves — please confirm you understand</legend>
+      <div class="ack"><div class="check-row"><input type="checkbox" id="ack1" name="ack_nail_hygiene" required><label for="ack1" style="font-weight:400;">Nail trimming and hygiene clip have no practice-model step. I will watch these performed on a live dog several times, then practice on a live dog myself later in the programme.</label></div></div>
+      <div class="ack"><div class="check-row"><input type="checkbox" id="ack2" name="ack_haircut_model" required><label for="ack2" style="font-weight:400;">The full haircut in this course is practiced on a model only — I will not perform a full haircut on a live dog at this level.</label></div></div>
+      <div class="ack"><div class="check-row"><input type="checkbox" id="ack3" name="ack_no_exam" required><label for="ack3" style="font-weight:400;">This certificate does not include a pathway to an international grooming exam.</label></div></div>
+      <div class="ack"><div class="check-row"><input type="checkbox" id="ack4" name="ack_fees" required><label for="ack4" style="font-weight:400;">I understand the course fee (₹50,000), deposit (₹12,500, non-refundable, due on acceptance), and cancellation policy.</label></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Physical readiness &amp; wellbeing</legend>
+      <div class="field">
+        <label>This course involves standing for extended periods, lifting and holding animals, and repetitive hand movements. Are you able to do this safely?</label>
+        <div class="radio-row"><input type="radio" id="phys-yes" name="physical_capability" value="yes" required><label for="phys-yes" style="font-weight:400;">Yes</label></div>
+        <div class="radio-row"><input type="radio" id="phys-no" name="physical_capability" value="no"><label for="phys-no" style="font-weight:400;">No</label></div>
+        <div class="field" style="margin-top:12px;"><label for="phys-context" style="font-weight:400;">Optional — add context if you would like</label><textarea id="phys-context" name="physical_capability_context"></textarea></div>
+      </div>
+      <div class="field">
+        <label for="health-optional">Optional and confidential — not used in the acceptance decision: is there anything about your health we should be aware of for your safety during hands-on activities (e.g., a recent surgery, an allergy, or a condition that could be affected by physical exertion or animal contact)?</label>
+        <textarea id="health-optional" name="health_disclosure"></textarea>
+      </div>
+    </fieldset>
+
+
+    <button type="submit" class="cta">Submit Application</button>
+  </form>
+
+  <div class="note">This form is not connected to a submission backend yet — it needs to be wired to an email service, Google Form, or your site platform's native form handling before it goes live. Submitting this covers Stage 1 only; interview scheduling, the prerequisite check, and the temperament/safety assessment happen after review.</div>
+</div>
+</body>
+</html>
