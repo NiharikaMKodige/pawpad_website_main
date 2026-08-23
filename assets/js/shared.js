@@ -169,13 +169,13 @@ function TopNav({ route, onBook, onOpenCart }) {
         }
         .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
         .nav-brand img {
-          height: 84px;
+          height: 140px;
           width: auto;
-          max-width: min(42vw, 320px);
+          max-width: min(46vw, 380px);
           object-fit: contain;
           transition: height var(--t-fast) var(--ease);
         }
-        .nav.scrolled .nav-brand img { height: 64px; }
+        .nav.scrolled .nav-brand img { height: 105px; }
         .nav-links { display: flex; gap: 6px; align-items: center; }
         .nav-link {
           padding: 10px 16px;
@@ -301,8 +301,8 @@ function Footer({ onBook }) {
           .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 700px) {
-          .nav-brand img { height: 52px; max-width: 190px; }
-          .nav.scrolled .nav-brand img { height: 44px; }
+          .nav-brand img { height: 76px; max-width: 220px; }
+          .nav.scrolled .nav-brand img { height: 58px; }
           .brand-mark img { height: 64px; max-width: 240px; }
         }
       `));
