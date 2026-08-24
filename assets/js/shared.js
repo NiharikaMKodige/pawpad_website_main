@@ -14,6 +14,9 @@ function hrefFor(key) {
 }
 const PawIcon = ({ size = 18, color = "currentColor", style }) => /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 64 64", width: size, height: size, style, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("ellipse", { cx: "32", cy: "16", rx: "5.5", ry: "7.5", fill: color }), /* @__PURE__ */ React.createElement("ellipse", { cx: "20", cy: "24", rx: "6", ry: "8", fill: color }), /* @__PURE__ */ React.createElement("ellipse", { cx: "44", cy: "24", rx: "6", ry: "8", fill: color }), /* @__PURE__ */ React.createElement("ellipse", { cx: "11", cy: "38", rx: "5", ry: "6.5", fill: color }), /* @__PURE__ */ React.createElement("ellipse", { cx: "53", cy: "38", rx: "5", ry: "6.5", fill: color }), /* @__PURE__ */ React.createElement("ellipse", { cx: "32", cy: "46", rx: "13", ry: "11", fill: color }));
 const Arrow = ({ size = 14 }) => /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 24 24", width: size, height: size, fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "arr" }, /* @__PURE__ */ React.createElement("line", { x1: "5", y1: "12", x2: "19", y2: "12" }), /* @__PURE__ */ React.createElement("polyline", { points: "13 6 19 12 13 18" }));
+const InstagramIcon = ({ size = 16, color = "currentColor", style }) => /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 24 24", width: size, height: size, fill: "none", stroke: color, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", style, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("rect", { x: "2", y: "2", width: "20", height: "20", rx: "5", ry: "5" }), /* @__PURE__ */ React.createElement("path", { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" }), /* @__PURE__ */ React.createElement("line", { x1: "17.5", y1: "6.5", x2: "17.51", y2: "6.5" }));
+const FacebookIcon = ({ size = 16, color = "currentColor", style }) => /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 24 24", width: size, height: size, fill: color, stroke: "none", style, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("path", { d: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" }));
+const TwitterIcon = ({ size = 16, color = "currentColor", style }) => /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 24 24", width: size, height: size, fill: color, stroke: "none", style, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("path", { d: "M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" }));
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal:not(.in)");
@@ -265,7 +268,52 @@ function TopNav({ route, onBook, onOpenCart }) {
       `));
 }
 function Footer({ onBook }) {
-  return /* @__PURE__ */ React.createElement("footer", { className: "site-footer" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "footer-top" }, /* @__PURE__ */ React.createElement("div", { className: "footer-cta-block" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Ready when you are"), /* @__PURE__ */ React.createElement("h2", { className: "h-1" }, "Soft hands", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--white)" } }, "Calm pets")), /* @__PURE__ */ React.createElement("p", { className: "lead", style: { marginTop: 24 } }, "Walk in with anxiety, leave with a wagging tail. Sessions are spaced, never rushed \u2014 and we plan around your pet's temperament, not our calendar."), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 } }, /* @__PURE__ */ React.createElement("a", { href: hrefFor("about"), className: "btn btn-primary" }, "Read our story ", /* @__PURE__ */ React.createElement(Arrow, null)))), /* @__PURE__ */ React.createElement("div", { className: "footer-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h4", { className: "f-h" }, "Hours"), /* @__PURE__ */ React.createElement("p", null, "Weekdays: 11 AM - 8 PM", /* @__PURE__ */ React.createElement("br", null), "Weekends: 10 AM - 8 PM", /* @__PURE__ */ React.createElement("br", null), "Thursdays: Closed")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h4", { className: "f-h" }, "Address"), /* @__PURE__ */ React.createElement("p", null, "#426, 5th Main Road,", /* @__PURE__ */ React.createElement("br", null), "HRBR 2nd Block, Kalyan Nagar", /* @__PURE__ */ React.createElement("br", null), "Bangalore - 560043 India"), /* @__PURE__ */ React.createElement("p", { style: { marginTop: 14 } }, "Ph: ", /* @__PURE__ */ React.createElement("a", { href: "tel:+919663077496" }, "9663077496")), /* @__PURE__ */ React.createElement("div", { className: "socials" }, /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Instagram" }, "IG"), /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Facebook" }, "FB"), /* @__PURE__ */ React.createElement("a", { href: "https://wa.me/919663077496", "aria-label": "WhatsApp", target: "_blank", rel: "noopener" }, "WA"))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h4", { className: "f-h" }, "Explore"), /* @__PURE__ */ React.createElement("ul", null, NAV_ITEMS.filter((i) => i.key !== "home").map((i) => /* @__PURE__ */ React.createElement("li", { key: i.key }, /* @__PURE__ */ React.createElement("a", { href: hrefFor(i.key) }, i.label))))))), /* @__PURE__ */ React.createElement("div", { className: "footer-bottom" }, /* @__PURE__ */ React.createElement("div", { className: "brand-mark" }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/logo-pawpad-03.png", alt: "Pawpad" })), /* @__PURE__ */ React.createElement("p", { className: "micro" }, "© 2017 Pawpad."))), /* @__PURE__ */ React.createElement("style", null, `
+  return /* @__PURE__ */ React.createElement("footer", { className: "site-footer" },
+    /* @__PURE__ */ React.createElement("div", { className: "container" },
+      /* @__PURE__ */ React.createElement("div", { className: "footer-top" },
+        /* @__PURE__ */ React.createElement("div", { className: "footer-cta-block" },
+          /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Ready when you are"),
+          /* @__PURE__ */ React.createElement("h2", { className: "h-1" }, "Soft hands", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--white)" } }, "Calm pets")),
+          /* @__PURE__ */ React.createElement("p", { className: "lead", style: { marginTop: 24 } }, "Walk in with anxiety, leave with a wagging tail. Sessions are spaced, never rushed — and we plan around your pet's temperament, not our calendar."),
+          /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 } },
+            /* @__PURE__ */ React.createElement("a", { href: hrefFor("about"), className: "btn btn-primary" }, "Read our story ", /* @__PURE__ */ React.createElement(Arrow, null))
+          )
+        ),
+        /* @__PURE__ */ React.createElement("div", { className: "footer-grid" },
+          /* @__PURE__ */ React.createElement("div", null,
+            /* @__PURE__ */ React.createElement("h4", { className: "f-h" }, "Hours"),
+            /* @__PURE__ */ React.createElement("p", null, "Weekdays: 11 AM - 8 PM", /* @__PURE__ */ React.createElement("br", null), "Weekends: 10 AM - 8 PM", /* @__PURE__ */ React.createElement("br", null), "Thursdays: Closed")
+          ),
+          /* @__PURE__ */ React.createElement("div", null,
+            /* @__PURE__ */ React.createElement("h4", { className: "f-h" }, "Address"),
+            /* @__PURE__ */ React.createElement("p", null, "#426, 5th Main Road,", /* @__PURE__ */ React.createElement("br", null), "HRBR 2nd Block, Kalyan Nagar", /* @__PURE__ */ React.createElement("br", null), "Bangalore - 560043 India"),
+            /* @__PURE__ */ React.createElement("p", { style: { marginTop: 14 } }, "Ph: ", /* @__PURE__ */ React.createElement("a", { href: "tel:+919663077496" }, "9663077496")),
+            /* @__PURE__ */ React.createElement("div", { className: "socials" },
+              /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Instagram" }, /* @__PURE__ */ React.createElement(InstagramIcon, { size: 16 })),
+              /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Facebook" }, /* @__PURE__ */ React.createElement(FacebookIcon, { size: 16 })),
+              /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Twitter" }, /* @__PURE__ */ React.createElement(TwitterIcon, { size: 16 }))
+            )
+          ),
+          /* @__PURE__ */ React.createElement("div", null,
+            /* @__PURE__ */ React.createElement("h4", { className: "f-h" }, "Explore"),
+            /* @__PURE__ */ React.createElement("ul", null,
+              NAV_ITEMS.filter((i) => i.key !== "home").map((i) =>
+                /* @__PURE__ */ React.createElement("li", { key: i.key },
+                  /* @__PURE__ */ React.createElement("a", { href: hrefFor(i.key) }, i.label)
+                )
+              )
+            )
+          )
+        )
+      ),
+      /* @__PURE__ */ React.createElement("div", { className: "footer-bottom" },
+        /* @__PURE__ */ React.createElement("div", { className: "brand-mark" },
+          /* @__PURE__ */ React.createElement("img", { src: "assets/img/logo-pawpad-03.png", alt: "Pawpad" })
+        ),
+        /* @__PURE__ */ React.createElement("p", { className: "micro" }, "© 2017 Pawpad.")
+      )
+    ),
+    /* @__PURE__ */ React.createElement("style", null, `
         .site-footer {
           background: #2e2e2e; color: var(--white);
           padding: 100px 0 36px; margin-top: 80px;
@@ -287,9 +335,11 @@ function Footer({ onBook }) {
           display: inline-flex; align-items: center; justify-content: center;
           width: 36px; height: 36px; border-radius: 50%;
           background: color-mix(in oklab, var(--cream-bg), transparent 88%);
-          font-size: 11px; font-weight: 700; letter-spacing: .05em;
+          color: var(--white);
+          transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
         }
-        .socials a:hover { background: var(--driftwood); color: var(--white); }
+        .socials a:hover { background: var(--driftwood); color: var(--white); transform: translateY(-2px); }
+        .socials a svg { display: block; }
         .footer-bottom {
           padding-top: 36px; border-top: 1px solid color-mix(in oklab, var(--cream-bg), transparent 88%);
           display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
@@ -305,7 +355,8 @@ function Footer({ onBook }) {
           .nav.scrolled .nav-brand img { height: 58px; }
           .brand-mark img { height: 64px; max-width: 240px; }
         }
-      `));
+      `)
+  );
 }
 const TESTIMONIALS = [
   {
@@ -450,6 +501,9 @@ function WhatsAppFloat() {
 Object.assign(window, {
   PawIcon,
   Arrow,
+  InstagramIcon,
+  FacebookIcon,
+  TwitterIcon,
   useReveal,
   hrefFor,
   ROUTE_HREF,

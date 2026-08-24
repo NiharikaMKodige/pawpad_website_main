@@ -21,6 +21,26 @@ const Arrow = ({ size = 14 }) => (
   </svg>
 );
 
+const InstagramIcon = ({ size = 16, color = "currentColor", style }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={style} aria-hidden="true">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+const FacebookIcon = ({ size = 16, color = "currentColor", style }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill={color} stroke="none" style={style} aria-hidden="true">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
+
+const TwitterIcon = ({ size = 16, color = "currentColor", style }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill={color} stroke="none" style={style} aria-hidden="true">
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+  </svg>
+);
+
 /* ---------- Routing ---------- */
 function useRoute() {
   const get = () => {
@@ -302,9 +322,9 @@ function Footer({ onBook }) {
               <p>#426, 5th Main Road,<br/>HRBR 2nd Block, Kalyan Nagar<br/>Bangalore - 560043 India</p>
               <p style={{marginTop:14}}>Ph: <a href="tel:+919663077496">9663077496</a></p>
               <div className="socials">
-                <a href="#" aria-label="Instagram">IG</a>
-                <a href="#" aria-label="Facebook">FB</a>
-                <a href="#" aria-label="WhatsApp">WA</a>
+                <a href="#" aria-label="Instagram"><InstagramIcon size={16} /></a>
+                <a href="#" aria-label="Facebook"><FacebookIcon size={16} /></a>
+                <a href="#" aria-label="Twitter"><TwitterIcon size={16} /></a>
               </div>
             </div>
             <div>
@@ -346,9 +366,11 @@ function Footer({ onBook }) {
           display: inline-flex; align-items: center; justify-content: center;
           width: 36px; height: 36px; border-radius: 50%;
           background: color-mix(in oklab, var(--cream-bg), transparent 88%);
-          font-size: 11px; font-weight: 700; letter-spacing: .05em;
+          color: var(--white);
+          transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
         }
-        .socials a:hover { background: var(--driftwood); color: var(--white); }
+        .socials a:hover { background: var(--driftwood); color: var(--white); transform: translateY(-2px); }
+        .socials a svg { display: block; }
         .footer-bottom {
           padding-top: 36px; border-top: 1px solid color-mix(in oklab, var(--cream-bg), transparent 88%);
           display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;

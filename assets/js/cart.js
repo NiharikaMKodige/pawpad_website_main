@@ -10,7 +10,7 @@ const CART_CATALOG = [
     priceDisplay: "₹95,000",
     desc: "7-week foundation-level grooming certification for beginners (dogs & cats)",
     requiresPetInfo: false,
-    img: "assets/img/pawpad/courses-cover-new.webp"
+    img: "assets/img/pawpad/course-dog-grooming.webp"
   },
   {
     id: "essentials-dog-grooming",
