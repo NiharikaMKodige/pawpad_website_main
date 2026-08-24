@@ -67,19 +67,22 @@ function StepJourney() {
 
   useEffectE(() => {
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting && e.intersectionRatio > 0.5) {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
           const i = parseInt(e.target.dataset.idx, 10);
           if (!isNaN(i)) setActive(i);
         }
       });
-    }, { threshold: [0.5, 0.6, 0.7] });
-    stepsRef.current.forEach(el => el && io.observe(el));
+    }, {
+      rootMargin: "-25% 0px -45% 0px",
+      threshold: [0.1, 0.3, 0.6]
+    });
+    stepsRef.current.forEach((el) => el && io.observe(el));
     return () => io.disconnect();
   }, []);
 
   return (
-    <section className="journey">
+    <section className="journey" id="journey">
       <div className="container journey-grid">
         <aside className="journey-side">
           <div className="journey-sticky">
@@ -92,7 +95,6 @@ function StepJourney() {
                 <button key={s.no} className={"j-prog " + (i === active ? "on" : i < active ? "done" : "")} onClick={() => { stepsRef.current[i]?.scrollIntoView({behavior:"smooth", block:"center"}); }}>
                   <span className="j-prog-no">{s.no}</span>
                   <span className="j-prog-title">{s.title}</span>
-                  <span className="j-prog-bar"></span>
                 </button>
               ))}
             </div>
@@ -103,7 +105,6 @@ function StepJourney() {
             <article key={s.no} className="j-step reveal" ref={el => stepsRef.current[i] = el} data-idx={i}>
               <div className="j-step-img blob-1">
                 <img src={s.img} alt={s.title} style={{objectPosition: s.pos || "center center"}} />
-                <span className="j-step-no">{s.no}</span>
               </div>
               <div className="j-step-text">
                 <h3 className="h-2">{s.title}</h3>
@@ -114,30 +115,33 @@ function StepJourney() {
         </div>
       </div>
       <style>{`
-        .journey { background: var(--champagne-soft); }
-        .journey-grid { display: grid; grid-template-columns: 340px 1fr; gap: 56px; align-items: start; }
+        .journey { background: var(--champagne-soft); padding: 80px 0 120px; }
+        .journey-grid { display: grid; grid-template-columns: 360px 1fr; gap: 56px; align-items: start; }
         .journey-side { position: relative; }
         .journey-sticky { position: sticky; top: 120px; }
-        .journey-progress { margin-top: 36px; display: flex; flex-direction: column; gap: 6px; }
+        .journey-sticky .eyebrow { font-size: 26px; }
+        .journey-progress { margin-top: 36px; display: flex; flex-direction: column; gap: 8px; }
         .j-prog {
-          display: grid; grid-template-columns: 40px 1fr; gap: 12px;
-          padding: 14px 0; align-items: center;
+          display: grid; grid-template-columns: 48px 1fr; gap: 16px;
+          padding: 12px 0; align-items: baseline;
           text-align: left;
           color: var(--ink-mute);
           position: relative;
           transition: color var(--t-fast) var(--ease);
+          border: none; background: transparent; cursor: pointer;
+          font-family: var(--f-body); width: 100%;
         }
-        .j-prog .j-prog-no { font-family: var(--f-display); font-size: 18px; }
-        .j-prog .j-prog-title { font-size: 14px; }
-        .j-prog .j-prog-bar { display: none; }
+        .j-prog .j-prog-no { font-family: var(--f-display); font-size: 30px; line-height: 1; }
+        .j-prog .j-prog-title { font-size: 26px; line-height: 1.25; }
         .j-prog.on { color: var(--ink); }
-        .j-prog.on .j-prog-no { color: var(--driftwood); font-size: 22px; }
+        .j-prog.on .j-prog-no { color: var(--driftwood); font-size: 34px; font-weight: 700; }
+        .j-prog.on .j-prog-title { color: var(--driftwood); font-weight: 600; font-size: 26px; }
         .j-prog.done { color: color-mix(in oklab, var(--ink), transparent 50%); }
         .j-prog:hover { color: var(--ink); }
         .j-step {
           display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
           align-items: center;
-          padding: 20px 0;
+          padding: 40px 0;
           border-bottom: 1px dashed color-mix(in oklab, var(--ink), transparent 85%);
         }
         .j-step:last-child { border-bottom: 0; }
@@ -149,16 +153,10 @@ function StepJourney() {
         }
         body[data-motion="still"] .j-step-img { animation: none; }
         .j-step-img img { width: 100%; height: 100%; object-fit: cover; }
-        .j-step-no {
-          position: absolute; top: 20px; left: 20px;
-          font-family: var(--f-display); font-size: 56px;
-          color: var(--cream-bg);
-          text-shadow: 0 4px 24px color-mix(in oklab, var(--ink), transparent 40%);
-          line-height: 1;
-        }
+        .j-step-text p { margin-top: 18px; font-size: 26px; line-height: 1.6; max-width: 44ch; }
+        
         .j-step:nth-child(even) { direction: rtl; }
         .j-step:nth-child(even) > * { direction: ltr; }
-        .j-step-text p { margin-top: 18px; font-size: 17px; line-height: 1.7; max-width: 44ch; }
         @media (max-width: 1000px) {
           .journey-grid { grid-template-columns: 1fr; }
           .journey-sticky { position: static; }

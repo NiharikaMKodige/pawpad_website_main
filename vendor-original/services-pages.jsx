@@ -69,8 +69,8 @@ const COURSE_LIST = [
 function CoursesHero() {
   return (
     <section className="c-hero">
-      <div className="container">
-        <div className="c-hero-content">
+      <div className="container c-hero-grid">
+        <div>
           <p className="eyebrow reveal in">Pawpad courses</p>
           <h1 className="h-display reveal in c-course-title" style={{ marginTop: 24, maxWidth: "18ch" }}>
             Become a Professional <em className="italic" style={{ color: "var(--driftwood)", whiteSpace: "nowrap" }}>Pet Groomer</em>
@@ -82,11 +82,14 @@ function CoursesHero() {
             Learn dog grooming, cat grooming, handling techniques, coat care, hygiene, safety, and business fundamentals through personalised training with experienced professionals.
           </p>
         </div>
+        <div className="c-hero-image reveal in"><img src="assets/img/pawpad/courses-cover-new.webp" alt="Pawpad grooming course" fetchpriority="high" decoding="async" /></div>
       </div>
       <style>{`
         .c-hero { padding: 180px 0 60px; }
-        .c-hero-content { max-width: 780px; }
-        @media (max-width: 900px) { .c-course-title em { white-space: normal !important; } }
+        .c-hero-grid { display: grid; grid-template-columns: 1.05fr .9fr; gap: 64px; align-items: center; }
+        .c-hero-image { background: transparent; }
+        .c-hero-image img { width: 100%; height: auto; display: block; object-fit: contain; }
+        @media (max-width: 900px) { .c-hero-grid { grid-template-columns: 1fr; gap: 34px; } .c-course-title em { white-space: normal !important; } }
       `}</style>
     </section>
   );

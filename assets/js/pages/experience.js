@@ -45,47 +45,129 @@ function ExperienceHero() {
       `));
 }
 function StepJourney() {
-  return /* @__PURE__ */ React.createElement("section", { className: "journey" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "journey-main" }, EXPERIENCE_STEPS.map((s, i) => /* @__PURE__ */ React.createElement("article", { key: s.no, className: "j-step reveal" }, /* @__PURE__ */ React.createElement("div", { className: "j-step-img blob-1" }, /* @__PURE__ */ React.createElement("img", { src: s.img, alt: s.title, style: { objectPosition: s.pos || "center center" } }), /* @__PURE__ */ React.createElement("span", { className: "j-step-no" }, s.no)), /* @__PURE__ */ React.createElement("div", { className: "j-step-text" }, /* @__PURE__ */ React.createElement("h3", { className: "h-2" }, s.title), /* @__PURE__ */ React.createElement("p", null, s.body)))))), /* @__PURE__ */ React.createElement("style", null, `
-        .journey { background: var(--champagne-soft); padding: 40px 0 80px; }
-        .journey-main {
-          max-width: 1060px;
-          margin-left: auto;
+  const [active, setActive] = useStateE(0);
+  const stepsRef = useRefE([]);
+
+  useEffectE(() => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const i = parseInt(e.target.dataset.idx, 10);
+          if (!isNaN(i)) setActive(i);
         }
-        .j-step {
-          display: grid; grid-template-columns: minmax(300px, 440px) 1fr; gap: clamp(32px, 5vw, 64px);
-          align-items: center;
-          padding: 48px 0;
-          border-bottom: 1px dashed color-mix(in oklab, var(--ink), transparent 85%);
-        }
-        .j-step:last-child { border-bottom: 0; }
-        .j-step-img {
-          aspect-ratio: 4/4.4;
-          overflow: hidden; background: transparent;
-          position: relative;
-          animation: morph 14s ease-in-out infinite alternate;
-        }
-        body[data-motion="still"] .j-step-img { animation: none; }
-        .j-step-img img { width: 100%; height: 100%; object-fit: cover; }
-        .j-step-no {
-          position: absolute; top: 20px; left: 20px;
-          font-family: var(--f-display); font-size: 56px;
-          color: var(--cream-bg);
-          text-shadow: 0 4px 24px color-mix(in oklab, var(--ink), transparent 40%);
-          line-height: 1;
-        }
-        .j-step-text h3 {
-          font-family: var(--f-display);
-          font-size: clamp(32px, 3.5vw, 46px);
-          line-height: 1.1;
-          color: var(--ink);
-          margin: 0;
-        }
-        .j-step-text p { margin-top: 18px; font-size: 17px; line-height: 1.7; max-width: 48ch; }
-        @media (max-width: 768px) {
-          .j-step { grid-template-columns: 1fr; gap: 28px; padding: 32px 0; }
-          .journey-main { margin-left: 0; }
-        }
-      `));
+      });
+    }, {
+      rootMargin: "-25% 0px -45% 0px",
+      threshold: [0.1, 0.3, 0.6]
+    });
+    stepsRef.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  return /* @__PURE__ */ React.createElement("section", { className: "journey", id: "journey" },
+    /* @__PURE__ */ React.createElement("div", { className: "container journey-grid" },
+      /* @__PURE__ */ React.createElement("aside", { className: "journey-side" },
+        /* @__PURE__ */ React.createElement("div", { className: "journey-sticky" },
+          /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Step by step"),
+          /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "14ch" } },
+            "What to expect"
+          ),
+          /* @__PURE__ */ React.createElement("div", { className: "journey-progress" },
+            EXPERIENCE_STEPS.map((s, i) =>
+              /* @__PURE__ */ React.createElement("button", {
+                key: s.no,
+                className: "j-prog " + (i === active ? "on" : i < active ? "done" : ""),
+                onClick: () => {
+                  var _a;
+                  (_a = stepsRef.current[i]) == null ? void 0 : _a.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+              },
+                /* @__PURE__ */ React.createElement("span", { className: "j-prog-no" }, s.no),
+                /* @__PURE__ */ React.createElement("span", { className: "j-prog-title" }, s.title)
+              )
+            )
+          )
+        )
+      ),
+      /* @__PURE__ */ React.createElement("div", { className: "journey-main" },
+        EXPERIENCE_STEPS.map((s, i) =>
+          /* @__PURE__ */ React.createElement("article", {
+            key: s.no,
+            className: "j-step reveal",
+            ref: (el) => stepsRef.current[i] = el,
+            "data-idx": i
+          },
+            /* @__PURE__ */ React.createElement("div", { className: "j-step-img blob-1" },
+              /* @__PURE__ */ React.createElement("img", {
+                src: s.img,
+                alt: s.title,
+                style: { objectPosition: s.pos || "center center" }
+              })
+            ),
+            /* @__PURE__ */ React.createElement("div", { className: "j-step-text" },
+              /* @__PURE__ */ React.createElement("h3", { className: "h-2" }, s.title),
+              /* @__PURE__ */ React.createElement("p", null, s.body)
+            )
+          )
+        )
+      )
+    ),
+    /* @__PURE__ */ React.createElement("style", null, `
+      .journey { background: var(--champagne-soft); padding: 80px 0 120px; }
+      .journey-grid { display: grid; grid-template-columns: 360px 1fr; gap: 56px; align-items: start; }
+      .journey-side { position: relative; }
+      .journey-sticky { position: sticky; top: 120px; }
+      .journey-sticky .eyebrow { font-size: 26px; }
+      .journey-progress { margin-top: 36px; display: flex; flex-direction: column; gap: 8px; }
+      .j-prog {
+        display: grid; grid-template-columns: 48px 1fr; gap: 16px;
+        padding: 12px 0; align-items: baseline;
+        text-align: left;
+        color: var(--ink-mute);
+        position: relative;
+        transition: color var(--t-fast) var(--ease);
+        border: none; background: transparent; cursor: pointer;
+        font-family: var(--f-body); width: 100%;
+      }
+      .j-prog .j-prog-no { font-family: var(--f-display); font-size: 30px; line-height: 1; }
+      .j-prog .j-prog-title { font-size: 26px; line-height: 1.25; }
+      .j-prog.on { color: var(--ink); }
+      .j-prog.on .j-prog-no { color: var(--driftwood); font-size: 34px; font-weight: 700; }
+      .j-prog.on .j-prog-title { color: var(--driftwood); font-weight: 600; font-size: 26px; }
+      .j-prog.done { color: color-mix(in oklab, var(--ink), transparent 50%); }
+      .j-prog:hover { color: var(--ink); }
+      .j-step {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+        align-items: center;
+        padding: 40px 0;
+        border-bottom: 1px dashed color-mix(in oklab, var(--ink), transparent 85%);
+      }
+      .j-step:last-child { border-bottom: 0; }
+      .j-step-img {
+        aspect-ratio: 4/4.4;
+        overflow: hidden; background: transparent;
+        position: relative;
+        animation: morph 14s ease-in-out infinite alternate;
+      }
+      body[data-motion="still"] .j-step-img { animation: none; }
+      .j-step-img img { width: 100%; height: 100%; object-fit: cover; }
+      .j-step-text p { margin-top: 18px; font-size: 26px; line-height: 1.6; max-width: 44ch; }
+      
+      .j-step:nth-child(even) { direction: rtl; }
+      .j-step:nth-child(even) > * { direction: ltr; }
+      @media (max-width: 1000px) {
+        .journey-grid { grid-template-columns: 1fr; }
+        .journey-sticky { position: static; }
+        .journey-progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 24px; }
+        .j-prog { grid-template-columns: 1fr; gap: 6px; padding: 8px; background: var(--white); border-radius: 12px; }
+        .j-prog .j-prog-title { font-size: 11px; }
+      }
+      @media (max-width: 700px) {
+        .j-step { grid-template-columns: 1fr; gap: 28px; padding: 32px 0; }
+        .j-step:nth-child(even) { direction: ltr; }
+      }
+    `)
+  );
 }
 function HandlingPhilosophy() {
   return /* @__PURE__ */ React.createElement("section", { className: "handling" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "handling-grid" }, /* @__PURE__ */ React.createElement("div", { className: "handling-images reveal" }, /* @__PURE__ */ React.createElement("div", { className: "h-img-1 blob-2" }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/pawpad/grooming-snapshot-new.jpg", alt: "Gentle grooming at Pawpad" })), /* @__PURE__ */ React.createElement("div", { className: "h-img-2 blob-1" }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/pawpad/grooming-page-grooming-massage.webp", alt: "A dog calmly relaxing during a gentle massage" })), /* @__PURE__ */ React.createElement("div", { className: "handling-badge" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 20, color: "var(--driftwood)" }), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "Calm"), /* @__PURE__ */ React.createElement("span", null, "appointment-only care with room to pause")))), /* @__PURE__ */ React.createElement("div", { className: "handling-text reveal" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "The Pawpad experience"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "15ch" } }, "Grooming at ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "your pet's pace")), /* @__PURE__ */ React.createElement("p", { style: { marginTop: 28, maxWidth: "54ch" } }, "Every session is guided by the individual animal. We pay close attention to body language, comfort levels, and stress signals, adapting our approach as needed. If a pet requires more time, more breaks, or a slower introduction to a particular part of grooming, that is exactly what they receive."), /* @__PURE__ */ React.createElement("p", { style: { maxWidth: "54ch" } }, "The grooming environment has been designed to minimise unnecessary stress and overstimulation. Appointments are staggered to avoid crowded spaces, excessive noise, and overwhelming activity."), /* @__PURE__ */ React.createElement("p", { style: { maxWidth: "54ch" } }, "Every pet receives dedicated attention throughout their appointment. We take the time to understand their individual needs, preferences, sensitivities, and comfort levels before and during the grooming process."), /* @__PURE__ */ React.createElement("p", { style: { maxWidth: "54ch" } }, "Our approach to animal handling has been shaped by years of working with rescue animals, community animals, and pets with a wide range of personalities and experiences. Trust cannot be forced. It is built through patience, consistency, and respect for what an animal is communicating."), /* @__PURE__ */ React.createElement("p", { style: { maxWidth: "54ch" } }, "For anxious or reactive pets, we assess each pet individually and adapt our handling and grooming approach to suit their comfort levels. We also offer guidance to help owners maintain coat care and hygiene in ways that are appropriate for their individual pet.")))), /* @__PURE__ */ React.createElement("style", null, `

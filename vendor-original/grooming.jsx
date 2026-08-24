@@ -241,7 +241,13 @@ function GroomingPackages({ onBook }) {
                     <button className="g-pkg-toggle" onClick={() => setOpen(isOpen ? null : p.key)}>
                       {isOpen ? "Show less" : "What's included"} <span className="g-pkg-arrow">{isOpen ? "−" : "+"}</span>
                     </button>
-                    <button className="btn btn-primary" onClick={() => onBook(p.key)}>Book {p.cat.toLowerCase()} <Arrow size={12} /></button>
+                    <button className="btn btn-primary btn-sm" onClick={() => {
+                      const priceNum = parseInt(String(p.price).replace(/[^0-9]/g, ""), 10) || 1000;
+                      const cartItem = { id: p.key, title: p.title, category: "Grooming", price: priceNum, priceDisplay: p.price, desc: p.sub || p.note, img: p.img, requiresPetInfo: true };
+                      if (typeof onAddToCart === "function") onAddToCart(cartItem);
+                      else if (typeof window.addToCart === "function") window.addToCart(cartItem);
+                      else onBook(p.key);
+                    }}>Add to cart <Arrow size={12} /></button>
                   </div>
                 </div>
               </article>
@@ -471,12 +477,12 @@ function GroomingNotes() {
   );
 }
 
-function GroomingPage({ onBook }) {
+function GroomingPage({ onBook, onAddToCart }) {
   useReveal();
   return (
     <div className="page-enter">
       <GroomingHero onBook={onBook} />
-      <GroomingPackages onBook={onBook} />
+      <GroomingPackages onBook={onBook} onAddToCart={onAddToCart} />
       <GroomingNotes />
     </div>
   );

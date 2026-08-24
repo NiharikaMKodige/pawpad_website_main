@@ -289,8 +289,8 @@ function Footer({ onBook }) {
             /* @__PURE__ */ React.createElement("p", null, "#426, 5th Main Road,", /* @__PURE__ */ React.createElement("br", null), "HRBR 2nd Block, Kalyan Nagar", /* @__PURE__ */ React.createElement("br", null), "Bangalore - 560043 India"),
             /* @__PURE__ */ React.createElement("p", { style: { marginTop: 14 } }, "Ph: ", /* @__PURE__ */ React.createElement("a", { href: "tel:+919663077496" }, "9663077496")),
             /* @__PURE__ */ React.createElement("div", { className: "socials" },
-              /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Instagram" }, /* @__PURE__ */ React.createElement(InstagramIcon, { size: 16 })),
-              /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Facebook" }, /* @__PURE__ */ React.createElement(FacebookIcon, { size: 16 })),
+              /* @__PURE__ */ React.createElement("a", { href: "https://www.instagram.com/pawpad_grooming_studio?igsi=MTRranltYzh1cnVuZw%3D%3D&utm_source=qr", "aria-label": "Instagram", target: "_blank", rel: "noopener noreferrer" }, /* @__PURE__ */ React.createElement(InstagramIcon, { size: 16 })),
+              /* @__PURE__ */ React.createElement("a", { href: "https://www.facebook.com/share/19KxDx35E5/?mibextid=wwXIfr", "aria-label": "Facebook", target: "_blank", rel: "noopener noreferrer" }, /* @__PURE__ */ React.createElement(FacebookIcon, { size: 16 })),
               /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Twitter" }, /* @__PURE__ */ React.createElement(TwitterIcon, { size: 16 }))
             )
           ),
@@ -475,7 +475,7 @@ function WhatsAppFloat() {
           right: clamp(16px, 3vw, 28px);
           bottom: calc(clamp(16px, 3vw, 28px) + env(safe-area-inset-bottom, 0px));
           z-index: 40;
-          width: 68px; height: 68px;
+          width: 82px; height: 82px;
           display: inline-flex; align-items: center; justify-content: center;
           transition: transform var(--t-fast) var(--ease);
         }

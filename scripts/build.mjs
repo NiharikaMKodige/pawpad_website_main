@@ -40,12 +40,12 @@ function main() {
   mkdirSync(DIST, { recursive: true });
 
   // Copy everything deployable (html at root + assets/) as a starting point.
-  for (const f of ["index.html", "about.html", "experience.html", "grooming.html", "courses.html", "boarding.html", "myotherapy.html", "CNAME"]) {
-    const src = path.join(ROOT, f);
-    try {
-      cpSync(src, path.join(DIST, f));
-    } catch {
-      // CNAME may not exist in some checkouts; skip quietly.
+  for (const entry of readdirSync(ROOT)) {
+    if (entry.endsWith(".html") || entry === "CNAME" || entry === "favicon.ico" || entry === "favicon.png") {
+      const src = path.join(ROOT, entry);
+      try {
+        cpSync(src, path.join(DIST, entry));
+      } catch {}
     }
   }
   cpSync(path.join(ROOT, "assets"), path.join(DIST, "assets"), { recursive: true });

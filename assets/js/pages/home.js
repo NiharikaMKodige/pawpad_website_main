@@ -69,28 +69,21 @@ function Hero({ onBook }) {
     }
   }, /* @__PURE__ */ React.createElement(PawIcon, { size: [24, 36, 28, 42, 22, 30, 26][i], color: "var(--driftwood)" })))), /* @__PURE__ */ React.createElement("div", { className: "container hero-grid" }, /* @__PURE__ */ React.createElement("div", { className: "hero-text" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow-pill reveal in" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 12, color: "currentColor" }), " Conscious pet care \xB7 Bengaluru \xB7 est. 2017"), /* @__PURE__ */ React.createElement("h1", { className: "hero-title reveal in", style: { marginTop: 26 } }, "Conscious Pet Grooming", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", { className: "hero-title-accent" }, "& Holistic Petcare"), /* @__PURE__ */ React.createElement("br", null), "in Bangalore"), /* @__PURE__ */ React.createElement("p", { className: "lead reveal in", style: { marginTop: 28 } }, "Calm, stress-free grooming, pet wellness therapy, boarding, and professional grooming courses \u2014 all designed with your pet's emotional wellbeing in mind."), /* @__PURE__ */ React.createElement("p", { className: "hero-sub reveal in", style: { marginTop: 18, maxWidth: "62ch" } }, "Pawpad offers conscious pet grooming and wellness care designed around your pet's physical and emotional wellbeing. Instead of rushed grooming focused only on looks, we prioritise stress-free handling, coat health, skin care, and calm environments that support long-term comfort for dogs and cats alike."), /* @__PURE__ */ React.createElement("div", { className: "hero-cta reveal in" }, /* @__PURE__ */ React.createElement("a", { href: hrefFor("about"), className: "btn btn-primary" }, "Learn More ", /* @__PURE__ */ React.createElement(Arrow, null)))),    /* @__PURE__ */ React.createElement("div", { className: "hero-image-wrap" }, /* @__PURE__ */ React.createElement("div", { className: "hero-image blob-1", style: { transform: `translateY(${par * -0.03}px) scale(1)` } }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/pawpad/hero-cover-bernese-cat.webp", alt: "A sleeping puppy and kitten resting together", fetchpriority: "high", decoding: "async" })))), /* @__PURE__ */ React.createElement("div", { className: "container hero-stats reveal in" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "8+"), /* @__PURE__ */ React.createElement("span", null, "years of conscious care")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "4,200+"), /* @__PURE__ */ React.createElement("span", null, "tails wagged")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "0"), /* @__PURE__ */ React.createElement("span", null, "sedation, ever"))), /* @__PURE__ */ React.createElement("style", null, `
         .hero {
-          padding: 160px 0 64px;
+          padding: 150px 0 60px;
           position: relative;
           overflow: hidden;
-          min-height: 100vh;
+          min-height: 90vh;
           display: flex; flex-direction: column; align-items: stretch; justify-content: center;
-          gap: 44px;
+          gap: 40px;
         }
         .hero-paws { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
         .paw-fl { position: absolute; transition: transform .15s linear; }
         .hero-grid {
           position: relative; z-index: 1;
-          display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(440px, .98fr);
-          gap: clamp(16px, 2.5vw, 40px); align-items: center;
+          display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+          gap: clamp(24px, 4vw, 56px); align-items: center;
         }
-        .hero-text { position: relative; z-index: 2; padding-right: 0; max-width: 720px; }
-        .hero-text::before {
-          content: "";
-          position: absolute; top: -32px; bottom: -32px; left: -10vw; right: -48px;
-          background: linear-gradient(100deg, var(--cream-bg) 70%, color-mix(in oklab, var(--cream-bg), transparent 100%) 100%);
-          z-index: -1;
-          pointer-events: none;
-        }
+        .hero-text { position: relative; z-index: 2; padding-right: 0; max-width: 680px; }
         .eyebrow-pill {
           display: inline-flex; align-items: center; gap: 8px;
           font-family: var(--f-body); font-size: 12px; font-weight: 700;
@@ -101,7 +94,7 @@ function Hero({ onBook }) {
           padding: 8px 16px 8px 12px;
           border-radius: 999px;
         }
-        .hero-title { font-family: var(--f-display); font-weight: 400; font-size: clamp(36px, 5vw, 78px); line-height: .98; letter-spacing: -.01em; color: var(--ink); margin: 0; }
+        .hero-title { font-family: var(--f-display); font-weight: 400; font-size: clamp(34px, 4.4vw, 70px); line-height: 1.02; letter-spacing: -.01em; color: var(--ink); margin: 0; }
         .hero-title-accent {
           background: linear-gradient(100deg, var(--driftwood) 0%, var(--driftwood-deep) 60%, var(--driftwood) 100%);
           -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -112,7 +105,7 @@ function Hero({ onBook }) {
         }
         .hero-sub { color: var(--ink-mute); }
         .hero-mobile-break { display: none; }
-        .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+        .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
         .hero-stats {
           position: relative; z-index: 1;
           display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px;
@@ -133,15 +126,15 @@ function Hero({ onBook }) {
         }
         .hero-image-wrap {
           position: relative;
-          height: clamp(440px, 44vw, 560px);
           display: flex;
-          align-items: flex-end;
-          justify-content: flex-end;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
         }
         .hero-image {
-          position: absolute; right: clamp(-340px, -16vw, -180px); top: auto; bottom: -20px;
-          width: clamp(920px, 78vw, 1180px);
-          max-width: none;
+          position: relative;
+          width: 100%;
+          max-width: 620px;
           height: auto;
           overflow: visible;
           background: transparent;
@@ -153,47 +146,38 @@ function Hero({ onBook }) {
           width: 100%;
           height: auto;
           display: block;
-          filter: none;
+          filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.05));
           object-fit: contain;
           border-radius: 0;
           box-shadow: none;
           background: transparent;
         }
-        @keyframes morph2 {
-          0% { border-radius: 40% 60% 70% 30% / 40% 50% 50% 60%; }
-          100% { border-radius: 60% 40% 30% 70% / 30% 70% 30% 70%; }
-        }
-        @media (max-width: 900px) {
-          .hero { padding: 110px 0 36px; min-height: 0; gap: 32px; }
-          .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; width: 100%; overflow: hidden; padding-left: 0; padding-right: 0; }
+        @media (max-width: 980px) {
+          .hero { padding: 120px 0 36px; min-height: 0; gap: 32px; }
+          .hero-grid { grid-template-columns: 1fr; gap: 36px; width: 100%; }
           .hero-text {
             width: 100%;
             min-width: 0;
             max-width: 100%;
             padding-right: 0;
-            overflow-wrap: break-word;
-            overflow: hidden;
           }
-          .hero-title { max-width: 100%; font-size: clamp(42px, 10vw, 66px); }
+          .hero-title { max-width: 100%; font-size: clamp(38px, 8vw, 58px); }
           .hero-text .lead,
           .hero-text p {
             max-width: 100% !important;
           }
-          .hero-image-wrap { height: clamp(380px, 70vw, 540px); }
-          .hero-image { width: 150%; max-width: none; right: -32%; top: auto; bottom: -2%; }
-          .hero-image img { border-radius: 0; }
+          .hero-image-wrap { max-width: 520px; margin: 0 auto; }
+          .hero-image { max-width: 100%; }
           .hero-stats { gap: 24px; }
           .hero-stats strong { font-size: 30px; }
         }
         @media (max-width: 520px) {
           .hero { overflow: hidden; }
           .hero .h-display span { display: inline; }
-          .hero-image-wrap { height: clamp(300px, 74vw, 390px); }
-          .hero-image { width: 170%; max-width: none; right: -52%; top: auto; bottom: -2%; }
-          .hero-image img { border-radius: 0; }
+          .hero-image-wrap { max-width: 100%; }
+          .hero-image { max-width: 100%; }
           .hero-cta { flex-direction: column; }
           .hero-cta .btn { width: 100%; justify-content: center; padding-inline: 16px; }
-          .hero-grid { padding-left: 0; padding-right: 0; }
           .hero-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
           .hero-stats span { font-size: 10px; letter-spacing: .08em; }
         }

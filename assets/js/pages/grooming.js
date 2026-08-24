@@ -163,14 +163,36 @@ function GroomingHero({ onBook }) {
         }
       `));
 }
-function GroomingPackages({ onBook }) {
+function GroomingPackages({ onBook, onAddToCart }) {
   const cats = ["Puppy", "Dog", "Cat", "Care", "Wellness", "Styling"];
   const [filter, setFilter] = useStateG("All");
   const [open, setOpen] = useStateG(null);
   const filtered = filter === "All" ? GROOM_PACKAGES : GROOM_PACKAGES.filter((p) => p.cat === filter);
+
+  const handleAddToCart = (p) => {
+    const priceNum = parseInt(String(p.price).replace(/[^0-9]/g, ""), 10) || 1000;
+    const cartItem = {
+      id: p.key,
+      title: p.title,
+      category: "Grooming",
+      price: priceNum,
+      priceDisplay: p.price,
+      desc: p.sub || p.note,
+      img: p.img,
+      requiresPetInfo: true
+    };
+    if (typeof onAddToCart === "function") {
+      onAddToCart(cartItem);
+    } else if (typeof window.addToCart === "function") {
+      window.addToCart(cartItem);
+    } else if (typeof onBook === "function") {
+      onBook(p.key);
+    }
+  };
+
   return /* @__PURE__ */ React.createElement("section", { className: "g-packages", id: "packages" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-head reveal" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Grooming Categories"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "16ch" } }, "Grooming care ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "for every coat"))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-filter" }, ["All", ...cats].map((c) => /* @__PURE__ */ React.createElement("button", { key: c, className: "g-filter-btn " + (filter === c ? "on" : ""), onClick: () => setFilter(c) }, c)))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-grid" }, filtered.map((p, i) => {
     const isOpen = open === p.key;
-    return /* @__PURE__ */ React.createElement("article", { key: p.key, className: "g-pkg-card " + (isOpen ? "open" : ""), style: { transitionDelay: `${i * 60}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-img" }, /* @__PURE__ */ React.createElement("img", { src: p.img, alt: p.title }), /* @__PURE__ */ React.createElement("span", { className: "tag" }, p.cat)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-body" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-top" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, p.title), /* @__PURE__ */ React.createElement("p", { className: "mute", style: { margin: "4px 0 0", fontSize: 13 } }, p.sub)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-price" }, /* @__PURE__ */ React.createElement("strong", null, p.price), /* @__PURE__ */ React.createElement("span", null, p.duration))), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-note" }, p.note), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-details" }, /* @__PURE__ */ React.createElement("h5", null, "Included"), /* @__PURE__ */ React.createElement("ul", null, p.includes.map((inc) => /* @__PURE__ */ React.createElement("li", { key: inc }, /* @__PURE__ */ React.createElement(PawIcon, { size: 10, color: "var(--driftwood)" }), " ", inc)))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-actions" }, /* @__PURE__ */ React.createElement("button", { className: "g-pkg-toggle", onClick: () => setOpen(isOpen ? null : p.key) }, isOpen ? "Show less" : "What's included", " ", /* @__PURE__ */ React.createElement("span", { className: "g-pkg-arrow" }, isOpen ? "\u2212" : "+")), /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary btn-sm", onClick: () => onBook(p.key) }, "Book ", p.cat.toLowerCase(), " ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 })))));
+    return /* @__PURE__ */ React.createElement("article", { key: p.key, className: "g-pkg-card " + (isOpen ? "open" : ""), style: { transitionDelay: `${i * 60}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-img" }, /* @__PURE__ */ React.createElement("img", { src: p.img, alt: p.title }), /* @__PURE__ */ React.createElement("span", { className: "tag" }, p.cat)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-body" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-top" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, p.title), /* @__PURE__ */ React.createElement("p", { className: "mute", style: { margin: "4px 0 0", fontSize: 13 } }, p.sub)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-price" }, /* @__PURE__ */ React.createElement("strong", null, p.price), /* @__PURE__ */ React.createElement("span", null, p.duration))), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-note" }, p.note), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-details" }, /* @__PURE__ */ React.createElement("h5", null, "Included"), /* @__PURE__ */ React.createElement("ul", null, p.includes.map((inc) => /* @__PURE__ */ React.createElement("li", { key: inc }, /* @__PURE__ */ React.createElement(PawIcon, { size: 10, color: "var(--driftwood)" }), " ", inc)))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-actions" }, /* @__PURE__ */ React.createElement("button", { className: "g-pkg-toggle", onClick: () => setOpen(isOpen ? null : p.key) }, isOpen ? "Show less" : "What's included", " ", /* @__PURE__ */ React.createElement("span", { className: "g-pkg-arrow" }, isOpen ? "\u2212" : "+")), /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary btn-sm", onClick: () => handleAddToCart(p) }, "Add to cart ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 })))));
   })), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-footnote reveal" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }), "Please refer to the notes below for grooming duration, appointment policies, and important grooming guidelines. Add-on services are available exclusively alongside a full grooming package.")), /* @__PURE__ */ React.createElement("style", null, `
         .g-packages { background: var(--cream-bg); padding-top: 0; }
         .g-pkg-head {
@@ -339,8 +361,8 @@ function GroomingNotes() {
         }
       `));
 }
-function GroomingPage({ onBook }) {
+function GroomingPage({ onBook, onAddToCart }) {
   useReveal();
-  return /* @__PURE__ */ React.createElement("div", { className: "page-enter" }, /* @__PURE__ */ React.createElement(GroomingHero, { onBook }), /* @__PURE__ */ React.createElement(GroomingPackages, { onBook }), /* @__PURE__ */ React.createElement(GroomingNotes, null));
+  return /* @__PURE__ */ React.createElement("div", { className: "page-enter" }, /* @__PURE__ */ React.createElement(GroomingHero, { onBook }), /* @__PURE__ */ React.createElement(GroomingPackages, { onBook, onAddToCart }), /* @__PURE__ */ React.createElement(GroomingNotes, null));
 }
 Object.assign(window, { GroomingPage });

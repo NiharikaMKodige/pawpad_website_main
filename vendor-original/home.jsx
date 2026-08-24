@@ -112,28 +112,21 @@ function Hero({ onBook }) {
       </div>
       <style>{`
         .hero {
-          padding: 132px 0 64px;
+          padding: 150px 0 60px;
           position: relative;
           overflow: hidden;
-          min-height: 100vh;
+          min-height: 90vh;
           display: flex; flex-direction: column; align-items: stretch; justify-content: center;
-          gap: 44px;
+          gap: 40px;
         }
         .hero-paws { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
         .paw-fl { position: absolute; transition: transform .15s linear; }
         .hero-grid {
           position: relative; z-index: 1;
-          display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(440px, .98fr);
-          gap: clamp(16px, 2.5vw, 40px); align-items: center;
+          display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+          gap: clamp(24px, 4vw, 56px); align-items: center;
         }
-        .hero-text { position: relative; z-index: 2; padding-right: 0; max-width: 720px; }
-        .hero-text::before {
-          content: "";
-          position: absolute; top: -32px; bottom: -32px; left: -10vw; right: -48px;
-          background: linear-gradient(100deg, var(--cream-bg) 70%, color-mix(in oklab, var(--cream-bg), transparent 100%) 100%);
-          z-index: -1;
-          pointer-events: none;
-        }
+        .hero-text { position: relative; z-index: 2; padding-right: 0; max-width: 680px; }
         .eyebrow-pill {
           display: inline-flex; align-items: center; gap: 8px;
           font-family: var(--f-body); font-size: 12px; font-weight: 700;
@@ -144,7 +137,7 @@ function Hero({ onBook }) {
           padding: 8px 16px 8px 12px;
           border-radius: 999px;
         }
-        .hero-title { font-family: var(--f-display); font-weight: 400; font-size: clamp(36px, 5vw, 78px); line-height: .98; letter-spacing: -.01em; color: var(--ink); margin: 0; }
+        .hero-title { font-family: var(--f-display); font-weight: 400; font-size: clamp(34px, 4.4vw, 70px); line-height: 1.02; letter-spacing: -.01em; color: var(--ink); margin: 0; }
         .hero-title-accent {
           background: linear-gradient(100deg, var(--driftwood) 0%, var(--driftwood-deep) 60%, var(--driftwood) 100%);
           -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -155,7 +148,7 @@ function Hero({ onBook }) {
         }
         .hero-sub { color: var(--ink-mute); }
         .hero-mobile-break { display: none; }
-        .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+        .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
         .hero-stats {
           position: relative; z-index: 1;
           display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px;
@@ -176,15 +169,15 @@ function Hero({ onBook }) {
         }
         .hero-image-wrap {
           position: relative;
-          height: clamp(520px, 53vw, 680px);
           display: flex;
-          align-items: flex-end;
-          justify-content: flex-end;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
         }
         .hero-image {
-          position: absolute; right: clamp(-480px, -25vw, -260px); top: auto; bottom: -32px;
-          width: clamp(1125px, 98vw, 1475px);
-          max-width: none;
+          position: relative;
+          width: 100%;
+          max-width: 620px;
           height: auto;
           overflow: visible;
           background: transparent;
@@ -196,47 +189,38 @@ function Hero({ onBook }) {
           width: 100%;
           height: auto;
           display: block;
-          filter: none;
+          filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.05));
           object-fit: contain;
           border-radius: 0;
           box-shadow: none;
           background: transparent;
         }
-        @keyframes morph2 {
-          0% { border-radius: 40% 60% 70% 30% / 40% 50% 50% 60%; }
-          100% { border-radius: 60% 40% 30% 70% / 30% 70% 30% 70%; }
-        }
-        @media (max-width: 900px) {
-          .hero { padding: 110px 0 36px; min-height: 0; gap: 32px; }
-          .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; width: 100%; overflow: hidden; padding-left: 0; padding-right: 0; }
+        @media (max-width: 980px) {
+          .hero { padding: 120px 0 36px; min-height: 0; gap: 32px; }
+          .hero-grid { grid-template-columns: 1fr; gap: 36px; width: 100%; }
           .hero-text {
             width: 100%;
             min-width: 0;
             max-width: 100%;
             padding-right: 0;
-            overflow-wrap: break-word;
-            overflow: hidden;
           }
-          .hero-title { max-width: 100%; font-size: clamp(42px, 10vw, 66px); }
+          .hero-title { max-width: 100%; font-size: clamp(38px, 8vw, 58px); }
           .hero-text .lead,
           .hero-text p {
             max-width: 100% !important;
           }
-          .hero-image-wrap { height: clamp(380px, 70vw, 540px); }
-          .hero-image { width: 150%; max-width: none; right: -32%; top: auto; bottom: -2%; }
-          .hero-image img { border-radius: 0; }
+          .hero-image-wrap { max-width: 520px; margin: 0 auto; }
+          .hero-image { max-width: 100%; }
           .hero-stats { gap: 24px; }
           .hero-stats strong { font-size: 30px; }
         }
         @media (max-width: 520px) {
           .hero { overflow: hidden; }
           .hero .h-display span { display: inline; }
-          .hero-image-wrap { height: clamp(300px, 74vw, 390px); }
-          .hero-image { width: 170%; max-width: none; right: -52%; top: auto; bottom: -2%; }
-          .hero-image img { border-radius: 0; }
+          .hero-image-wrap { max-width: 100%; }
+          .hero-image { max-width: 100%; }
           .hero-cta { flex-direction: column; }
           .hero-cta .btn { width: 100%; justify-content: center; padding-inline: 16px; }
-          .hero-grid { padding-left: 0; padding-right: 0; }
           .hero-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
           .hero-stats span { font-size: 10px; letter-spacing: .08em; }
         }
