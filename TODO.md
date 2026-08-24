@@ -67,7 +67,7 @@ Tracking against the 4-week plan agreed with Pawpad. Updated 12 Aug 2026.
 - [ ] Security hardening: Cloudflare in front of GitHub Pages (headers/WAF/HTTPS)
 - [ ] sitemap.xml, robots.txt, schema.org LocalBusiness markup (page-level
       meta is already done, see above)
-- [ ] Privacy Policy / Terms / Refund & Cancellation Policy pages
+- [x] Privacy Policy / Terms / Refund & Cancellation Policy pages ([policies.html](policies.html)) with links in footer
 - [ ] Cross-browser/device QA pass, Razorpay test-mode run-through, form
       delivery test
 - [ ] DNS cutover (pawpad.in → GitHub Pages) and go-live

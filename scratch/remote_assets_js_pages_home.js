@@ -60,44 +60,14 @@ function Hero({ onBook }) {
   }, []);
   const motion = document.body.dataset.motion;
   const par = motion === "still" ? 0 : scrollY;
-  return /* @__PURE__ */ React.createElement("section", { className: "hero", ref },
-    /* @__PURE__ */ React.createElement("div", { className: "hero-paws" }, [...Array(7)].map((_, i) => /* @__PURE__ */ React.createElement("div", {
-      key: i, className: "paw-fl", style: {
-        left: `${[12, 26, 42, 58, 74, 86, 92][i]}%`,
-        top: `${[20, 60, 35, 78, 18, 50, 72][i]}%`,
-        transform: `translateY(${par * (0.08 + i * 0.03)}px) rotate(${[15, -25, 30, -10, 40, -30, 10][i]}deg)`,
-        opacity: 0.13
-      }
-    }, /* @__PURE__ */ React.createElement(PawIcon, { size: [24, 36, 28, 42, 22, 30, 26][i], color: "var(--driftwood)" })))),
-    /* @__PURE__ */ React.createElement("div", { className: "container hero-grid" },
-      /* @__PURE__ */ React.createElement("div", { className: "hero-text" },
-        /* @__PURE__ */ React.createElement("p", { className: "eyebrow-pill reveal in" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 12, color: "currentColor" }), " Conscious pet care \xB7 Bengaluru \xB7 est. 2017"),
-        /* @__PURE__ */ React.createElement("h1", { className: "hero-title reveal in", style: { marginTop: 26 } },
-          "Conscious Pet", /* @__PURE__ */ React.createElement("br", null),
-          "Grooming", /* @__PURE__ */ React.createElement("br", null),
-          /* @__PURE__ */ React.createElement("span", { className: "hero-title-accent" }, "& Holistic Petcare"), /* @__PURE__ */ React.createElement("br", null),
-          "in Bangalore"
-        ),
-        /* @__PURE__ */ React.createElement("p", { className: "lead reveal in", style: { marginTop: 28 } }, "Calm, stress-free grooming, pet wellness therapy, boarding, and professional grooming courses — all designed with your pet's emotional wellbeing in mind."),
-        /* @__PURE__ */ React.createElement("p", { className: "hero-sub reveal in", style: { marginTop: 18, maxWidth: "52ch" } }, "Pawpad offers conscious pet grooming and wellness care designed around your pet's physical and emotional wellbeing. Instead of rushed grooming focused only on looks, we prioritise stress-free handling, coat health, skin care, and calm environments that support long-term comfort for dogs and cats alike.")
-      ),
-      /* @__PURE__ */ React.createElement("div", { className: "hero-image-wrap" },
-        /* @__PURE__ */ React.createElement("div", { className: "hero-image blob-1", style: { transform: `translateY(${par * -0.03}px) scale(1)` } },
-          /* @__PURE__ */ React.createElement("img", {
-            src: "assets/img/pawpad/hero-cover-bernese-cat.png",
-            alt: "A sleeping puppy and kitten resting together",
-            fetchpriority: "high",
-            decoding: "async"
-          })
-        )
-      )
-    ),
-    /* @__PURE__ */ React.createElement("div", { className: "container hero-stats reveal in" },
-      /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "8+"), /* @__PURE__ */ React.createElement("span", null, "years of conscious care")),
-      /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "4,200+"), /* @__PURE__ */ React.createElement("span", null, "tails wagged")),
-      /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "0"), /* @__PURE__ */ React.createElement("span", null, "sedation, ever"))
-    ),
-    /* @__PURE__ */ React.createElement("style", null, `
+  return /* @__PURE__ */ React.createElement("section", { className: "hero", ref }, /* @__PURE__ */ React.createElement("div", { className: "hero-paws" }, [...Array(7)].map((_, i) => /* @__PURE__ */ React.createElement("div", {
+    key: i, className: "paw-fl", style: {
+      left: `${[12, 26, 42, 58, 74, 86, 92][i]}%`,
+      top: `${[20, 60, 35, 78, 18, 50, 72][i]}%`,
+      transform: `translateY(${par * (0.08 + i * 0.03)}px) rotate(${[15, -25, 30, -10, 40, -30, 10][i]}deg)`,
+      opacity: 0.13
+    }
+  }, /* @__PURE__ */ React.createElement(PawIcon, { size: [24, 36, 28, 42, 22, 30, 26][i], color: "var(--driftwood)" })))), /* @__PURE__ */ React.createElement("div", { className: "container hero-grid" }, /* @__PURE__ */ React.createElement("div", { className: "hero-text" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow-pill reveal in" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 12, color: "currentColor" }), " Conscious pet care \xB7 Bengaluru \xB7 est. 2017"), /* @__PURE__ */ React.createElement("h1", { className: "hero-title reveal in", style: { marginTop: 26 } }, "Conscious Pet Grooming", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", { className: "hero-title-accent" }, "& Holistic Petcare"), /* @__PURE__ */ React.createElement("br", null), "in Bangalore"), /* @__PURE__ */ React.createElement("p", { className: "lead reveal in", style: { marginTop: 28 } }, "Calm, stress-free grooming, pet wellness therapy, boarding, and professional grooming courses \u2014 all designed with your pet's emotional wellbeing in mind."), /* @__PURE__ */ React.createElement("p", { className: "hero-sub reveal in", style: { marginTop: 18, maxWidth: "52ch" } }, "Pawpad offers conscious pet grooming and wellness care designed around your pet's physical and emotional wellbeing. Instead of rushed grooming focused only on looks, we prioritise stress-free handling, coat health, skin care, and calm environments that support long-term comfort for dogs and cats alike."), /* @__PURE__ */ React.createElement("div", { className: "hero-cta reveal in" }, /* @__PURE__ */ React.createElement("a", { href: hrefFor("about"), className: "btn btn-primary" }, "Learn More ", /* @__PURE__ */ React.createElement(Arrow, null)))),    /* @__PURE__ */ React.createElement("div", { className: "hero-image-wrap" }, /* @__PURE__ */ React.createElement("div", { className: "hero-image blob-1", style: { transform: `translateY(${par * -0.03}px) scale(1)` } }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/pawpad/hero-cover-bernese-cat.webp", srcSet: "assets/img/pawpad/hero-cover-bernese-cat-640.webp 640w, assets/img/pawpad/hero-cover-bernese-cat-1024.webp 1024w, assets/img/pawpad/hero-cover-bernese-cat.webp 1536w", sizes: "(max-width: 520px) 94vw, (max-width: 900px) 90vw, (max-width: 1400px) 54vw, 800px", alt: "A sleeping puppy and kitten resting together", width: "1536", height: "1024", fetchpriority: "high", decoding: "async" })))), /* @__PURE__ */ React.createElement("div", { className: "container hero-stats reveal in" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "8+"), /* @__PURE__ */ React.createElement("span", null, "years of conscious care")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "4,200+"), /* @__PURE__ */ React.createElement("span", null, "tails wagged")), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, "0"), /* @__PURE__ */ React.createElement("span", null, "sedation, ever"))), /* @__PURE__ */ React.createElement("style", null, `
         .hero {
           padding: 160px 0 64px;
           position: relative;
@@ -135,6 +105,7 @@ function Hero({ onBook }) {
         }
         .hero-sub { color: var(--ink-mute); }
         .hero-mobile-break { display: none; }
+        .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
         .hero-stats {
           position: relative; z-index: 1;
           display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px;
@@ -178,12 +149,17 @@ function Hero({ onBook }) {
           width: 100%;
           max-width: 100%;
           height: auto;
+          aspect-ratio: 1536 / 1024;
           display: block;
           filter: drop-shadow(0 20px 40px rgba(45, 30, 20, 0.09));
           object-fit: contain;
           border-radius: 0;
           box-shadow: none;
           background: transparent;
+        }
+        @keyframes morph2 {
+          0% { border-radius: 40% 60% 70% 30% / 40% 50% 50% 60%; }
+          100% { border-radius: 60% 40% 30% 70% / 30% 70% 30% 70%; }
         }
         @media (max-width: 900px) {
           .hero { padding: 110px 0 36px; min-height: 0; gap: 32px; }
@@ -202,14 +178,18 @@ function Hero({ onBook }) {
           }
           .hero-image-wrap { height: auto; margin-top: 8px; justify-content: center; }
           .hero-image { width: 100%; max-width: min(100%, 680px); right: auto; top: auto; bottom: auto; margin: 0 auto; justify-content: center; }
+          .hero-image img { border-radius: 0; }
           .hero-stats { gap: 24px; }
           .hero-stats strong { font-size: 30px; }
         }
         @media (max-width: 520px) {
           .hero { overflow: hidden; }
           .hero .h-display span { display: inline; }
-          .hero-image-wrap { max-width: 100%; }
-          .hero-image { max-width: 100%; }
+          .hero-image-wrap { height: auto; justify-content: center; }
+          .hero-image { width: 100%; max-width: min(100%, 460px); right: auto; top: auto; bottom: auto; margin: 0 auto; justify-content: center; }
+          .hero-image img { border-radius: 0; }
+          .hero-cta { flex-direction: column; }
+          .hero-cta .btn { width: 100%; justify-content: center; padding-inline: 16px; }
           .hero-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
           .hero-stats span { font-size: 10px; letter-spacing: .08em; }
         }

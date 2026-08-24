@@ -62,12 +62,14 @@ const COURSE_LIST = [
   }
 ];
 function CoursesHero() {
-  return /* @__PURE__ */ React.createElement("section", { className: "c-hero" }, /* @__PURE__ */ React.createElement("div", { className: "container c-hero-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "eyebrow reveal in" }, "Pawpad courses"), /* @__PURE__ */ React.createElement("h1", { className: "h-display reveal in c-course-title", style: { marginTop: 24, maxWidth: "18ch" } }, "Become a Professional ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)", whiteSpace: "nowrap" } }, "Pet Groomer")), /* @__PURE__ */ React.createElement("p", { className: "lead reveal in", style: { marginTop: 28, maxWidth: "58ch" } }, "A hands-on grooming course designed for animal lovers looking to build the skills, confidence, and practical experience needed to start a career in pet grooming."), /* @__PURE__ */ React.createElement("p", { className: "reveal in", style: { marginTop: 18, maxWidth: "62ch" } }, "Learn dog grooming, cat grooming, handling techniques, coat care, hygiene, safety, and business fundamentals through personalised training with experienced professionals.")), /* @__PURE__ */ React.createElement("div", { className: "c-hero-image reveal in" }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/pawpad/courses-cover-new.webp", alt: "Pawpad grooming course", fetchpriority: "high", decoding: "async" }))), /* @__PURE__ */ React.createElement("style", null, `
+  return /* @__PURE__ */ React.createElement("section", { className: "c-hero" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "c-hero-content" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow reveal in" }, "Pawpad courses"), /* @__PURE__ */ React.createElement("h1", { className: "h-display reveal in c-course-title", style: { marginTop: 24, maxWidth: "18ch" } }, "Become a Professional ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)", whiteSpace: "nowrap" } }, "Pet Groomer")), /* @__PURE__ */ React.createElement("p", { className: "lead reveal in", style: { marginTop: 28, maxWidth: "58ch" } }, "A hands-on grooming course designed for animal lovers looking to build the skills, confidence, and practical experience needed to start a career in pet grooming."), /* @__PURE__ */ React.createElement("p", { className: "reveal in", style: { marginTop: 18, maxWidth: "62ch" } }, "Learn dog grooming, cat grooming, handling techniques, coat care, hygiene, safety, and business fundamentals through personalised training with experienced professionals."))), /* @__PURE__ */ React.createElement("style", null, `
         .c-hero { padding: 180px 0 60px; }
-        .c-hero-grid { display: grid; grid-template-columns: 1.05fr .9fr; gap: 64px; align-items: center; }
-        .c-hero-image { background: transparent; }
-        .c-hero-image img { width: 100%; height: auto; display: block; object-fit: contain; }
-        @media (max-width: 900px) { .c-hero-grid { grid-template-columns: 1fr; gap: 34px; } .c-course-title em { white-space: normal !important; } }
+        .c-hero-content { max-width: 780px; }
+        @media (max-width: 900px) {
+          .c-hero { padding: 120px 0 40px; }
+          .c-hero-content { max-width: 100%; }
+          .c-course-title em { white-space: normal !important; }
+        }
       `));
 }
 function CourseCards({ onBook }) {
@@ -93,33 +95,33 @@ function CourseCards({ onBook }) {
         { className: "cc-grid" },
         COURSE_LIST.map((c, i) =>
           /* @__PURE__ */ React.createElement(
-            "article",
-            { key: c.key, className: "cc-card reveal", style: { transitionDelay: `${i * 50}ms` } },
+          "article",
+          { key: c.key, className: "cc-card reveal", style: { transitionDelay: `${i * 50}ms` } },
             /* @__PURE__ */ React.createElement("h3", { className: "cc-card-title" }, c.title),
             /* @__PURE__ */ React.createElement("div", { className: "cc-card-price" }, c.price),
             /* @__PURE__ */ React.createElement("p", { className: "cc-card-desc" }, c.desc),
             /* @__PURE__ */ React.createElement(
-              "div",
-              { className: "cc-card-actions" },
+            "div",
+            { className: "cc-card-actions" },
               /* @__PURE__ */ React.createElement(
-                "a",
-                {
-                  href: c.knowMoreUrl,
-                  className: "btn-know-more"
-                },
-                "Know More"
-              ),
+              "a",
+              {
+                href: c.knowMoreUrl,
+                className: "btn-know-more"
+              },
+              "Know More"
+            ),
               /* @__PURE__ */ React.createElement(
-                "a",
-                {
-                  href: c.enrollUrl,
-                  className: "btn-enroll-now"
-                },
-                "Enroll Now ",
+              "a",
+              {
+                href: c.enrollUrl,
+                className: "btn-enroll-now"
+              },
+              "Enroll Now ",
                 /* @__PURE__ */ React.createElement("span", { className: "btn-arrow" }, "→")
-              )
             )
           )
+        )
         )
       )
     ),
@@ -1160,7 +1162,6 @@ function BoardingPage({ onBook, onAddToCart }) {
   );
 }
 
-
 function MyotherapyPage({ onBook }) {
   useReveal();
   return /* @__PURE__ */ React.createElement("div", { className: "page-enter" },
@@ -1171,28 +1172,28 @@ function MyotherapyPage({ onBook }) {
         /* @__PURE__ */ React.createElement("hr", { className: "editorial-divider reveal in" }),
         /* @__PURE__ */ React.createElement("div", { className: "editorial-content reveal in" },
           /* @__PURE__ */ React.createElement("p", { className: "editorial-lead" },
-            "Ever noticed a subtle change in how your dog moves \u2014 a slight shift in gait, a new hesitation before jumping onto the couch or into the car, needing a boost for stairs they used to take without a second thought? A calm, quiet dog isn't always a relaxed one, either. Sometimes it's a dog who's learned to move less, because moving hurts \u2014 and it's easy to miss, especially in a dog you already think of as \"chilled\" or \"lazy.\""
-          ),
+    "Ever noticed a subtle change in how your dog moves \u2014 a slight shift in gait, a new hesitation before jumping onto the couch or into the car, needing a boost for stairs they used to take without a second thought? A calm, quiet dog isn't always a relaxed one, either. Sometimes it's a dog who's learned to move less, because moving hurts \u2014 and it's easy to miss, especially in a dog you already think of as \"chilled\" or \"lazy.\""
+  ),
           /* @__PURE__ */ React.createElement("p", { className: "editorial-text" },
-            "Myotherapy is gentle, hands-on bodywork for dogs \u2014 targeted massage and movement techniques that work with the whole body, not just wherever seems sore, to ease tension and support mobility. It's genuinely for every dog: keeping a dog feeling at their best, helping a puppy build good movement habits, supporting a senior through the slower years. But dogs with musculoskeletal issues \u2014 stiffness, old injuries, post-op recovery, arthritis, or a gait that just doesn't look quite right \u2014 are the ones who see the most benefit, often within just a few sessions."
-          ),
+    "Myotherapy is gentle, hands-on bodywork for dogs \u2014 targeted massage and movement techniques that work with the whole body, not just wherever seems sore, to ease tension and support mobility. It's genuinely for every dog: keeping a dog feeling at their best, helping a puppy build good movement habits, supporting a senior through the slower years. But dogs with musculoskeletal issues \u2014 stiffness, old injuries, post-op recovery, arthritis, or a gait that just doesn't look quite right \u2014 are the ones who see the most benefit, often within just a few sessions."
+  ),
           /* @__PURE__ */ React.createElement("p", { className: "editorial-text" },
-            "Curious about the methodology? ",
+    "Curious about the methodology? ",
             /* @__PURE__ */ React.createElement("a", {
-              href: "https://www.galenmyotherapy.com",
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "editorial-link"
-            }, "Visit Galen Myotherapy"),
-            ". Join the waitlist to be the first to know when sessions open."
-          ),
+      href: "https://www.galenmyotherapy.com",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "editorial-link"
+    }, "Visit Galen Myotherapy"),
+    ". Join the waitlist to be the first to know when sessions open."
+  ),
           /* @__PURE__ */ React.createElement("hr", { className: "editorial-divider-sub" }),
           /* @__PURE__ */ React.createElement("p", { className: "editorial-note" },
-            "Pawpad \xB7 Details current as of this document's creation date."
-          )
-        )
-      )
-    ),
+    "Pawpad \xB7 Details current as of this document's creation date."
+  )
+  )
+  )
+  ),
     /* @__PURE__ */ React.createElement("style", null, `
       .editorial-page { padding: 180px 0 60px; }
       .editorial-container { max-width: 820px; margin: 0 auto; }

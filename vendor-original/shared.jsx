@@ -341,7 +341,16 @@ function Footer({ onBook }) {
           <div className="brand-mark">
             <img src="assets/img/logo-pawpad-03.png" alt="Pawpad" />
           </div>
-          <p className="micro">© 2015 – {new Date().getFullYear()} Pawpad · Made in Bengaluru with care for streeties everywhere</p>
+          <div className="footer-bottom-meta">
+            <p className="micro">© 2017 Pawpad. All rights reserved.</p>
+            <div className="footer-legal">
+              <a href="policies.html#privacy">Privacy Policy</a>
+              <span className="sep">|</span>
+              <a href="policies.html#terms">Terms and Conditions</a>
+              <span className="sep">|</span>
+              <a href="policies.html#refund">Refund Policy</a>
+            </div>
+          </div>
         </div>
       </div>
       <style>{`
@@ -376,15 +385,21 @@ function Footer({ onBook }) {
           display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
         }
         .brand-mark img { height: 88px; width: auto; max-width: 360px; object-fit: contain; opacity: .98; }
-        .micro { font-size: 12px; letter-spacing: .04em; }
+        .footer-bottom-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+        .footer-bottom-meta .micro { margin: 0; font-size: 12px; letter-spacing: .04em; color: color-mix(in oklab, var(--white), transparent 25%); }
+        .footer-legal { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; }
+        .footer-legal a { color: color-mix(in oklab, var(--white), transparent 30%); font-size: 12px; text-decoration: none; transition: color var(--t-fast) var(--ease); }
+        .footer-legal a:hover { color: var(--white); text-decoration: underline; }
+        .footer-legal .sep { color: color-mix(in oklab, var(--white), transparent 65%); font-size: 11px; }
         @media (max-width: 900px) {
           .footer-top { grid-template-columns: 1fr; gap: 48px; padding-bottom: 48px; }
           .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 700px) {
-          .nav-brand img { height: 52px; max-width: 190px; }
-          .nav.scrolled .nav-brand img { height: 44px; }
+          .nav-brand img { height: 76px; max-width: 220px; }
+          .nav.scrolled .nav-brand img { height: 58px; }
           .brand-mark img { height: 64px; max-width: 240px; }
+          .footer-bottom-meta { align-items: flex-start; }
         }
       `}</style>
     </footer>

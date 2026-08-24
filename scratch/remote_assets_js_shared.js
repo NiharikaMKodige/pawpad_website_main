@@ -289,8 +289,8 @@ function Footer({ onBook }) {
             /* @__PURE__ */ React.createElement("p", null, "#426, 5th Main Road,", /* @__PURE__ */ React.createElement("br", null), "HRBR 2nd Block, Kalyan Nagar", /* @__PURE__ */ React.createElement("br", null), "Bangalore - 560043 India"),
             /* @__PURE__ */ React.createElement("p", { style: { marginTop: 14 } }, "Ph: ", /* @__PURE__ */ React.createElement("a", { href: "tel:+919663077496" }, "9663077496")),
             /* @__PURE__ */ React.createElement("div", { className: "socials" },
-              /* @__PURE__ */ React.createElement("a", { href: "https://www.instagram.com/pawpad_grooming_studio?igsi=MTRranltYzh1cnVuZw%3D%3D&utm_source=qr", "aria-label": "Instagram", target: "_blank", rel: "noopener noreferrer" }, /* @__PURE__ */ React.createElement(InstagramIcon, { size: 16 })),
-              /* @__PURE__ */ React.createElement("a", { href: "https://www.facebook.com/share/19KxDx35E5/?mibextid=wwXIfr", "aria-label": "Facebook", target: "_blank", rel: "noopener noreferrer" }, /* @__PURE__ */ React.createElement(FacebookIcon, { size: 16 })),
+              /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Instagram" }, /* @__PURE__ */ React.createElement(InstagramIcon, { size: 16 })),
+              /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Facebook" }, /* @__PURE__ */ React.createElement(FacebookIcon, { size: 16 })),
               /* @__PURE__ */ React.createElement("a", { href: "#", "aria-label": "Twitter" }, /* @__PURE__ */ React.createElement(TwitterIcon, { size: 16 }))
             )
           ),
@@ -310,16 +310,7 @@ function Footer({ onBook }) {
         /* @__PURE__ */ React.createElement("div", { className: "brand-mark" },
           /* @__PURE__ */ React.createElement("img", { src: "assets/img/logo-pawpad-03.png", alt: "Pawpad" })
         ),
-        /* @__PURE__ */ React.createElement("div", { className: "footer-bottom-meta" },
-          /* @__PURE__ */ React.createElement("p", { className: "micro" }, "© 2017 Pawpad. All rights reserved."),
-          /* @__PURE__ */ React.createElement("div", { className: "footer-legal" },
-            /* @__PURE__ */ React.createElement("a", { href: "policies.html#privacy" }, "Privacy Policy"),
-            /* @__PURE__ */ React.createElement("span", { className: "sep" }, "|"),
-            /* @__PURE__ */ React.createElement("a", { href: "policies.html#terms" }, "Terms and Conditions"),
-            /* @__PURE__ */ React.createElement("span", { className: "sep" }, "|"),
-            /* @__PURE__ */ React.createElement("a", { href: "policies.html#refund" }, "Refund Policy")
-          )
-        )
+        /* @__PURE__ */ React.createElement("p", { className: "micro" }, "© 2017 Pawpad.")
       )
     ),
     /* @__PURE__ */ React.createElement("style", null, `
@@ -354,12 +345,7 @@ function Footer({ onBook }) {
           display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
         }
         .brand-mark img { height: 88px; width: auto; max-width: 360px; object-fit: contain; opacity: .98; }
-        .footer-bottom-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-        .footer-bottom-meta .micro { margin: 0; font-size: 12px; letter-spacing: .04em; color: color-mix(in oklab, var(--white), transparent 25%); }
-        .footer-legal { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; }
-        .footer-legal a { color: color-mix(in oklab, var(--white), transparent 30%); font-size: 12px; text-decoration: none; transition: color var(--t-fast) var(--ease); }
-        .footer-legal a:hover { color: var(--white); text-decoration: underline; }
-        .footer-legal .sep { color: color-mix(in oklab, var(--white), transparent 65%); font-size: 11px; }
+        .micro { font-size: 12px; letter-spacing: .04em; }
         @media (max-width: 900px) {
           .footer-top { grid-template-columns: 1fr; gap: 48px; padding-bottom: 48px; }
           .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -368,7 +354,9 @@ function Footer({ onBook }) {
           .nav-brand img { height: 76px; max-width: 220px; }
           .nav.scrolled .nav-brand img { height: 58px; }
           .brand-mark img { height: 64px; max-width: 240px; }
-          .footer-bottom-meta { align-items: flex-start; }
+        }
+        @media (max-width: 600px) {
+          .footer-grid { grid-template-columns: 1fr; gap: 28px; }
         }
       `)
   );
@@ -490,7 +478,7 @@ function WhatsAppFloat() {
           right: clamp(16px, 3vw, 28px);
           bottom: calc(clamp(16px, 3vw, 28px) + env(safe-area-inset-bottom, 0px));
           z-index: 40;
-          width: 82px; height: 82px;
+          width: 68px; height: 68px;
           display: inline-flex; align-items: center; justify-content: center;
           transition: transform var(--t-fast) var(--ease);
         }

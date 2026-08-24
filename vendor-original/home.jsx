@@ -82,25 +82,22 @@ function Hero({ onBook }) {
       </div>
       <div className="container hero-grid">
         <div className="hero-text">
-          <p className="eyebrow-pill reveal in"><PawIcon size={12} color="currentColor" /> Conscious pet care · Bengaluru · est. 2015</p>
+          <p className="eyebrow-pill reveal in"><PawIcon size={12} color="currentColor" /> Conscious pet care · Bengaluru · est. 2017</p>
           <h1 className="hero-title reveal in" style={{marginTop: 26}}>
-            Conscious Pet Grooming<br/>
+            Conscious Pet<br/>
+            Grooming<br/>
             <span className="hero-title-accent">& Holistic Petcare</span><br/>
             in Bangalore
           </h1>
           <p className="lead reveal in" style={{marginTop: 28}}>
             Calm, stress-free grooming, pet wellness therapy, boarding, and professional grooming courses — all designed with your pet's emotional wellbeing in mind.
           </p>
-          <p className="hero-sub reveal in" style={{marginTop: 18, maxWidth:"62ch"}}>
+          <p className="hero-sub reveal in" style={{marginTop: 18, maxWidth:"52ch"}}>
             Pawpad offers conscious pet grooming and wellness care designed around your pet's physical and emotional wellbeing. Instead of rushed grooming focused only on looks, we prioritise stress-free handling, coat health, skin care, and calm environments that support long-term comfort for dogs and cats alike.
           </p>
-          <div className="hero-cta reveal in">
-            <a href="#/about" className="btn btn-primary">Learn More <Arrow /></a>
-            <button className="btn btn-ghost" onClick={onBook}>Book a session <Arrow /></button>
-          </div>
         </div>
         <div className="hero-image-wrap">
-          <div className="hero-image blob-1" style={{ transform: `translateY(${par * -0.03}px) scale(1.02)` }}>
+          <div className="hero-image blob-1" style={{ transform: `translateY(${par * -0.03}px) scale(1)` }}>
             <img src="assets/img/pawpad/hero-cover-bernese-cat.png" alt="A Bernese Mountain Dog and cat resting together" />
           </div>
         </div>
@@ -112,21 +109,21 @@ function Hero({ onBook }) {
       </div>
       <style>{`
         .hero {
-          padding: 150px 0 60px;
+          padding: 160px 0 64px;
           position: relative;
           overflow: hidden;
-          min-height: 90vh;
+          min-height: 100vh;
           display: flex; flex-direction: column; align-items: stretch; justify-content: center;
-          gap: 40px;
+          gap: 44px;
         }
         .hero-paws { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
         .paw-fl { position: absolute; transition: transform .15s linear; }
         .hero-grid {
           position: relative; z-index: 1;
-          display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-          gap: clamp(24px, 4vw, 56px); align-items: center;
+          display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr);
+          gap: clamp(16px, 2vw, 36px); align-items: center;
         }
-        .hero-text { position: relative; z-index: 2; padding-right: 0; max-width: 680px; }
+        .hero-text { position: relative; z-index: 2; max-width: 540px; }
         .eyebrow-pill {
           display: inline-flex; align-items: center; gap: 8px;
           font-family: var(--f-body); font-size: 12px; font-weight: 700;
@@ -137,7 +134,7 @@ function Hero({ onBook }) {
           padding: 8px 16px 8px 12px;
           border-radius: 999px;
         }
-        .hero-title { font-family: var(--f-display); font-weight: 400; font-size: clamp(34px, 4.4vw, 70px); line-height: 1.02; letter-spacing: -.01em; color: var(--ink); margin: 0; }
+        .hero-title { font-family: var(--f-display); font-weight: 400; font-size: clamp(36px, 4.8vw, 70px); line-height: 1.02; letter-spacing: -.01em; color: var(--ink); margin: 0; }
         .hero-title-accent {
           background: linear-gradient(100deg, var(--driftwood) 0%, var(--driftwood-deep) 60%, var(--driftwood) 100%);
           -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -148,7 +145,6 @@ function Hero({ onBook }) {
         }
         .hero-sub { color: var(--ink-mute); }
         .hero-mobile-break { display: none; }
-        .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
         .hero-stats {
           position: relative; z-index: 1;
           display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px;
@@ -171,46 +167,51 @@ function Hero({ onBook }) {
           position: relative;
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-end;
           width: 100%;
         }
         .hero-image {
           position: relative;
           width: 100%;
-          max-width: 620px;
+          max-width: clamp(520px, 54vw, 920px);
           height: auto;
           overflow: visible;
           background: transparent;
           animation: none;
           z-index: 1;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
         }
         body[data-motion="still"] .hero-image { animation: none; }
         .hero-image img {
           width: 100%;
+          max-width: 100%;
           height: auto;
           display: block;
-          filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.05));
+          filter: drop-shadow(0 20px 40px rgba(45, 30, 20, 0.09));
           object-fit: contain;
           border-radius: 0;
           box-shadow: none;
           background: transparent;
         }
-        @media (max-width: 980px) {
-          .hero { padding: 120px 0 36px; min-height: 0; gap: 32px; }
-          .hero-grid { grid-template-columns: 1fr; gap: 36px; width: 100%; }
+        @media (max-width: 900px) {
+          .hero { padding: 110px 0 36px; min-height: 0; gap: 32px; }
+          .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; width: 100%; }
           .hero-text {
             width: 100%;
             min-width: 0;
             max-width: 100%;
             padding-right: 0;
+            overflow-wrap: break-word;
           }
-          .hero-title { max-width: 100%; font-size: clamp(38px, 8vw, 58px); }
+          .hero-title { max-width: 100%; font-size: clamp(38px, 8.5vw, 62px); }
           .hero-text .lead,
           .hero-text p {
             max-width: 100% !important;
           }
-          .hero-image-wrap { max-width: 520px; margin: 0 auto; }
-          .hero-image { max-width: 100%; }
+          .hero-image-wrap { height: auto; margin-top: 8px; justify-content: center; }
+          .hero-image { width: 100%; max-width: min(100%, 680px); right: auto; top: auto; bottom: auto; margin: 0 auto; justify-content: center; }
           .hero-stats { gap: 24px; }
           .hero-stats strong { font-size: 30px; }
         }

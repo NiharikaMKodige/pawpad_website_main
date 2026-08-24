@@ -633,254 +633,813 @@ function BoardingFeatures() {
   );
 }
 
-function BoardingPage({ onBook }) {
+function BoardingPage({ onBook, onAddToCart }) {
   useReveal();
-  const features = [
-    ["Four Dogs Never More", "By limiting boarding to just four dogs, we're able to give every guest the attention they deserve and understand their personality, habits, comfort levels, and needs."],
-    ["Someone Is Always There", "Your dog is never alone overnight. A member of the Pawpad team stays with the dogs throughout the night for reassurance and immediate attention."],
-    ["Familiar Routines Matter", "We follow your dog's usual routine as closely as possible, from feeding times and walks to rest periods and bedtime habits."],
-    ["Calm, Controlled Environment", "No noisy kennels, overwhelming smells, or constant foot traffic. Just a clean, quiet space designed to minimise stress."],
+  const [openFaq, setOpenFaq] = React.useState(null);
+
+  const toggleFaq = (idx) => {
+    setOpenFaq(openFaq === idx ? null : idx);
+  };
+
+  const handleAddTrialDay = () => {
+    const item = {
+      id: "boarding-trial-day",
+      title: "Trial Day Boarding",
+      category: "Boarding",
+      price: 850,
+      priceDisplay: "₹850",
+      desc: "Mandatory assessment trial day for small dogs before overnight stays",
+      requiresPetInfo: true,
+      isDogOnly: true,
+      img: "assets/img/pawpad/boarding-sleeping-puppy-toy.webp"
+    };
+    if (typeof onAddToCart === "function") onAddToCart(item);
+    else if (window.addToCart) window.addToCart(item);
+  };
+
+  const handleAddOvernight = () => {
+    const item = {
+      id: "boarding-overnight",
+      title: "Overnight Boarding",
+      category: "Boarding",
+      price: 1000,
+      priceDisplay: "₹1,000 / night",
+      desc: "Calm, supervised overnight stay for small dogs (trial day mandatory)",
+      requiresPetInfo: true,
+      isDogOnly: true,
+      requiresTrialDayCheck: true,
+      img: "assets/img/pawpad/boarding-dog-sleep-mask.webp"
+    };
+    if (typeof onAddToCart === "function") onAddToCart(item);
+    else if (window.addToCart) window.addToCart(item);
+  };
+
+  const FAQ_ITEMS = [
+    {
+      q: "Why is a Trial Day mandatory before overnight stays?",
+      a: "A completed trial day is required before booking an overnight stay — it's how we make sure your dog is a good fit before an overnight commitment. It allows your dog to get familiar with our space, team, and cohort in a calm, stress-free setting."
+    },
+    {
+      q: "What meals are provided, and can I send my dog's regular food?",
+      a: "Our standard meals are home-cooked, with chicken, pumpkin, carrot, beans, sweet potato, and rice, fed on your dog's regular schedule. If your dog has any food allergies or is on vet-specified food, let us know in advance and provide it for the day."
+    },
+    {
+      q: "Why are activities held on-site rather than walks?",
+      a: "Trial days and stays don't include walks — activity happens on-site, supervised, within the boarding space itself to keep the environment calm, safe, and controlled."
+    },
+    {
+      q: "Is there any minimum or maximum stay length?",
+      a: "No minimum or maximum stay length. Stays are flexible based on your needs once the mandatory trial day is completed."
+    }
   ];
-  const requirements = ["Core vaccinations up to date", "Kennel cough vaccination minimum 72 hours before boarding", "Current flea and tick prevention", "Female dogs must not be in heat during their stay"];
-  const day = ["Personalised feeding schedule", "Rest and quiet time", "Supervised social interaction", "Individual attention", "Gentle enrichment", "Plenty of cuddles and companionship", "Evening wind-down before bedtime"];
-  const bring = ["Vaccination records", "Food if on a specific diet", "Any medications with instructions", "A favourite blanket or toy", "Something that smells like home"];
-  return (
-    <div className="page-enter">
-      <section className="boarding-hero">
-        <div className="container boarding-hero-grid">
-          <div>
-            <p className="eyebrow reveal in">Pet Boarding</p>
-            <h1 className="h-display reveal in" style={{ marginTop: 24, maxWidth: "14ch" }}>Boarding, Reimagined</h1>
-            <p className="lead reveal in" style={{ marginTop: 28 }}>A calm, conscious boarding experience where your dog is cared for like family — not just accommodated.</p>
-            <p className="reveal in" style={{ marginTop: 18, maxWidth: "58ch" }}>At Pawpad, boarding isn't about filling kennels. It's about creating a peaceful environment where every dog feels safe, understood, and genuinely cared for. With only four dogs accepted at a time, overnight human supervision, personalised routines, and a space designed to reduce stress, we offer a boarding experience built around your dog's wellbeing.</p>
-            <button className="btn btn-primary" onClick={() => onBook("boarding")} style={{ marginTop: 32 }}>Book a Trial Day <Arrow /></button>
-          </div>
-          <div className="boarding-hero-img reveal in"><img src="assets/img/pawpad/boarding-snapshot.webp" alt="Pawpad boarding" /></div>
-        </div>
-      </section>
-      <section className="boarding-diff">
-        <div className="container split-copy">
-          <div className="reveal"><p className="eyebrow">Why it feels different</p><h2 className="h-1" style={{ marginTop: 18 }}>Small by design Personal by nature</h2></div>
-          <div className="reveal"><p>Leaving your dog behind is never easy. Unlike traditional boarding facilities, Pawpad was created for dogs who thrive in calm, intimate environments. Every decision — from the number of dogs we accept to the way we manage their day — is made with one goal: to make your dog feel as comfortable, secure, and loved as possible while you're away.</p></div>
-        </div>
-      </section>
-      <section className="boarding-features-new">
-        <div className="container feature-grid">
-          {features.map(([title, body], i) => <article className="feature-card reveal" key={title} style={{ transitionDelay: `${i * 60}ms` }}><h3 className="h-3">{title}</h3><p>{body}</p></article>)}
-        </div>
-      </section>
-      <section className="boarding-lists">
-        <div className="container boarding-list-grid">
-          <InfoList title="Before Your Dog's First Stay" intro="Every first-time guest completes a trial day so we can understand their personality and make sure Pawpad is the right fit." items={["A gentle day visit before overnight boarding", "Time to observe how your dog settles", "Honest guidance if another arrangement would suit them better"]} />
-          <InfoList title="Health & Safety Requirements" intro="To protect every dog in our care, all boarding guests need:" items={requirements} />
-          <InfoList title="A Typical Day at Pawpad" intro="No two dogs are the same, so neither are their days. Your dog's stay may include:" items={day} />
-          <InfoList title="What to Bring" intro="Familiar scents can make a huge difference in helping dogs feel relaxed during their stay." items={bring} />
-        </div>
-      </section>
-      <section className="boarding-cta">
-        <div className="container"><div className="boarding-cta-inner reveal"><p className="eyebrow">More Than Boarding</p><h2 className="h-1" style={{ marginTop: 18 }}>A place they'll feel safe returning to</h2><p className="lead" style={{ marginTop: 24 }}>At Pawpad, we don't just look after dogs. We build trust — with them and with you. Because when your dog feels calm, secure, and genuinely cared for, you can enjoy your time away with complete peace of mind.</p><button className="btn btn-primary" onClick={() => onBook("boarding")} style={{ marginTop: 28 }}>Book a Trial Day <Arrow /></button></div></div>
-      </section>
-      <style>{`
-        .boarding-hero { padding: 180px 0 80px; }
-        .boarding-hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
-        .boarding-hero-img { border-radius: 28px; overflow: hidden; background: var(--eagle-soft); }
-        .boarding-hero-img img { width: 100%; height: 100%; object-fit: cover; }
-        .split-copy { display: grid; grid-template-columns: 1fr 1.25fr; gap: 72px; align-items: start; }
-        .split-copy p { font-size: 17px; line-height: 1.75; margin: 0; }
-        .boarding-diff, .boarding-lists { background: var(--champagne-soft); }
-        .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-        .feature-card, .info-list { background: var(--white); border: 1px solid color-mix(in oklab, var(--ink), transparent 92%); border-radius: 18px; padding: 28px; }
-        .feature-card p, .info-list p, .info-list li { font-size: 16px; line-height: 1.65; color: var(--ink-mute); }
-        .boarding-list-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-        .info-list ul { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-        .info-list li { display: flex; gap: 10px; align-items: flex-start; }
-        .info-list li::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--driftwood); margin-top: 9px; flex: 0 0 auto; }
-        .boarding-cta-inner { padding: 48px; background: var(--ink); color: var(--white); border-radius: 24px; }
-        .boarding-cta-inner h2 { color: var(--white); }
-        .boarding-cta-inner p { color: color-mix(in oklab, var(--white), transparent 18%); }
-        @media (max-width: 1000px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } .boarding-hero-grid, .split-copy { grid-template-columns: 1fr; } }
-        @media (max-width: 680px) { .feature-grid, .boarding-list-grid { grid-template-columns: 1fr; } .boarding-cta-inner { padding: 30px; } }
-      `}</style>
-    </div>
+
+  return /* @__PURE__ */ React.createElement("div", { className: "page-enter boarding-page-root" },
+    /* Main Service Cards */
+    /* @__PURE__ */ React.createElement("section", { id: "boarding-options", className: "boarding-cards-section" },
+      /* @__PURE__ */ React.createElement("div", { className: "container" },
+        /* @__PURE__ */ React.createElement("div", { className: "section-head reveal in" },
+          /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "PAWPAD · BOARDING"),
+          /* @__PURE__ */ React.createElement("h2", { className: "h-1" },
+            "Boarding, ",
+            /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "Reimagined")
+          ),
+          /* @__PURE__ */ React.createElement("p", { className: "section-sub" },
+            "Trial Day & Overnight Stay — What's Included"
+          )
+        ),
+
+        /* @__PURE__ */ React.createElement("div", { className: "boarding-grid" },
+          /* Card 1: Trial Day */
+          /* @__PURE__ */ React.createElement("article", { className: "boarding-card reveal" },
+            /* @__PURE__ */ React.createElement("div", { className: "boarding-card-image-box" },
+              /* @__PURE__ */ React.createElement("img", {
+                src: "assets/img/pawpad/boarding-sleeping-puppy-toy.webp",
+                alt: "Puppy sleeping comfortably under a soft blanket cuddling a plush toy",
+                className: "boarding-card-img",
+                loading: "lazy"
+              }),
+              /* @__PURE__ */ React.createElement("span", { className: "boarding-card-tag step-tag" }, "Step 1 · Mandatory Assessment")
+            ),
+            /* @__PURE__ */ React.createElement("div", { className: "boarding-card-body" },
+              /* @__PURE__ */ React.createElement("div", { className: "boarding-card-header" },
+                /* @__PURE__ */ React.createElement("h3", { className: "boarding-card-title" }, "Trial Day"),
+                /* @__PURE__ */ React.createElement("div", { className: "boarding-card-price" }, "₹850 ", /* @__PURE__ */ React.createElement("span", { className: "price-unit" }, "per dog"))
+              ),
+              /* @__PURE__ */ React.createElement("p", { className: "boarding-card-desc" },
+                "A full day with us, so both you and we can see if it's a good fit before committing to an overnight stay. Currently open to small dogs only."
+              ),
+              /* @__PURE__ */ React.createElement("ul", { className: "boarding-features-list" },
+                /* @__PURE__ */ React.createElement("li", null,
+                  React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }),
+                  /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("strong", null, "Scheduled Feeding:"), " Feeding on your dog's regular schedule — our standard meals are home-cooked, with chicken, pumpkin, carrot, beans, sweet potato, and rice")
+                ),
+                /* @__PURE__ */ React.createElement("li", null,
+                  React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }),
+                  /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("strong", null, "Dedicated Quiet Space:"), " Rest and quiet time in the same space used for overnight boarding")
+                ),
+                /* @__PURE__ */ React.createElement("li", null,
+                  React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }),
+                  /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("strong", null, "Direct Observation:"), " Direct observation from our team throughout the day")
+                ),
+                /* @__PURE__ */ React.createElement("li", null,
+                  React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }),
+                  /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("strong", null, "Parent Consultation:"), " A conversation with you at pickup on how the day went, and whether we're moving forward together")
+                )
+              ),
+              /* @__PURE__ */ React.createElement("div", { className: "boarding-card-note" },
+                "Trial days don't include walks — activity happens on-site, supervised, within the boarding space itself. If your dog has any food allergies, let us know in advance. If your dog is on vet-specified food, you'll need to provide it for the day. Paid separately from any future boarding stay."
+              ),
+              /* @__PURE__ */ React.createElement("div", { className: "boarding-card-action" },
+                /* @__PURE__ */ React.createElement("button", {
+                  className: "btn btn-primary boarding-btn",
+                  onClick: handleAddTrialDay,
+                  "aria-label": "Add Trial Day Boarding to Cart"
+                },
+                  React.createElement(CartIcon, { size: 16 }),
+                  " Add Trial Day to Cart (₹850) ",
+                  React.createElement(Arrow, null)
+                )
+              )
+            )
+          ),
+
+          /* Card 2: Overnight Boarding */
+          /* @__PURE__ */ React.createElement("article", { className: "boarding-card reveal" },
+            /* @__PURE__ */ React.createElement("div", { className: "boarding-card-image-box" },
+              /* @__PURE__ */ React.createElement("img", {
+                src: "assets/img/pawpad/boarding-dog-sleep-mask.webp",
+                alt: "Calm dog resting peacefully with a sleep mask under duvet",
+                className: "boarding-card-img",
+                loading: "lazy"
+              }),
+              /* @__PURE__ */ React.createElement("span", { className: "boarding-card-tag overnight-tag" }, "Step 2 · Overnight Stay")
+            ),
+            /* @__PURE__ */ React.createElement("div", { className: "boarding-card-body" },
+              /* @__PURE__ */ React.createElement("div", { className: "boarding-card-header" },
+                /* @__PURE__ */ React.createElement("h3", { className: "boarding-card-title" }, "Overnight Boarding"),
+                /* @__PURE__ */ React.createElement("div", { className: "boarding-card-price" }, "₹1,000 ", /* @__PURE__ */ React.createElement("span", { className: "price-unit" }, "per dog, per night"))
+              ),
+              /* @__PURE__ */ React.createElement("p", { className: "boarding-card-desc" },
+                "A calm, supervised overnight stay in the same space and with the same small cohort your dog got to know during their trial day. Currently open to small dogs only."
+              ),
+              /* @__PURE__ */ React.createElement("ul", { className: "boarding-features-list" },
+                /* @__PURE__ */ React.createElement("li", null,
+                  React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }),
+                  /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("strong", null, "24/7 Human Supervision:"), " Overnight human supervision, always — never left alone")
+                ),
+                /* @__PURE__ */ React.createElement("li", null,
+                  React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }),
+                  /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("strong", null, "Scheduled Feeding:"), " Feeding on your dog's regular schedule — home-cooked meals of chicken, pumpkin, carrot, beans, sweet potato, and rice")
+                ),
+                /* @__PURE__ */ React.createElement("li", null,
+                  React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }),
+                  /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("strong", null, "Stress-Reducing Space:"), " Rest and quiet time in a space designed to reduce stress, with never more than four dogs boarding at once")
+                ),
+                /* @__PURE__ */ React.createElement("li", null,
+                  React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }),
+                  /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("strong", null, "Supervised Cohort Time:"), " Ongoing supervised time with the other dogs in the cohort")
+                )
+              ),
+              /* @__PURE__ */ React.createElement("div", { className: "boarding-card-note" },
+                /* @__PURE__ */ React.createElement("strong", null, "A completed trial day is required before booking an overnight stay"),
+                " — it's how we make sure your dog is a good fit before an overnight commitment. Walks aren't included; activity stays on-site and supervised, same as the trial day. If your dog has any food allergies, let us know in advance. If your dog is on vet-specified food, you'll need to provide it. No minimum or maximum stay length."
+              ),
+              /* @__PURE__ */ React.createElement("div", { className: "boarding-card-action" },
+                /* @__PURE__ */ React.createElement("button", {
+                  className: "btn btn-primary boarding-btn",
+                  onClick: handleAddOvernight,
+                  "aria-label": "Add Overnight Boarding to Cart"
+                },
+                  React.createElement(CartIcon, { size: 16 }),
+                  " Add Overnight Boarding (₹1,000) ",
+                  React.createElement(Arrow, null)
+                )
+              )
+            )
+          )
+        )
+      )
+    ),
+
+    /* Care Highlights & Daily Routine Section */
+    /* @__PURE__ */ React.createElement("section", { className: "boarding-standards-section" },
+      /* @__PURE__ */ React.createElement("div", { className: "container" },
+        /* @__PURE__ */ React.createElement("div", { className: "standards-grid" },
+          /* Left: Image & Quote Visual */
+          /* @__PURE__ */ React.createElement("div", { className: "standards-visual reveal" },
+            /* @__PURE__ */ React.createElement("div", { className: "standards-img-box" },
+              /* @__PURE__ */ React.createElement("img", {
+                src: "assets/img/pawpad/boarding-dachshund-sleep-mask.webp",
+                alt: "Cozy dachshund dog resting under duvet with a pink eye mask",
+                className: "standards-img",
+                loading: "lazy"
+              })
+            ),
+            /* @__PURE__ */ React.createElement("div", { className: "standards-quote-card" },
+              /* @__PURE__ */ React.createElement("p", { className: "standards-overlay-quote" }, "“We treat every boarding dog like family — with cozy bedding, home-cooked food, and 24-hour presence.”"),
+              /* @__PURE__ */ React.createElement("span", { className: "standards-overlay-author" }, "— The Pawpad Team")
+            )
+          ),
+
+          /* Right: Care Pillars */
+          /* @__PURE__ */ React.createElement("div", { className: "standards-content reveal" },
+            /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Care Standards"),
+            /* @__PURE__ */ React.createElement("h2", { className: "h-2", style: { margin: "14px 0 24px" } }, "What Daily Life Looks Like at Pawpad"),
+            
+            /* @__PURE__ */ React.createElement("div", { className: "pillar-list" },
+              /* Pillar 1 */
+              /* @__PURE__ */ React.createElement("div", { className: "pillar-item" },
+                /* @__PURE__ */ React.createElement("div", { className: "pillar-icon" }, "🍲"),
+                /* @__PURE__ */ React.createElement("div", { className: "pillar-text" },
+                  /* @__PURE__ */ React.createElement("h4", null, "Fresh, Wholesome Home Cooking"),
+                  /* @__PURE__ */ React.createElement("p", null, "Feeding on your dog's regular schedule with home-cooked meals of chicken, pumpkin, carrot, beans, sweet potato, and rice. Special diets or vet food strictly followed.")
+                )
+              ),
+              /* Pillar 2 */
+              /* @__PURE__ */ React.createElement("div", { className: "pillar-item" },
+                /* @__PURE__ */ React.createElement("div", { className: "pillar-icon" }, "🛡️"),
+                /* @__PURE__ */ React.createElement("div", { className: "pillar-text" },
+                  /* @__PURE__ */ React.createElement("h4", null, "Safe, Stress-Free On-Site Activity"),
+                  /* @__PURE__ */ React.createElement("p", null, "Walks aren't included; all activity happens on-site and supervised within the boarding space to keep your dog secure, relaxed, and safe.")
+                )
+              ),
+              /* Pillar 3 */
+              /* @__PURE__ */ React.createElement("div", { className: "pillar-item" },
+                /* @__PURE__ */ React.createElement("div", { className: "pillar-icon" }, "🌙"),
+                /* @__PURE__ */ React.createElement("div", { className: "pillar-text" },
+                  /* @__PURE__ */ React.createElement("h4", null, "Overnight Human Supervision, Always"),
+                  /* @__PURE__ */ React.createElement("p", null, "Overnight human supervision, always — dogs are never left alone, ensuring constant comfort, care, and peace of mind.")
+                )
+              )
+            )
+          )
+        )
+      )
+    ),
+
+    /* FAQ Section */
+    /* @__PURE__ */ React.createElement("section", { className: "boarding-faq-section" },
+      /* @__PURE__ */ React.createElement("div", { className: "container boarding-faq-container" },
+        /* @__PURE__ */ React.createElement("div", { className: "section-head reveal", style: { textAlign: "center", maxWidth: "680px", margin: "0 auto 48px" } },
+          /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Got Questions?"),
+          /* @__PURE__ */ React.createElement("h2", { className: "h-1" }, "Frequently Asked Questions"),
+          /* @__PURE__ */ React.createElement("p", { className: "section-sub" }, "Everything you need to know about our boarding guidelines, routines, and policies.")
+        ),
+
+        /* @__PURE__ */ React.createElement("div", { className: "faq-list" },
+          FAQ_ITEMS.map((item, idx) =>
+            /* @__PURE__ */ React.createElement("div", {
+              key: idx,
+              className: `faq-item reveal ${openFaq === idx ? "active" : ""}`
+            },
+              /* @__PURE__ */ React.createElement("button", {
+                className: "faq-question",
+                onClick: () => toggleFaq(idx),
+                "aria-expanded": openFaq === idx
+              },
+                /* @__PURE__ */ React.createElement("span", null, item.q),
+                /* @__PURE__ */ React.createElement("span", { className: "faq-toggle-icon" }, openFaq === idx ? "−" : "+")
+              ),
+              openFaq === idx && /* @__PURE__ */ React.createElement("div", { className: "faq-answer" },
+                /* @__PURE__ */ React.createElement("p", null, item.a)
+              )
+            )
+          )
+        )
+      )
+    ),
+
+    /* Bottom CTA */
+    /* @__PURE__ */ React.createElement("section", { className: "boarding-cta-section" },
+      /* @__PURE__ */ React.createElement("div", { className: "container" },
+        /* @__PURE__ */ React.createElement("div", { className: "boarding-cta-box reveal" },
+          /* @__PURE__ */ React.createElement("p", { className: "eyebrow", style: { color: "var(--white)" } }, "Ready to Plan Your Dog's Stay?"),
+          /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { color: "var(--white)", margin: "16px 0 20px" } }, "Give Your Pup a Calm, Loving Stay"),
+          /* @__PURE__ */ React.createElement("p", { className: "lead", style: { color: "rgba(255,255,255,0.88)", maxWidth: "56ch", margin: "0 auto 32px" } },
+            "Add a Trial Day to your cart to begin the onboarding process, or chat directly with Leena and the Pawpad team on WhatsApp."
+          ),
+          /* @__PURE__ */ React.createElement("div", { className: "boarding-cta-actions" },
+            /* @__PURE__ */ React.createElement("button", {
+              className: "btn btn-primary",
+              onClick: handleAddTrialDay,
+              style: { background: "var(--champagne)", color: "var(--ink)" }
+            },
+              React.createElement(CartIcon, { size: 16 }),
+              " Book Trial Day (₹850) ",
+              React.createElement(Arrow, null)
+            ),
+            /* @__PURE__ */ React.createElement("a", {
+              href: "https://wa.me/919663077496?text=Hi%20Pawpad%2C%20I%20would%20like%20to%20enquire%20about%20boarding%20for%20my%20dog",
+              target: "_blank",
+              rel: "noopener noreferrer",
+              className: "btn btn-ghost",
+              style: { borderColor: "rgba(255,255,255,0.6)", color: "var(--white)" }
+            }, "Chat on WhatsApp")
+          )
+        )
+      )
+    ),
+
+    /* Boarding Page Styles */
+    /* @__PURE__ */ React.createElement("style", null, `
+      .boarding-page-root {
+        background: var(--cream-bg);
+      }
+      
+      /* Hero */
+      .boarding-hero {
+        padding: 160px 0 70px;
+        position: relative;
+        overflow: hidden;
+      }
+      .boarding-hero-container {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .boarding-hero-title {
+        font-size: clamp(38px, 4.4vw, 56px);
+        font-weight: 400;
+        line-height: 1.15;
+        color: var(--ink);
+        margin: 18px 0 20px;
+      }
+      .boarding-hero-lead {
+        font-size: 16.5px;
+        line-height: 1.7;
+        color: var(--ink-soft);
+        margin: 0 0 28px;
+        max-width: 58ch;
+      }
+      .boarding-pills-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 32px;
+      }
+      .boarding-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--champagne-soft);
+        border: 1px solid color-mix(in oklab, var(--champagne-deep), transparent 30%);
+        padding: 7px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink-soft);
+      }
+      .boarding-hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      
+      /* Hero Card Visual */
+      .boarding-hero-visual {
+        display: flex;
+        justify-content: center;
+      }
+      .boarding-hero-card {
+        position: relative;
+        width: 100%;
+        max-width: 440px;
+        background: var(--white);
+        border-radius: 28px;
+        padding: 16px;
+        box-shadow: 0 20px 48px -16px rgba(0,0,0,0.08);
+        border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
+        transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+      }
+      .boarding-hero-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 26px 54px -16px rgba(0,0,0,0.12);
+      }
+      .boarding-hero-img-wrap {
+        width: 100%;
+        height: 380px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #fefaf4 0%, #f6ece0 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .boarding-hero-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center bottom;
+        transition: transform 0.4s var(--ease);
+      }
+      .boarding-hero-card:hover .boarding-hero-img {
+        transform: scale(1.03);
+      }
+      .boarding-hero-badge {
+        position: absolute;
+        bottom: 28px;
+        left: 28px;
+        right: 28px;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 14px 18px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+        border: 1px solid rgba(255,255,255,0.8);
+      }
+      .boarding-hero-badge strong {
+        display: block;
+        font-size: 13.5px;
+        color: var(--ink);
+      }
+      .boarding-hero-badge p {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: var(--ink-mute);
+      }
+      .badge-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #4caf50;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        flex-shrink: 0;
+      }
+
+      /* Services Section */
+      .boarding-cards-section {
+        padding: 160px 0 90px;
+        background: var(--cream-bg);
+      }
+      .section-head {
+        margin-bottom: 48px;
+      }
+      .section-sub {
+        font-size: 16px;
+        color: var(--ink-soft);
+        margin: 14px 0 0;
+        max-width: 60ch;
+        line-height: 1.6;
+      }
+      .boarding-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      .boarding-card {
+        background: var(--white);
+        border-radius: 28px;
+        border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.03);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+      }
+      .boarding-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 48px -18px rgba(0,0,0,0.09);
+      }
+      .boarding-card-image-box {
+        position: relative;
+        height: 250px;
+        background: linear-gradient(135deg, #fdfaf4 0%, #f4eae0 100%);
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 56px 20px 0;
+      }
+      .boarding-card-img {
+        width: 100%;
+        height: 100%;
+        max-height: 194px;
+        object-fit: contain;
+        object-position: center bottom;
+        display: block;
+        vertical-align: bottom;
+        transition: transform 0.4s var(--ease);
+      }
+      .boarding-card:hover .boarding-card-img {
+        transform: scale(1.04);
+      }
+      .boarding-card-tag {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        z-index: 2;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 999px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      .step-tag {
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--driftwood-deep);
+        border: 1px solid rgba(177, 141, 78, 0.25);
+      }
+      .overnight-tag {
+        background: rgba(46, 46, 46, 0.9);
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .boarding-card-body {
+        padding: 32px 30px 36px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .boarding-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+      }
+      .boarding-card-title {
+        font-family: var(--f-display);
+        font-size: clamp(24px, 2.6vw, 30px);
+        font-weight: 400;
+        color: var(--ink);
+        margin: 0;
+      }
+      .boarding-card-price {
+        font-family: var(--f-display);
+        font-size: clamp(24px, 2.6vw, 30px);
+        color: var(--driftwood);
+        font-weight: 400;
+      }
+      .price-unit {
+        font-family: var(--f-body);
+        font-size: 13.5px;
+        color: var(--ink-mute);
+        font-weight: 500;
+      }
+      .boarding-card-desc {
+        font-size: 15px;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        margin: 0 0 24px;
+        font-style: italic;
+      }
+      .boarding-features-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+      }
+      .boarding-features-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--ink-soft);
+      }
+      .boarding-features-list li svg {
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+      .boarding-card-note {
+        background: #f7efe3;
+        border-radius: 14px;
+        padding: 16px 20px;
+        font-size: 13.5px;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        margin-top: auto;
+        margin-bottom: 24px;
+        border-left: 3px solid var(--driftwood);
+      }
+      .boarding-card-action {
+        margin-top: 8px;
+      }
+      .boarding-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+        font-size: 15px;
+      }
+
+      /* Standards Section */
+      .boarding-standards-section {
+        padding: 90px 0;
+        background: var(--champagne-soft);
+      }
+      .standards-grid {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .standards-visual {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .standards-img-box {
+        position: relative;
+        background: var(--white);
+        border-radius: 28px;
+        padding: 24px 20px 0;
+        box-shadow: 0 20px 48px -16px rgba(0,0,0,0.06);
+        border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
+        height: 360px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .standards-img {
+        width: 100%;
+        height: 100%;
+        max-height: 336px;
+        object-fit: contain;
+        object-position: center bottom;
+        display: block;
+        vertical-align: bottom;
+      }
+      .standards-quote-card {
+        background: var(--white);
+        padding: 20px 24px;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
+      }
+      body[data-palette="dark"] .standards-quote-card {
+        background: color-mix(in oklab, var(--champagne), black 5%);
+        border-color: color-mix(in oklab, var(--champagne), transparent 85%);
+      }
+      .standards-overlay-quote {
+        font-size: 13.5px;
+        line-height: 1.55;
+        font-style: italic;
+        color: var(--ink-soft);
+        margin: 0 0 6px;
+      }
+      .standards-overlay-author {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--driftwood-deep);
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+      .pillar-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 28px;
+      }
+      .pillar-item {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        background: var(--white);
+        padding: 20px 24px;
+        border-radius: 18px;
+        border: 1px solid color-mix(in oklab, var(--ink), transparent 93%);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+      }
+      .pillar-icon {
+        font-size: 24px;
+        line-height: 1;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .pillar-text h4 {
+        font-family: var(--f-body);
+        font-size: 15.5px;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0 0 6px;
+      }
+      .pillar-text p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--ink-soft);
+        margin: 0;
+      }
+
+      /* FAQ Section */
+      .boarding-faq-section {
+        padding: 90px 0 80px;
+        background: var(--cream-bg);
+      }
+      .boarding-faq-container {
+        max-width: 820px;
+        margin: 0 auto;
+      }
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .faq-item {
+        background: var(--white);
+        border-radius: 18px;
+        border: 1px solid color-mix(in oklab, var(--ink), transparent 91%);
+        overflow: hidden;
+        transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+      }
+      .faq-item.active {
+        border-color: var(--driftwood);
+        box-shadow: 0 6px 24px rgba(177, 141, 78, 0.08);
+      }
+      .faq-question {
+        width: 100%;
+        padding: 22px 28px;
+        text-align: left;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        font-family: var(--f-body);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .faq-toggle-icon {
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--driftwood);
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--champagne-soft);
+        border-radius: 50%;
+      }
+      .faq-answer {
+        padding: 0 28px 22px;
+        animation: fadeIn 0.2s var(--ease) both;
+      }
+      .faq-answer p {
+        font-size: 14.5px;
+        line-height: 1.7;
+        color: var(--ink-soft);
+        margin: 0;
+      }
+
+      /* CTA Banner */
+      .boarding-cta-section {
+        padding: 40px 0 100px;
+        background: var(--cream-bg);
+      }
+      .boarding-cta-box {
+        background: #2e2e2e;
+        border-radius: 32px;
+        padding: 64px 40px;
+        text-align: center;
+        color: var(--white);
+        box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+      }
+      .boarding-cta-actions {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      /* Responsive rules */
+      @media (max-width: 960px) {
+        .boarding-cards-section { padding: 130px 0 70px; }
+        .boarding-grid { grid-template-columns: 1fr; }
+        .standards-grid { grid-template-columns: 1fr; gap: 40px; }
+        .standards-img-box { height: 320px; }
+        .standards-img { max-height: 296px; }
+      }
+      @media (max-width: 600px) {
+        .boarding-cards-section { padding: 110px 0 50px; }
+        .boarding-card-body { padding: 24px 20px 28px; }
+        .boarding-card-image-box { height: 220px; padding: 48px 16px 0; }
+        .boarding-card-img { max-height: 172px; }
+        .standards-img-box { height: 260px; padding: 20px 16px 0; }
+        .standards-img { max-height: 240px; }
+        .standards-quote-card { padding: 16px 20px; }
+        .boarding-cta-box { padding: 44px 24px; border-radius: 24px; }
+      }
+    `)
   );
 }
 
-function InfoList({ title, intro, items }) {
-  return <article className="info-list reveal"><h3 className="h-3">{title}</h3><p>{intro}</p><ul>{items.map(item => <li key={item}>{item}</li>)}</ul></article>;
-}
-
-/* ============ MYOTHERAPY ============ */
-function MyotherapyHero({ onBook }) {
-  return (
-    <section className="m-hero">
-      <div className="container m-hero-grid">
-        <div>
-          <p className="eyebrow reveal in">Canine myotherapy & wellness</p>
-          <h1 className="h-display reveal in" style={{ marginTop: 24, maxWidth: "15ch" }}>
-            The body <em className="italic" style={{ color: "var(--driftwood)" }}>remembers</em><br />
-            We help it heal
-          </h1>
-          <p className="lead reveal in" style={{ marginTop: 28, maxWidth: "56ch" }}>
-            Gentle, hands-on bodywork for dogs — easing muscular tension, supporting recovery, and helping seniors stay mobile for longer. Designed especially for the dog who's a little stiff, a little slower, or just due for a reset.
-          </p>
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 }}>
-            <button className="btn btn-primary" onClick={() => onBook("myotherapy")}>Book a session <Arrow /></button>
-            <a href="#m-benefits" className="btn btn-ghost" onClick={(e) => { e.preventDefault(); document.getElementById("m-benefits")?.scrollIntoView({ behavior: "smooth" }); }}>The benefits <Arrow /></a>
-          </div>
-        </div>
-        <div className="m-hero-img reveal in">
-          <div className="blob-3"><img src="assets/img/3.jpg" alt="A dog being gently held" /></div>
-        </div>
-      </div>
-      <style>{`
-        .m-hero { padding: 180px 0 60px; }
-        .m-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
-        .m-hero-img .blob-3 { aspect-ratio: 4/4.5; overflow: hidden; background: var(--driftwood); animation: morph 14s ease-in-out infinite alternate; }
-        body[data-motion="still"] .m-hero-img .blob-3 { animation: none; }
-        .m-hero-img img { width: 100%; height: 100%; object-fit: cover; }
-        @keyframes morph {
-          0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-          50% { border-radius: 30% 70% 70% 30% / 50% 60% 40% 50%; }
-          100% { border-radius: 40% 60% 30% 70% / 40% 50% 60% 50%; }
-        }
-        @media (max-width: 900px) { .m-hero-grid { grid-template-columns: 1fr; gap: 36px; } }
-      `}</style>
-    </section>
-  );
-}
-
-function MyotherapyExplainer() {
-  return (
-    <section className="m-explain">
-      <div className="container m-ex-grid">
-        <div className="reveal">
-          <p className="eyebrow">What is myotherapy</p>
-          <h2 className="h-1" style={{ marginTop: 18, maxWidth: "16ch" }}>
-            Bodywork <em className="italic" style={{ color: "var(--driftwood)" }}>Slowed down</em>
-          </h2>
-        </div>
-        <div className="m-ex-text reveal">
-          <p>Myotherapy is the assessment and treatment of soft-tissue pain and tension — the kind that builds up quietly in working dogs, recovering dogs, anxious dogs, and dogs growing older. It's not massage as a luxury. It's targeted, science-led, and entirely consent-based.</p>
-          <p>At Pawpad, sessions begin with a slow conversation. We watch how your dog moves, where they're guarding, what they're avoiding. We then use trigger-point release, fascial work, and gentle range-of-motion techniques to help the body let go of what it's been holding.</p>
-          <p>Most dogs visibly soften within the first session. Recovery cases — post-surgery, post-injury, or chronic compensation patterns — often see meaningful change over 3–5 sessions.</p>
-        </div>
-      </div>
-      <style>{`
-        .m-explain { background: var(--champagne-soft); }
-        .m-ex-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
-        .m-ex-text p { margin: 0 0 18px; font-size: 16px; line-height: 1.75; max-width: 60ch; }
-        @media (max-width: 900px) { .m-ex-grid { grid-template-columns: 1fr; gap: 36px; } }
-      `}</style>
-    </section>
-  );
-}
-
-function MyotherapyBenefits() {
-  const benefits = [
-    ["Senior dogs", "Maintain mobility, ease arthritic stiffness, support quality-of-life late in life."],
-    ["Post-surgery", "Faster, calmer recovery from orthopaedic procedures. Always cleared by your vet first."],
-    ["Anxious dogs", "Bodywork helps regulate the nervous system. Many anxious dogs fall asleep mid-session."],
-    ["Active dogs", "Sport, agility, and high-drive working dogs benefit from regular release of compensation patterns."],
-    ["Indies & rescues", "Past injuries often go undiagnosed. Myotherapy uncovers and releases what scans don't show."],
-    ["Just-because", "Sometimes a dog is just tight. Sometimes it's just a beautiful thing to give them."],
-  ];
-  return (
-    <section className="m-benefits" id="m-benefits">
-      <div className="container">
-        <div className="m-ben-head reveal">
-          <p className="eyebrow">Who it's for</p>
-          <h2 className="h-1" style={{ marginTop: 18, maxWidth: "20ch" }}>
-            Most dogs benefit <em className="italic" style={{ color: "var(--driftwood)" }}>Some, profoundly</em>
-          </h2>
-        </div>
-        <div className="m-ben-grid">
-          {benefits.map(([t, d], i) => (
-            <div key={t} className="m-ben-card reveal" style={{ transitionDelay: `${i * 60}ms` }}>
-              <span className="m-ben-no">0{i + 1}</span>
-              <h3 className="h-3">{t}</h3>
-              <p>{d}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <style>{`
-        .m-benefits { background: var(--cream-bg); }
-        .m-ben-head { max-width: 720px; margin-bottom: 56px; }
-        .m-ben-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid color-mix(in oklab, var(--ink), transparent 88%); }
-        .m-ben-card {
-          padding: 36px 28px;
-          border-right: 1px solid color-mix(in oklab, var(--ink), transparent 88%);
-          border-bottom: 1px solid color-mix(in oklab, var(--ink), transparent 88%);
-          display: flex; flex-direction: column; gap: 12px;
-          transition: background var(--t-fast) var(--ease);
-        }
-        .m-ben-card:nth-child(3n) { border-right: 0; }
-        .m-ben-card:hover { background: var(--champagne-soft); }
-        .m-ben-no { font-family: var(--f-display); font-size: 16px; color: var(--driftwood); letter-spacing: .1em; }
-        .m-ben-card p { margin: 0; font-size: 14.5px; line-height: 1.65; color: var(--ink-mute); }
-        @media (max-width: 800px) {
-          .m-ben-grid { grid-template-columns: 1fr 1fr; }
-          .m-ben-card:nth-child(3n) { border-right: 1px solid color-mix(in oklab, var(--ink), transparent 88%); }
-          .m-ben-card:nth-child(2n) { border-right: 0; }
-        }
-        @media (max-width: 540px) {
-          .m-ben-grid { grid-template-columns: 1fr; }
-          .m-ben-card { border-right: 0 !important; }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-function MyotherapyExpect() {
-  return (
-    <section className="m-expect">
-      <div className="container m-expect-grid">
-        <div className="reveal">
-          <p className="eyebrow">What to expect</p>
-          <h2 className="h-1" style={{ marginTop: 18, maxWidth: "14ch" }}>
-            Your dog's <em className="italic" style={{ color: "var(--driftwood)" }}>first session</em>
-          </h2>
-        </div>
-        <div className="m-expect-list reveal">
-          {[
-            ["60–75 minutes", "Long enough to do real work. Short enough that your dog stays engaged."],
-            ["You stay in the room", "Always. We want your dog regulated, and you regulate them."],
-            ["No equipment", "Just hands, a comfortable mat, and a quiet room. Dogs choose how they want to lie."],
-            ["A note to take home", "Stretching, rest, things to watch for. We'll always loop your vet in if needed."],
-            ["Availability", "Coming soon. Register interest and we'll share details when this service opens."],
-          ].map(([t, d], i) => (
-            <div key={t} className="m-expect-row" style={{ transitionDelay: `${i * 60}ms` }}>
-              <h4>{t}</h4>
-              <p>{d}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <style>{`
-        .m-expect { background: var(--ink); color: var(--cream-bg); }
-        .m-expect .eyebrow { color: var(--champagne); }
-        .m-expect .eyebrow::before { background: var(--champagne); }
-        .m-expect h2 { color: var(--cream-bg); }
-        .m-expect-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
-        .m-expect-list { display: flex; flex-direction: column; }
-        .m-expect-row {
-          display: grid; grid-template-columns: 280px 1fr; gap: 32px;
-          padding: 22px 0;
-          border-bottom: 1px solid color-mix(in oklab, var(--cream-bg), transparent 86%);
-          align-items: start;
-        }
-        .m-expect-row:first-child { border-top: 1px solid color-mix(in oklab, var(--cream-bg), transparent 86%); }
-        .m-expect-row h4 { font-family: var(--f-display); font-size: 24px; color: var(--driftwood); margin: 0; }
-        .m-expect-row p { color: color-mix(in oklab, var(--cream-bg), transparent 25%); margin: 0; line-height: 1.65; }
-        @media (max-width: 900px) {
-          .m-expect-grid { grid-template-columns: 1fr; gap: 36px; }
-          .m-expect-row { grid-template-columns: 1fr; gap: 8px; }
-        }
-      `}</style>
-    </section>
-  );
-}
 
 function MyotherapyPage({ onBook }) {
   useReveal();
