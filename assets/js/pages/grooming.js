@@ -132,6 +132,67 @@ const GROOM_PACKAGES = [
     img: "assets/img/pawpad/grooming-page-grooming-massage.webp",
     includes: ["Gentle pre-grooming settling", "Grooming begins only when they're ready", "Post-grooming relaxation massage", "Led by your dog's comfort, never the clock"],
     note: "A quiet moment of care that helps your dog settle before grooming and gently unwind afterwards. Available exclusively as a pre and post grooming add-on."
+  },
+  {
+    cat: "Care",
+    key: "bath-brush-dogs",
+    title: "Bath & Brush | Dogs",
+    sub: "Essential Wash",
+    price: "\u20B9999",
+    duration: "BATH & BRUSH",
+    img: "assets/img/pawpad/bath-brush-dogs.jpg",
+    includes: [
+      "Bath",
+      "Full blow dry",
+      "Coat brushing"
+    ],
+    notIncludes: [
+      "Nail trim, ear cleaning, or anal gland expression",
+      "Hygiene clip, scissoring, or clipping",
+      "Matted coats or dogs needing extra care"
+    ],
+    note: "A fast, no-fuss clean for dogs who don't need a full groom \u2014 just a wash, dry, and brush-out between full sessions."
+  },
+  {
+    cat: "Care",
+    key: "bath-brush-cats",
+    title: "Bath & Brush | Cats",
+    sub: "Essential Wash",
+    price: "\u20B9999",
+    duration: "BATH & BRUSH",
+    img: "assets/img/pawpad/bath-brush-cats.jpg",
+    includes: [
+      "Bath",
+      "Full blow dry",
+      "Coat brushing"
+    ],
+    notIncludes: [
+      "Nail trim, ear cleaning, or anal gland expression",
+      "Hygiene clip, scissoring, or clipping",
+      "Matted coats or cats needing extra care"
+    ],
+    note: "A fast, no-fuss clean for cats who don't need a full groom \u2014 just a wash, dry, and brush-out between full sessions."
+  },
+  {
+    cat: "Care",
+    key: "bath-brush-subscription",
+    title: "Bath & Brush Subscription package",
+    sub: "Essential Wash",
+    price: "\u20B93,496.50",
+    duration: "VALID 2 MONTHS",
+    img: "assets/img/pawpad/bath-brush-subscription.jpg",
+    includes: [
+      "4 Bath & Brush sessions",
+      "For dogs & cats",
+      "Valid for 2 months from purchase",
+      "Non-transferable"
+    ],
+    notIncludes: [
+      "Nail trim, ear cleaning, or anal gland expression",
+      "Hygiene clip, scissoring, or clipping",
+      "Unused sessions do not roll over or qualify for a refund"
+    ],
+    note: "Keep your pet's coat consistently clean and healthy with regular bath-and-brush visits, spaced through the month."
   }
 ];
 const ADD_ONS = [
@@ -192,7 +253,7 @@ function GroomingPackages({ onBook, onAddToCart }) {
 
   return /* @__PURE__ */ React.createElement("section", { className: "g-packages", id: "packages" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-head reveal" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Grooming Categories"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "16ch" } }, "Grooming care ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "for every coat"))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-filter" }, ["All", ...cats].map((c) => /* @__PURE__ */ React.createElement("button", { key: c, className: "g-filter-btn " + (filter === c ? "on" : ""), onClick: () => setFilter(c) }, c)))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-grid" }, filtered.map((p, i) => {
     const isOpen = open === p.key;
-    return /* @__PURE__ */ React.createElement("article", { key: p.key, className: "g-pkg-card " + (isOpen ? "open" : ""), style: { transitionDelay: `${i * 60}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-img" }, /* @__PURE__ */ React.createElement("img", { src: p.img, alt: p.title }), /* @__PURE__ */ React.createElement("span", { className: "tag" }, p.cat)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-body" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-top" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, p.title), /* @__PURE__ */ React.createElement("p", { className: "mute", style: { margin: "4px 0 0", fontSize: 13 } }, p.sub)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-price" }, /* @__PURE__ */ React.createElement("strong", null, p.price), /* @__PURE__ */ React.createElement("span", null, p.duration))), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-note" }, p.note), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-details" }, /* @__PURE__ */ React.createElement("h5", null, "Included"), /* @__PURE__ */ React.createElement("ul", null, p.includes.map((inc) => /* @__PURE__ */ React.createElement("li", { key: inc }, /* @__PURE__ */ React.createElement(PawIcon, { size: 10, color: "var(--driftwood)" }), " ", inc)))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-actions" }, /* @__PURE__ */ React.createElement("button", { className: "g-pkg-toggle", onClick: () => setOpen(isOpen ? null : p.key) }, isOpen ? "Show less" : "Show more", " ", /* @__PURE__ */ React.createElement("span", { className: "g-pkg-arrow" }, isOpen ? "\u2212" : "+")), /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary btn-sm", onClick: () => handleAddToCart(p) }, "Add to cart ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 })))));
+    return /* @__PURE__ */ React.createElement("article", { key: p.key, className: "g-pkg-card " + (isOpen ? "open" : ""), style: { transitionDelay: `${i * 60}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-img" }, /* @__PURE__ */ React.createElement("img", { src: p.img, alt: p.title }), /* @__PURE__ */ React.createElement("span", { className: "tag" }, p.cat)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-body" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-top" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, p.title), /* @__PURE__ */ React.createElement("p", { className: "mute", style: { margin: "4px 0 0", fontSize: 13 } }, p.sub)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-price" }, /* @__PURE__ */ React.createElement("strong", null, p.price), /* @__PURE__ */ React.createElement("span", null, p.duration))), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-note" }, p.note), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-details" }, /* @__PURE__ */ React.createElement("h5", null, "Included"), /* @__PURE__ */ React.createElement("ul", null, p.includes.map((inc) => /* @__PURE__ */ React.createElement("li", { key: inc }, /* @__PURE__ */ React.createElement(PawIcon, { size: 10, color: "var(--driftwood)" }), " ", inc))), p.notIncludes && p.notIncludes.length > 0 ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("h5", { style: { marginTop: 16 } }, "Not Included"), /* @__PURE__ */ React.createElement("ul", null, p.notIncludes.map((ninc) => /* @__PURE__ */ React.createElement("li", { key: ninc, style: { color: "var(--ink-mute)" } }, /* @__PURE__ */ React.createElement("span", { style: { color: "var(--driftwood)", fontSize: 12, marginRight: 4, fontWeight: 700 } }, "—"), " ", ninc)))) : null), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-actions" }, /* @__PURE__ */ React.createElement("button", { className: "g-pkg-toggle", onClick: () => setOpen(isOpen ? null : p.key) }, isOpen ? "Show less" : "Show more", " ", /* @__PURE__ */ React.createElement("span", { className: "g-pkg-arrow" }, isOpen ? "\u2212" : "+")), /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary btn-sm", onClick: () => handleAddToCart(p) }, "Add to cart ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 })))));
   })), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-footnote reveal" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }), "Please refer to the notes below for grooming duration, appointment policies, and important grooming guidelines. Add-on services are available exclusively alongside a full grooming package.")), /* @__PURE__ */ React.createElement("style", null, `
         .g-packages { background: var(--cream-bg); padding-top: 0; padding-bottom: 24px; }
         .g-pkg-head {
@@ -247,7 +308,7 @@ function GroomingPackages({ onBook, onAddToCart }) {
           transition: max-height var(--t-med) var(--ease), margin var(--t-med) var(--ease), padding var(--t-med) var(--ease);
           margin: 0 0 0;
         }
-        .g-pkg-card.open .g-pkg-details { max-height: 400px; padding-top: 4px; }
+        .g-pkg-card.open .g-pkg-details { max-height: 800px; padding-top: 4px; }
         .g-pkg-details h5 {
           font-family: var(--f-body); font-size: 11px; font-weight: 700;
           letter-spacing: .2em; text-transform: uppercase;

@@ -44,9 +44,9 @@ const SERVICES = [
     no: "04",
     title: "Boarding with Comfort in Mind",
     blurb: "Thoughtful pet boarding designed to help dogs feel secure, relaxed, and cared for while you're away.",
-    cta: "Coming Soon",
+    cta: "Let's onboard your pet",
     target: "boarding",
-    price: "Coming soon",
+    price: "Home like care",
     points: ["Comfort-led care", "Secure routines", "Relaxed environment", "Thoughtful attention"],
     img: "assets/img/pawpad/boarding-snapshot.webp",
     accent: "champagne",
@@ -273,13 +273,10 @@ function ServiceCards({ navigate, onBook }) {
                     <div className="svc-foot">
                       <span className="svc-price">{s.price}</span>
                       <div className="svc-actions">
-                        {s.key === "boarding" || s.key === "myotherapy" ? (
+                        {s.key === "myotherapy" ? (
                           <span className="svc-link disabled">{s.cta}</span>
                         ) : (
                           <a href={"#/" + s.target} className="svc-link">{s.cta} <Arrow size={12} /></a>
-                        )}
-                        {s.key === "boarding" || s.key === "myotherapy" ? null : (
-                          <button className="btn btn-cream" onClick={(e) => { e.stopPropagation(); onBook(s.key); }}>Book <Arrow size={12}/></button>
                         )}
                       </div>
                     </div>

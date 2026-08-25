@@ -135,6 +135,67 @@ const GROOM_PACKAGES = [
     includes: ["Gentle pre-grooming settling", "Grooming begins only when they're ready", "Post-grooming relaxation massage", "Led by your dog's comfort, never the clock"],
     note: "A quiet moment of care that helps your dog settle before grooming and gently unwind afterwards. Available exclusively as a pre and post grooming add-on.",
   },
+  {
+    cat: "Care",
+    key: "bath-brush-dogs",
+    title: "Bath & Brush | Dogs",
+    sub: "Essential Wash",
+    price: "₹999",
+    duration: "BATH & BRUSH",
+    img: "assets/img/pawpad/bath-brush-dogs.jpg",
+    includes: [
+      "Bath",
+      "Full blow dry",
+      "Coat brushing",
+    ],
+    notIncludes: [
+      "Nail trim, ear cleaning, or anal gland expression",
+      "Hygiene clip, scissoring, or clipping",
+      "Matted coats or dogs needing extra care",
+    ],
+    note: "A fast, no-fuss clean for dogs who don't need a full groom — just a wash, dry, and brush-out between full sessions.",
+  },
+  {
+    cat: "Care",
+    key: "bath-brush-cats",
+    title: "Bath & Brush | Cats",
+    sub: "Essential Wash",
+    price: "₹999",
+    duration: "BATH & BRUSH",
+    img: "assets/img/pawpad/bath-brush-cats.jpg",
+    includes: [
+      "Bath",
+      "Full blow dry",
+      "Coat brushing",
+    ],
+    notIncludes: [
+      "Nail trim, ear cleaning, or anal gland expression",
+      "Hygiene clip, scissoring, or clipping",
+      "Matted coats or cats needing extra care",
+    ],
+    note: "A fast, no-fuss clean for cats who don't need a full groom — just a wash, dry, and brush-out between full sessions.",
+  },
+  {
+    cat: "Care",
+    key: "bath-brush-subscription",
+    title: "Bath & Brush Subscription package",
+    sub: "Essential Wash",
+    price: "₹3,496.50",
+    duration: "VALID 2 MONTHS",
+    img: "assets/img/pawpad/bath-brush-subscription.jpg",
+    includes: [
+      "4 Bath & Brush sessions",
+      "For dogs & cats",
+      "Valid for 2 months from purchase",
+      "Non-transferable",
+    ],
+    notIncludes: [
+      "Nail trim, ear cleaning, or anal gland expression",
+      "Hygiene clip, scissoring, or clipping",
+      "Unused sessions do not roll over or qualify for a refund",
+    ],
+    note: "Keep your pet's coat consistently clean and healthy with regular bath-and-brush visits, spaced through the month.",
+  },
 ];
 
 const ADD_ONS = [
@@ -236,6 +297,18 @@ function GroomingPackages({ onBook }) {
                         <li key={inc}><PawIcon size={10} color="var(--driftwood)" /> {inc}</li>
                       ))}
                     </ul>
+                    {p.notIncludes && p.notIncludes.length > 0 && (
+                      <>
+                        <h5 style={{ marginTop: 16 }}>Not Included</h5>
+                        <ul>
+                          {p.notIncludes.map(ninc => (
+                            <li key={ninc} style={{ color: "var(--ink-mute)" }}>
+                              <span style={{ color: "var(--driftwood)", fontSize: 12, marginRight: 4, fontWeight: 700 }}>—</span> {ninc}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                   <div className="g-pkg-actions">
                     <button className="g-pkg-toggle" onClick={() => setOpen(isOpen ? null : p.key)}>
@@ -313,7 +386,7 @@ function GroomingPackages({ onBook }) {
           transition: max-height var(--t-med) var(--ease), margin var(--t-med) var(--ease), padding var(--t-med) var(--ease);
           margin: 0 0 0;
         }
-        .g-pkg-card.open .g-pkg-details { max-height: 400px; padding-top: 4px; }
+        .g-pkg-card.open .g-pkg-details { max-height: 800px; padding-top: 4px; }
         .g-pkg-details h5 {
           font-family: var(--f-body); font-size: 11px; font-weight: 700;
           letter-spacing: .2em; text-transform: uppercase;

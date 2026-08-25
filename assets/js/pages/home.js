@@ -42,9 +42,9 @@ const SERVICES = [
     no: "04",
     title: "Boarding with Comfort in Mind",
     blurb: "Thoughtful pet boarding designed to help dogs feel secure, relaxed, and cared for while you're away.",
-    cta: "Coming Soon",
+    cta: "Let's onboard your pet",
     target: "boarding",
-    price: "Coming soon",
+    price: "Home like care",
     points: ["Comfort-led care", "Secure routines", "Relaxed environment", "Thoughtful attention"],
     img: "assets/img/pawpad/boarding-snapshot.webp",
     accent: "champagne"
@@ -230,12 +230,7 @@ function ServiceCards({ navigate, onBook }) {
         style: { transitionDelay: `${idx * 70}ms` }
       },
       /* @__PURE__ */ React.createElement("div", { className: "svc-img" }, /* @__PURE__ */ React.createElement("img", { src: s.img, alt: s.title }), /* @__PURE__ */ React.createElement("span", { className: "svc-no" }, s.no)),
-      /* @__PURE__ */ React.createElement("div", { className: "svc-body" }, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, s.title), /* @__PURE__ */ React.createElement("p", { className: "svc-blurb" }, s.blurb), /* @__PURE__ */ React.createElement("div", { className: "svc-detail" }, /* @__PURE__ */ React.createElement("ul", { className: "svc-points" }, s.points.map((p) => /* @__PURE__ */ React.createElement("li", { key: p }, /* @__PURE__ */ React.createElement(PawIcon, { size: 11, color: "var(--driftwood)" }), " ", p))), /* @__PURE__ */ React.createElement("div", { className: "svc-foot" }, /* @__PURE__ */ React.createElement("span", { className: "svc-price" }, s.price), /* @__PURE__ */ React.createElement("div", { className: "svc-actions" }, s.key === "boarding" || s.key === "myotherapy" ? /* @__PURE__ */ React.createElement("span", { className: "svc-link disabled" }, s.cta) : /* @__PURE__ */ React.createElement("a", { href: hrefFor(s.target), className: "svc-link" }, s.cta, " ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 })), s.key === "boarding" || s.key === "myotherapy" ? null : /* @__PURE__ */ React.createElement("button", {
-        className: "btn btn-cream", onClick: (e) => {
-          e.stopPropagation();
-          onBook(s.key);
-        }
-      }, "Book ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 }))))))
+      /* @__PURE__ */ React.createElement("div", { className: "svc-body" }, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, s.title), /* @__PURE__ */ React.createElement("p", { className: "svc-blurb" }, s.blurb), /* @__PURE__ */ React.createElement("div", { className: "svc-detail" }, /* @__PURE__ */ React.createElement("ul", { className: "svc-points" }, s.points.map((p) => /* @__PURE__ */ React.createElement("li", { key: p }, /* @__PURE__ */ React.createElement(PawIcon, { size: 11, color: "var(--driftwood)" }), " ", p))), /* @__PURE__ */ React.createElement("div", { className: "svc-foot" }, /* @__PURE__ */ React.createElement("span", { className: "svc-price" }, s.price), /* @__PURE__ */ React.createElement("div", { className: "svc-actions" }, s.key === "myotherapy" ? /* @__PURE__ */ React.createElement("span", { className: "svc-link disabled" }, s.cta) : /* @__PURE__ */ React.createElement("a", { href: hrefFor(s.target), className: "svc-link" }, s.cta, " ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 }))))))
     );
   }))), /* @__PURE__ */ React.createElement("style", null, `
         .services-section { background: var(--cream-bg); padding-top: 0; }

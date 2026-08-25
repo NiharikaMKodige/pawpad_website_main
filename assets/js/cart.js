@@ -212,6 +212,38 @@ const CART_CATALOG = [
     requiresPetInfo: true,
     isCatOnly: true,
     img: "assets/img/pawpad/cat-hair-cut.webp"
+  },
+  {
+    id: "bath-brush-dogs",
+    title: "Bath & Brush | Dogs",
+    category: "Grooming",
+    price: 999,
+    priceDisplay: "₹999",
+    desc: "A fast, no-fuss clean for dogs who don't need a full groom — just a wash, dry, and brush-out between full sessions.",
+    requiresPetInfo: true,
+    isDogOnly: true,
+    img: "assets/img/pawpad/bath-brush-dogs.jpg"
+  },
+  {
+    id: "bath-brush-cats",
+    title: "Bath & Brush | Cats",
+    category: "Grooming",
+    price: 999,
+    priceDisplay: "₹999",
+    desc: "A fast, no-fuss clean for cats who don't need a full groom — just a wash, dry, and brush-out between full sessions.",
+    requiresPetInfo: true,
+    isCatOnly: true,
+    img: "assets/img/pawpad/bath-brush-cats.jpg"
+  },
+  {
+    id: "bath-brush-subscription",
+    title: "Bath & Brush Subscription package",
+    category: "Grooming",
+    price: 3496.5,
+    priceDisplay: "₹3,496.50",
+    desc: "Keep your pet's coat consistently clean and healthy with regular bath-and-brush visits, spaced through the month.",
+    requiresPetInfo: true,
+    img: "assets/img/pawpad/bath-brush-subscription.jpg"
   }
 ];
 
