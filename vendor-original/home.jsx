@@ -98,7 +98,7 @@ function Hero({ onBook }) {
         </div>
         <div className="hero-image-wrap">
           <div className="hero-image blob-1" style={{ transform: `translateY(${par * -0.03}px) scale(1)` }}>
-            <img src="assets/img/pawpad/hero-cover-bernese-cat.png" alt="A Bernese Mountain Dog and cat resting together" />
+            <img src="assets/img/pawpad/hero-cover-dog-cat.webp" alt="A dachshund dog and cat resting together with lilac flowers in a basket" />
           </div>
         </div>
       </div>

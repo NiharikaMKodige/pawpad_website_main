@@ -17,17 +17,61 @@
   }
 
   window.hsSubmit = function (type, data) {
+    data = data || {};
     var guid = FORMS[type] || FORMS.grooming;
-    var n = splitName(data.name);
+
+    // Support both flat data and nested customer payloads from cart checkout
+    var customer = data.customer || {};
+    var rawName = customer.name || data.name || '';
+    var rawEmail = customer.email || data.email || '';
+    var rawPhone = customer.phone || data.phone || '';
+
+    var n = splitName(rawName);
     var fields = [
-      f('email', data.email),
+      f('email', rawEmail),
       f('firstname', n.first),
       f('lastname', n.last),
-      f('phone', data.phone),
+      f('phone', rawPhone)
     ];
 
     var lines = ['Enquiry type: ' + type];
-    if (type === 'grooming') {
+
+    if (type === 'checkout') {
+      if (data.orderId) lines.push('Order Reference: ' + data.orderId);
+      if (customer.area) lines.push('Area / Location: ' + customer.area);
+      if (customer.contactMethod) lines.push('Preferred Contact Method: ' + customer.contactMethod);
+
+      if (data.items && data.items.length) {
+        lines.push('\n--- Selected Services / Items ---');
+        data.items.forEach(function (item) {
+          lines.push('• ' + item.title + ' (Qty: ' + (item.quantity || 1) + ') - ' + (item.priceDisplay || ('₹' + item.price)));
+        });
+      }
+
+      if (data.subtotal) lines.push('Subtotal: ₹' + data.subtotal.toLocaleString('en-IN'));
+      if (data.mandatoryTrialDayFee) lines.push('Mandatory Trial Day Fee: +₹' + data.mandatoryTrialDayFee.toLocaleString('en-IN'));
+      if (data.totalAmount) lines.push('Total Amount Estimated: ₹' + data.totalAmount.toLocaleString('en-IN'));
+
+      if (data.pet) {
+        lines.push('\n--- Pet Details ---');
+        if (data.pet.name) lines.push('Pet Name: ' + data.pet.name);
+        if (data.pet.type) lines.push('Pet Type: ' + data.pet.type);
+        if (data.pet.breed) lines.push('Breed: ' + data.pet.breed);
+        if (data.pet.age) lines.push('Age: ' + data.pet.age);
+        if (data.pet.size) lines.push('Size: ' + data.pet.size);
+        if (data.pet.coat) lines.push('Coat: ' + data.pet.coat);
+        if (data.pet.temperament) lines.push('Temperament: ' + data.pet.temperament);
+        if (data.pet.healthNotes) lines.push('Special Needs / Health Notes: ' + data.pet.healthNotes);
+        lines.push('Completed Previous Trial Day: ' + (data.pet.hasCompletedTrialDay ? 'Yes' : 'No'));
+      }
+
+      if (data.appointment) {
+        lines.push('\n--- Preferred Schedule ---');
+        if (data.appointment.date) lines.push('Date: ' + data.appointment.date);
+        if (data.appointment.time) lines.push('Time: ' + data.appointment.time);
+        if (data.appointment.notes) lines.push('Notes: ' + data.appointment.notes);
+      }
+    } else if (type === 'grooming' || type === 'myotherapy') {
       if (data.petName) lines.push('Pet name: ' + data.petName);
       if (data.petType) lines.push('Pet type: ' + data.petType);
       if (data.breed) lines.push('Breed: ' + data.breed);
@@ -35,14 +79,18 @@
       if (data.coat) lines.push('Coat type: ' + data.coat);
       if (data.temperament) lines.push('Temperament: ' + data.temperament);
       if (data.age) lines.push('Age: ' + data.age);
-      if (data.date) lines.push('Preferred date: ' + new Date(data.date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' }));
+      if (data.date) lines.push('Preferred date: ' + (new Date(data.date).toString() !== 'Invalid Date' ? new Date(data.date).toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' }) : data.date));
       if (data.time) lines.push('Preferred time: ' + data.time);
       if (data.notes) lines.push('Notes: ' + data.notes);
     } else if (type === 'boarding') {
       if (data.breed) lines.push('Dog breed: ' + data.breed);
       if (data.dateFrom) lines.push('Check-in: ' + data.dateFrom);
       if (data.dateTo) lines.push('Check-out: ' + data.dateTo);
+    } else if (type === 'courses') {
+      if (data.course) lines.push('Course: ' + data.course);
+      if (data.notes) lines.push('Notes: ' + data.notes);
     }
+
     fields.push(f('message', lines.join('\n')));
 
     fetch(
@@ -58,3 +106,4 @@
     ).catch(function () { });
   };
 })();
+

@@ -41,13 +41,19 @@ function main() {
 
   // Copy everything deployable (html at root + assets/) as a starting point.
   for (const entry of readdirSync(ROOT)) {
-    if (entry.endsWith(".html") || entry === "CNAME" || entry === "favicon.ico" || entry === "favicon.png") {
+    if (entry.endsWith(".html") || entry === "CNAME" || entry === "favicon.png") {
       const src = path.join(ROOT, entry);
       try {
         cpSync(src, path.join(DIST, entry));
       } catch {}
     }
   }
+  // Copy course_forms if present
+  const courseFormsDir = path.join(ROOT, "course_forms");
+  try {
+    cpSync(courseFormsDir, path.join(DIST, "course_forms"), { recursive: true });
+  } catch {}
+
   cpSync(path.join(ROOT, "assets"), path.join(DIST, "assets"), { recursive: true });
 
   // Minify JS and CSS in place inside dist/ only (source under assets/js and

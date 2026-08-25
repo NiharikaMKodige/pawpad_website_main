@@ -54,7 +54,7 @@ const GROOM_PACKAGES = [
     sub: "Full styling session for long-coated dogs",
     price: "₹2,500",
     duration: "Styling session",
-    img: "assets/img/pawpad/grooming-page-gromming-long-hair-dog.webp",
+    img: "assets/img/pawpad/grooming-page-dog-long-hair-haircut.webp",
     includes: ["Bath & Conditioning", "Coat trimming & scissoring", "Face and paw tidying", "Breed-aware styling", "Comfort breaks", "Deshedding support", "Finish & coat treatment"],
     note: "A complete styling session for long-coated dogs — balancing breed-specific shape, coat health, and your dog's comfort throughout.",
   },
@@ -98,7 +98,7 @@ const GROOM_PACKAGES = [
     sub: "Complete haircut and hygiene care for cats",
     price: "₹1,500",
     duration: "Feline styling",
-    img: "assets/img/pawpad/cat-grooming-long-hair.jpg",
+    img: "assets/img/pawpad/cat-hair-cut.webp",
     includes: ["Nail clipping", "Hair cut", "Ear cleaning", "Eye cleaning"],
     note: "A complete haircut and gentle care session for cats, including nail clipping, hair cut, ear cleaning, and eye cleaning with patient handling.",
   },
@@ -260,7 +260,7 @@ function GroomingPackages({ onBook }) {
         </p>
       </div>
       <style>{`
-        .g-packages { background: var(--cream-bg); padding-top: 0; }
+        .g-packages { background: var(--cream-bg); padding-top: 0; padding-bottom: 24px; }
         .g-pkg-head {
           display: flex; justify-content: space-between; align-items: end; gap: 32px;
           flex-wrap: wrap; margin-bottom: 48px;
@@ -451,7 +451,7 @@ function GroomingNotes() {
         </div>
       </div>
       <style>{`
-        .g-notes { background: var(--cream-bg); }
+        .g-notes { background: var(--cream-bg); padding-top: 24px; padding-bottom: 20px; }
         .g-notes-head { max-width: 720px; margin-bottom: 48px; }
         .g-notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
         .g-note-card {

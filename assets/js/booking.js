@@ -19,7 +19,7 @@ function generateDates() {
   }
   return days;
 }
-const TIMES = ["10:00", "11:30", "13:00", "14:30", "16:00", "17:30"];
+const TIMES = ["11:00", "12:00", "13:00", "16:00", "17:00", "18:00"];
 function BookingModal({ open, onClose, initialService }) {
   const [step, setStep] = useStateB(0);
   const [data, setData] = useStateB({

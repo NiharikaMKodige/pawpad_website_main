@@ -1,358 +1,5 @@
 const { useState: useStateP } = React;
-const COURSE_LIST = [
-  {
-    key: "foundation-grooming",
-    title: "Foundation Course in Grooming",
-    price: "₹95,000",
-    priceNum: 95000,
-    duration: "7 weeks",
-    knowMoreUrl: "course-foundations.html",
-    enrollUrl: "enroll-foundations.html",
-    desc: "A 7-week foundation-level grooming certification for complete beginners building toward a professional grooming career with both dogs and cats. Learn consent-based handling, anatomy, stress signals, bathing, coat care, scissoring, and clipping without restraint or force.",
-    for: "Complete beginners building toward a professional grooming career with both dogs and cats.",
-    learn: "Consent-based handling, canine and feline anatomy, stress signals, bathing, coat care, scissoring, and clipping without restraint or force."
-  },
-  {
-    key: "essentials-dog-grooming",
-    title: "Essentials Dog Grooming",
-    price: "₹30,000",
-    priceNum: 30000,
-    duration: "5 days",
-    knowMoreUrl: "course-essentials-dog.html",
-    enrollUrl: "enroll-essentials-dog.html",
-    desc: "A fast, 5-day hands-on introduction to professional dog grooming for complete beginners. Work directly with live dogs from day one under expert supervision to learn bathing, drying, brushing, ear cleaning, and coat-care fundamentals.",
-    for: "Complete beginners looking for a fast, practical introduction to canine grooming.",
-    learn: "Live dog handling, bathing, drying, brushing, ear cleaning, and coat-care fundamentals under expert supervision."
-  },
-  {
-    key: "essentials-cat-grooming",
-    title: "Essentials Cat Grooming",
-    price: "₹30,000",
-    priceNum: 30000,
-    duration: "5 days",
-    knowMoreUrl: "course-essentials-cat.html",
-    enrollUrl: "enroll-essentials-cat.html",
-    desc: "A 5-day hands-on introductory course covering feline-specific grooming and handling techniques. Build entry-level competence in cat body language, bathing, drying, brushing, de-matting, and ear care under close instructor guidance.",
-    for: "Beginners wanting specialised feline handling and grooming basics.",
-    learn: "Cat body language, low-stress handling, bathing, drying, brushing, de-matting, and ear care under close instructor guidance."
-  },
-  {
-    key: "practitioner-dog-grooming",
-    title: "Practitioner Dog Grooming",
-    price: "₹50,000",
-    priceNum: 50000,
-    duration: "3 weeks",
-    knowMoreUrl: "course-practitioner-dog.html",
-    enrollUrl: "enroll-practitioner-dog.html",
-    desc: "A 3-week practitioner-level programme designed to build industry-ready technical grounding in canine grooming. Master bathing and coat care, advance to live-dog nail trimming and hygiene clipping, and practice full scissoring techniques on training models.",
-    for: "Groomers and serious beginners seeking industry-ready canine grooming proficiency.",
-    learn: "Bathing, coat care, live-dog nail trimming, hygiene clipping, and full scissoring techniques on training models."
-  },
-  {
-    key: "practitioner-cat-grooming",
-    title: "Practitioner Cat Grooming",
-    price: "₹50,000",
-    priceNum: 50000,
-    duration: "3 weeks",
-    knowMoreUrl: "course-practitioner-cat.html",
-    enrollUrl: "enroll-practitioner-cat.html",
-    desc: "An intensive 3-week practitioner course providing hands-on feline grooming mastery. Progress from bathing and coat care to live nail trimming, hygiene clipping, and full haircuts performed directly on live cats.",
-    for: "Groomers and serious beginners seeking intensive feline grooming mastery.",
-    learn: "Bathing, coat care, live nail trimming, hygiene clipping, and full haircuts performed directly on live cats."
-  }
-];
-function CoursesHero() {
-  return /* @__PURE__ */ React.createElement("section", { className: "c-hero" }, /* @__PURE__ */ React.createElement("div", { className: "container c-hero-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "eyebrow reveal in" }, "Pawpad courses"), /* @__PURE__ */ React.createElement("h1", { className: "h-display reveal in c-course-title", style: { marginTop: 24, maxWidth: "18ch" } }, "Become a Professional ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)", whiteSpace: "nowrap" } }, "Pet Groomer")), /* @__PURE__ */ React.createElement("p", { className: "lead reveal in", style: { marginTop: 28, maxWidth: "58ch" } }, "A hands-on grooming course designed for animal lovers looking to build the skills, confidence, and practical experience needed to start a career in pet grooming."), /* @__PURE__ */ React.createElement("p", { className: "reveal in", style: { marginTop: 18, maxWidth: "62ch" } }, "Learn dog grooming, cat grooming, handling techniques, coat care, hygiene, safety, and business fundamentals through personalised training with experienced professionals.")), /* @__PURE__ */ React.createElement("div", { className: "c-hero-image reveal in" }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/pawpad/courses-cover-new.webp", alt: "Pawpad grooming course", fetchpriority: "high", decoding: "async" }))), /* @__PURE__ */ React.createElement("style", null, `
-        .c-hero { padding: 180px 0 60px; }
-        .c-hero-grid { display: grid; grid-template-columns: 1.05fr .9fr; gap: 64px; align-items: center; }
-        .c-hero-image { background: transparent; }
-        .c-hero-image img { width: 100%; height: auto; display: block; object-fit: contain; }
-        @media (max-width: 900px) { .c-hero-grid { grid-template-columns: 1fr; gap: 34px; } .c-course-title em { white-space: normal !important; } }
-      `));
-}
-function CourseCards({ onBook }) {
-  return /* @__PURE__ */ React.createElement(
-    "section",
-    { className: "course-cards" },
-    /* @__PURE__ */ React.createElement(
-      "div",
-      { className: "container" },
-      /* @__PURE__ */ React.createElement(
-        "div",
-        { className: "cc-head reveal" },
-        /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "COURSE OVERVIEW"),
-        /* @__PURE__ */ React.createElement(
-          "h2",
-          { className: "h-1", style: { marginTop: 18, maxWidth: "22ch" } },
-          "Hands-on training in ",
-          /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "conscious grooming")
-        )
-      ),
-      /* @__PURE__ */ React.createElement(
-        "div",
-        { className: "cc-grid" },
-        COURSE_LIST.map((c, i) =>
-          /* @__PURE__ */ React.createElement(
-            "article",
-            { key: c.key, className: "cc-card reveal", style: { transitionDelay: `${i * 50}ms` } },
-            /* @__PURE__ */ React.createElement("h3", { className: "cc-card-title" }, c.title),
-            /* @__PURE__ */ React.createElement("div", { className: "cc-card-price" }, c.price),
-            /* @__PURE__ */ React.createElement("p", { className: "cc-card-desc" }, c.desc),
-            /* @__PURE__ */ React.createElement(
-              "div",
-              { className: "cc-card-actions" },
-              /* @__PURE__ */ React.createElement(
-                "a",
-                {
-                  href: c.knowMoreUrl,
-                  className: "btn-know-more"
-                },
-                "Know More"
-              ),
-              /* @__PURE__ */ React.createElement(
-                "a",
-                {
-                  href: c.enrollUrl,
-                  className: "btn-enroll-now"
-                },
-                "Enroll Now ",
-                /* @__PURE__ */ React.createElement("span", { className: "btn-arrow" }, "→")
-              )
-            )
-          )
-        )
-      )
-    ),
-    /* @__PURE__ */ React.createElement(
-      "style",
-      null,
-      `
-        .course-cards { background: var(--cream-bg); padding: 40px 0 80px; }
-        .cc-head { margin-bottom: 48px; max-width: 720px; }
-        .cc-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-        }
-        .cc-card {
-          background: var(--white);
-          border-radius: 24px;
-          padding: 36px 30px 32px;
-          border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-          display: flex;
-          flex-direction: column;
-          transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
-        }
-        body[data-palette="dark"] .cc-card {
-          background: color-mix(in oklab, var(--champagne), black 5%);
-          border-color: color-mix(in oklab, var(--champagne), transparent 85%);
-        }
-        .cc-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 24px 48px -24px color-mix(in oklab, var(--ink), transparent 70%);
-        }
-        .cc-card-title {
-          font-family: var(--f-display);
-          font-size: 22px;
-          font-weight: 500;
-          color: var(--ink);
-          line-height: 1.25;
-          margin: 0 0 12px;
-        }
-        .cc-card-price {
-          font-family: var(--f-display);
-          font-size: 24px;
-          color: var(--driftwood);
-          font-weight: 400;
-          margin: 0 0 20px;
-        }
-        .cc-card-desc {
-          font-family: var(--f-body);
-          font-size: 14px;
-          line-height: 1.65;
-          color: var(--ink-soft);
-          margin: 0 0 32px;
-          flex: 1;
-        }
-        .cc-card-actions {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-top: auto;
-          flex-wrap: wrap;
-        }
-        .btn-know-more {
-          font-family: var(--f-body);
-          font-size: 13.5px;
-          font-weight: 600;
-          padding: 10px 22px;
-          border-radius: 9999px;
-          background: transparent;
-          color: var(--ink);
-          border: 1.5px solid color-mix(in oklab, var(--ink), transparent 70%);
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          text-decoration: none;
-          transition: all var(--t-fast) var(--ease);
-        }
-        .btn-know-more:hover {
-          background: var(--champagne-soft);
-          border-color: var(--ink);
-          color: var(--ink);
-          text-decoration: none;
-        }
-        body[data-palette="dark"] .btn-know-more {
-          border-color: color-mix(in oklab, var(--champagne), transparent 50%);
-          color: var(--champagne);
-        }
-        body[data-palette="dark"] .btn-know-more:hover {
-          background: color-mix(in oklab, var(--champagne), transparent 85%);
-          border-color: var(--champagne);
-          color: var(--champagne);
-          text-decoration: none;
-        }
-        .btn-enroll-now {
-          font-family: var(--f-body);
-          font-size: 13.5px;
-          font-weight: 600;
-          padding: 10px 22px;
-          border-radius: 9999px;
-          background: var(--ink);
-          color: var(--white) !important;
-          border: 1.5px solid var(--ink);
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          text-decoration: none;
-          transition: all var(--t-fast) var(--ease);
-        }
-        .btn-enroll-now:hover {
-          background: var(--driftwood);
-          border-color: var(--driftwood);
-          color: var(--white) !important;
-          transform: translateX(2px);
-          text-decoration: none;
-        }
-        .btn-arrow {
-          font-size: 15px;
-          transition: transform var(--t-fast) var(--ease);
-        }
-        .btn-enroll-now:hover .btn-arrow {
-          transform: translateX(3px);
-        }
-        @media (max-width: 980px) {
-          .cc-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 640px) {
-          .cc-grid { grid-template-columns: 1fr; }
-          .cc-card { padding: 28px 22px 24px; }
-          .cc-card-actions { flex-direction: column; align-items: stretch; }
-          .btn-know-more, .btn-enroll-now { justify-content: center; text-align: center; }
-        }
-      `
-    )
-  );
-}
-function CredibilityStrip() {
-  return /* @__PURE__ */ React.createElement("section", { className: "cred" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "cred-grid" }, /* @__PURE__ */ React.createElement("div", { className: "cred-text reveal" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Why Learn With Pawpad?"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "16ch" } }, "Learn directly ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "from Leena")), /* @__PURE__ */ React.createElement("p", { style: { marginTop: 28, maxWidth: "56ch" } }, "Learn directly from Leena Munikempanna, founder of Pawpad and a professional groomer with over a decade of industry experience. Students benefit not only from technical grooming knowledge, but also from Pawpad's philosophy of behaviour-led, compassionate animal care."), /* @__PURE__ */ React.createElement("ul", { className: "cred-bullets" }, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "Learn through real-world experience."), " Training combines theory with practical, hands-on grooming experience alongside professional groomers."), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "Small batches, personalised attention."), " A maximum of two students at a time allows for focused guidance and personalised feedback."), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "Train in both dogs and cats."), " Pawpad offers the opportunity to learn both canine and feline grooming for a broader professional skill set."), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "Leena's qualifications."), " Certified Master Cat Groomer (PCGAA), PetCPR+ Certified, Certified Canine Esthetician, and Certified Coat Expert."))), /* @__PURE__ */ React.createElement("div", { className: "cred-images reveal" }, /* @__PURE__ */ React.createElement("div", { className: "cred-portrait blob-1" }, /* @__PURE__ */ React.createElement("img", { src: "assets/img/pawpad/courses-learn-from-leena.webp", alt: "Leena Munikempanna, founder of Pawpad", loading: "lazy", decoding: "async" }))))), /* @__PURE__ */ React.createElement("style", null, `
-        .cred { background: var(--champagne-soft); }
-        .cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .cred-bullets { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; gap: 14px; }
-        .cred-bullets li { padding-left: 24px; position: relative; font-size: 15px; line-height: 1.65; }
-        .cred-bullets li::before { content: ""; position: absolute; left: 0; top: 11px; width: 12px; height: 1px; background: var(--driftwood); }
-        .cred-bullets strong { color: var(--ink); font-weight: 600; }
-        .cred-images { position: relative; display: flex; align-items: center; }
-        .cred-portrait { width: 100%; }
-        .cred-portrait img { width: 100%; height: auto; display: block; object-fit: contain; }
-        @media (max-width: 900px) { .cred-grid { grid-template-columns: 1fr; gap: 36px; } }
-      `));
-}
-function CoursesPage({ onBook }) {
-  useReveal();
-  return /* @__PURE__ */ React.createElement("div", { className: "page-enter" }, /* @__PURE__ */ React.createElement(CoursesHero, null), /* @__PURE__ */ React.createElement(CourseCards, { onBook }), /* @__PURE__ */ React.createElement(CredibilityStrip, null), /* @__PURE__ */ React.createElement(StudentTestimonials, null), /* @__PURE__ */ React.createElement(CourseCTA, { onBook }));
-}
-function StudentTestimonials() {
-  const testimonials = [
-    {
-      name: "Bhavya Srinivas",
-      studio: "Woof Magic Spa",
-      quote: "Thank you so much Leena for the great experience you gave me on my new journey. I feel very confident in the fundamental work and I learned so much about handling pets with different temperaments, especially cats."
-    },
-    {
-      name: "Clare Pachuau",
-      studio: "A Tiny Groomer",
-      quote: "I highly recommend the Pawpad Grooming Studio Academy to all prospective groomers. The instructor's knowledge, skills, experience, and expertise gave me a curriculum that exceeded my expectations."
-    },
-    {
-      name: "Deeksha Shetty",
-      studio: "The Purple Pawlor",
-      quote: "Leena's approach to pet grooming is always comfort and well-being first. Working with Pawpad helped me understand animal body language and shaped the way I care for every pet in my own business."
-    },
-    {
-      name: "Sanchari Mukherjee",
-      studio: "The Bubble Bath",
-      quote: "Training under Leena was a transformative experience. She taught grooming techniques while always stressing the comfort and well-being of the pets under our care."
-    },
-    {
-      name: "Renjitha",
-      studio: "Earthy Paws",
-      quote: "Magic happened here and my life changed forever. Pawpad is highly recommended for anyone interested in starting their career as a groomer."
-    }
-  ];
-  return /* @__PURE__ */ React.createElement("section", { className: "student-testimonials" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "st-head reveal" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Student Testimonials"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "18ch" } }, "What students carry forward")), /* @__PURE__ */ React.createElement("div", { className: "st-grid" }, testimonials.map((item, i) => /* @__PURE__ */ React.createElement("article", { key: item.name, className: "st-card reveal", style: { transitionDelay: `${i * 60}ms` } }, /* @__PURE__ */ React.createElement("p", null, item.quote), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, item.name), /* @__PURE__ */ React.createElement("span", null, item.studio)))))), /* @__PURE__ */ React.createElement("style", null, `
-        .student-testimonials { background: var(--cream-bg); }
-        .st-head { margin-bottom: 44px; }
-        .st-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-        .st-card {
-          background: var(--white);
-          border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
-          border-radius: 18px;
-          padding: 28px;
-          display: flex;
-          flex-direction: column;
-          gap: 22px;
-          min-height: 280px;
-        }
-        .st-card p { margin: 0; font-size: 16px; line-height: 1.7; color: var(--ink-soft); }
-        .st-card strong { display: block; color: var(--ink); }
-        .st-card span { display: block; margin-top: 4px; color: var(--driftwood); font-size: 14px; }
-        @media (max-width: 1000px) { .st-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 680px) { .st-grid { grid-template-columns: 1fr; } }
-      `));
-}
-function CourseCTA({ onBook }) {
-  const [form, setForm] = useStateP({ name: "", email: "", phone: "" });
-  const [sent, setSent] = useStateP(false);
-  const upd = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!form.email && !form.phone) return;
-    window.hsSubmit && window.hsSubmit("courses", form);
-    setSent(true);
-  };
-  return /* @__PURE__ */ React.createElement("section", { className: "course-cta" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "course-cta-inner reveal" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Course Enquiry"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "18ch" } }, "Ready to Start Your Grooming Journey?"), /* @__PURE__ */ React.createElement("p", { className: "lead", style: { marginTop: 24, maxWidth: "58ch" } }, "Courses run on a rolling basis throughout the year. Leave your details and we'll help you find the right start date for your training.")), sent ? /* @__PURE__ */ React.createElement("div", { className: "course-form-sent" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 44, color: "var(--driftwood)" }), /* @__PURE__ */ React.createElement("h3", { className: "h-2", style: { margin: "16px 0 8px" } }, "We'll be in touch soon"), /* @__PURE__ */ React.createElement("p", { style: { margin: 0, color: "var(--ink-mute)", fontSize: 15, lineHeight: 1.6 } }, "The Pawpad team will reach out with course dates and batch availability.")) : /* @__PURE__ */ React.createElement("form", { className: "course-form", onSubmit: handleSubmit }, /* @__PURE__ */ React.createElement("div", { className: "field" }, /* @__PURE__ */ React.createElement("label", null, "Name"), /* @__PURE__ */ React.createElement("input", { value: form.name, onChange: upd("name"), placeholder: "Your name" })), /* @__PURE__ */ React.createElement("div", { className: "field" }, /* @__PURE__ */ React.createElement("label", null, "Email"), /* @__PURE__ */ React.createElement("input", { type: "email", value: form.email, onChange: upd("email"), placeholder: "you@example.com" })), /* @__PURE__ */ React.createElement("div", { className: "field" }, /* @__PURE__ */ React.createElement("label", null, "Phone"), /* @__PURE__ */ React.createElement("input", { type: "tel", value: form.phone, onChange: upd("phone"), placeholder: "96630 77496" })), /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary", type: "submit" }, "Register interest ", /* @__PURE__ */ React.createElement(Arrow, null))))), /* @__PURE__ */ React.createElement("style", null, `
-        .course-cta { background: var(--cream-bg); }
-        .course-cta-inner {
-          padding: 48px;
-          border-radius: 24px;
-          background: var(--champagne-soft);
-          border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
-          display: grid;
-          grid-template-columns: 1fr minmax(280px, 420px);
-          gap: 42px;
-          align-items: center;
-        }
-        .course-form { display: grid; gap: 16px; }
-        .course-form .btn { margin-top: 8px; justify-content: center; }
-        .course-form-sent { display: flex; flex-direction: column; }
-        @media (max-width: 860px) { .course-cta-inner { grid-template-columns: 1fr; padding: 30px; } }
-      `));
-}
+
 function BoardingPage({ onBook, onAddToCart }) {
   useReveal();
   const [openFaq, setOpenFaq] = React.useState(null);
@@ -550,7 +197,7 @@ function BoardingPage({ onBook, onAddToCart }) {
             /* @__PURE__ */ React.createElement("div", { className: "standards-img-box" },
               /* @__PURE__ */ React.createElement("img", {
                 src: "assets/img/pawpad/boarding-dachshund-sleep-mask.webp",
-                alt: "Cozy dachshund dog resting under duvet with a pink eye mask",
+                alt: "Happy dog looking through a heart shaped by hands",
                 className: "standards-img",
                 loading: "lazy"
               })
@@ -974,23 +621,20 @@ function BoardingPage({ onBook, onAddToCart }) {
         position: relative;
         background: var(--white);
         border-radius: 28px;
-        padding: 24px 20px 0;
+        padding: 0;
         box-shadow: 0 20px 48px -16px rgba(0,0,0,0.06);
         border: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
-        height: 360px;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
         overflow: hidden;
+        display: block;
+        width: 80%;
+        margin: 0 auto;
       }
       .standards-img {
         width: 100%;
-        height: 100%;
-        max-height: 336px;
-        object-fit: contain;
-        object-position: center bottom;
+        height: auto;
+        aspect-ratio: 819 / 1024;
+        object-fit: cover;
         display: block;
-        vertical-align: bottom;
       }
       .standards-quote-card {
         background: var(--white);
@@ -1143,16 +787,12 @@ function BoardingPage({ onBook, onAddToCart }) {
         .boarding-cards-section { padding: 130px 0 70px; }
         .boarding-grid { grid-template-columns: 1fr; }
         .standards-grid { grid-template-columns: 1fr; gap: 40px; }
-        .standards-img-box { height: 320px; }
-        .standards-img { max-height: 296px; }
       }
       @media (max-width: 600px) {
         .boarding-cards-section { padding: 110px 0 50px; }
         .boarding-card-body { padding: 24px 20px 28px; }
         .boarding-card-image-box { height: 220px; padding: 48px 16px 0; }
         .boarding-card-img { max-height: 172px; }
-        .standards-img-box { height: 260px; padding: 20px 16px 0; }
-        .standards-img { max-height: 240px; }
         .standards-quote-card { padding: 16px 20px; }
         .boarding-cta-box { padding: 44px 24px; border-radius: 24px; }
       }
@@ -1261,4 +901,4 @@ function MyotherapyPage({ onBook }) {
   );
 }
 
-Object.assign(window, { CoursesPage, BoardingPage, MyotherapyPage });
+Object.assign(window, { BoardingPage, MyotherapyPage });

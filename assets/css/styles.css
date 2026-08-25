@@ -988,6 +988,16 @@ body[data-palette="dark"] .card {
   background: var(--champagne-soft);
   padding: 8px 12px;
   border-radius: 12px;
+  gap: 10px;
+}
+
+.cart-addon-info-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .cart-addon-name {
@@ -1000,6 +1010,7 @@ body[data-palette="dark"] .card {
   font-size: 12px;
   color: var(--driftwood-deep);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .cart-addon-add {
@@ -1351,6 +1362,24 @@ body[data-palette="dark"] .card {
   opacity: 0.75;
 }
 
+.date-chip:disabled,
+.date-chip.closed {
+  opacity: 0.38;
+  cursor: not-allowed;
+  background: color-mix(in oklab, var(--ink), transparent 96%);
+  border-color: color-mix(in oklab, var(--ink), transparent 90%);
+  pointer-events: none;
+}
+
+.date-chip .d-closed {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
 .time-chip-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -1575,6 +1604,112 @@ body[data-palette="dark"] .card {
   background: var(--white);
 }
 
+/* Trial Day Verification Box in Checkout */
+.trial-day-verify-card {
+  background: var(--champagne-soft);
+  border: 1px solid color-mix(in oklab, var(--driftwood), transparent 60%);
+  border-radius: 18px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 6px;
+  transition: all var(--t-fast) var(--ease);
+}
+
+.trial-day-verify-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.trial-day-verify-icon {
+  font-size: 22px;
+  line-height: 1;
+  background: var(--white);
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in oklab, var(--driftwood), transparent 75%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.trial-day-verify-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+
+.trial-day-verify-notice {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.trial-day-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1.5px solid color-mix(in oklab, var(--ink), transparent 85%);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--t-fast) var(--ease);
+}
+
+.trial-day-checkbox-label:hover {
+  border-color: var(--driftwood);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.trial-day-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--driftwood);
+  cursor: pointer;
+}
+
+.trial-day-checkbox-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+}
+
+.trial-day-helper-badge {
+  font-size: 12.5px;
+  line-height: 1.45;
+  padding: 10px 14px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: all var(--t-fast) var(--ease);
+}
+
+.trial-day-helper-badge.fee-notice {
+  background: color-mix(in oklab, #e65100, transparent 90%);
+  color: #bf360c;
+  border: 1px solid color-mix(in oklab, #e65100, transparent 75%);
+}
+
+.trial-day-helper-badge.verified {
+  background: color-mix(in oklab, #2e7d32, transparent 90%);
+  color: #1b5e20;
+  border: 1px solid color-mix(in oklab, #2e7d32, transparent 75%);
+}
+
+.review-mandatory-fee-row {
+  background: var(--champagne-soft);
+  padding: 10px 12px;
+  border-radius: 10px;
+  border-left: 3px solid var(--driftwood);
+}
+
 /* Dark Mode Overrides */
 body[data-palette="dark"] .cart-drawer,
 body[data-palette="dark"] .checkout-modal {
@@ -1592,6 +1727,33 @@ body[data-palette="dark"] .time-chip,
 body[data-palette="dark"] .chip-btn {
   background: color-mix(in oklab, var(--champagne), black 6%);
   border-color: color-mix(in oklab, var(--ink), transparent 80%);
+}
+
+body[data-palette="dark"] .trial-day-verify-card {
+  background: color-mix(in oklab, var(--champagne), black 8%);
+  border-color: color-mix(in oklab, var(--driftwood), transparent 70%);
+}
+
+body[data-palette="dark"] .trial-day-verify-icon,
+body[data-palette="dark"] .trial-day-checkbox-label {
+  background: color-mix(in oklab, var(--champagne), black 5%);
+  border-color: color-mix(in oklab, var(--ink), transparent 80%);
+}
+
+body[data-palette="dark"] .trial-day-helper-badge.fee-notice {
+  background: rgba(230, 81, 0, 0.18);
+  color: #ffab91;
+  border-color: rgba(230, 81, 0, 0.35);
+}
+
+body[data-palette="dark"] .trial-day-helper-badge.verified {
+  background: rgba(46, 125, 50, 0.18);
+  color: #a5d6a7;
+  border-color: rgba(46, 125, 50, 0.35);
+}
+
+body[data-palette="dark"] .review-mandatory-fee-row {
+  background: color-mix(in oklab, var(--champagne), black 8%);
 }
 
 body[data-palette="dark"] .cart-footer,

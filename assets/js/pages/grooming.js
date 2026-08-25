@@ -52,7 +52,7 @@ const GROOM_PACKAGES = [
     sub: "Full styling session for long-coated dogs",
     price: "\u20B92,500",
     duration: "Styling session",
-    img: "assets/img/pawpad/grooming-page-gromming-long-hair-dog.webp",
+    img: "assets/img/pawpad/grooming-page-dog-long-hair-haircut.webp",
     includes: ["Bath & Conditioning", "Coat trimming & scissoring", "Face and paw tidying", "Breed-aware styling", "Comfort breaks", "Deshedding support", "Finish & coat treatment"],
     note: "A complete styling session for long-coated dogs \u2014 balancing breed-specific shape, coat health, and your dog's comfort throughout."
   },
@@ -96,7 +96,7 @@ const GROOM_PACKAGES = [
     sub: "Complete haircut and hygiene care for cats",
     price: "\u20B91,500",
     duration: "Feline styling",
-    img: "assets/img/pawpad/cat-grooming-long-hair.webp",
+    img: "assets/img/pawpad/cat-hair-cut.webp",
     includes: ["Nail clipping", "Hair cut", "Ear cleaning", "Eye cleaning"],
     note: "A complete haircut and gentle care session for cats, including nail clipping, hair cut, ear cleaning, and eye cleaning with patient handling."
   },
@@ -194,7 +194,7 @@ function GroomingPackages({ onBook, onAddToCart }) {
     const isOpen = open === p.key;
     return /* @__PURE__ */ React.createElement("article", { key: p.key, className: "g-pkg-card " + (isOpen ? "open" : ""), style: { transitionDelay: `${i * 60}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-img" }, /* @__PURE__ */ React.createElement("img", { src: p.img, alt: p.title }), /* @__PURE__ */ React.createElement("span", { className: "tag" }, p.cat)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-body" }, /* @__PURE__ */ React.createElement("div", { className: "g-pkg-top" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", { className: "h-3" }, p.title), /* @__PURE__ */ React.createElement("p", { className: "mute", style: { margin: "4px 0 0", fontSize: 13 } }, p.sub)), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-price" }, /* @__PURE__ */ React.createElement("strong", null, p.price), /* @__PURE__ */ React.createElement("span", null, p.duration))), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-note" }, p.note), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-details" }, /* @__PURE__ */ React.createElement("h5", null, "Included"), /* @__PURE__ */ React.createElement("ul", null, p.includes.map((inc) => /* @__PURE__ */ React.createElement("li", { key: inc }, /* @__PURE__ */ React.createElement(PawIcon, { size: 10, color: "var(--driftwood)" }), " ", inc)))), /* @__PURE__ */ React.createElement("div", { className: "g-pkg-actions" }, /* @__PURE__ */ React.createElement("button", { className: "g-pkg-toggle", onClick: () => setOpen(isOpen ? null : p.key) }, isOpen ? "Show less" : "Show more", " ", /* @__PURE__ */ React.createElement("span", { className: "g-pkg-arrow" }, isOpen ? "\u2212" : "+")), /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary btn-sm", onClick: () => handleAddToCart(p) }, "Add to cart ", /* @__PURE__ */ React.createElement(Arrow, { size: 12 })))));
   })), /* @__PURE__ */ React.createElement("p", { className: "g-pkg-footnote reveal" }, /* @__PURE__ */ React.createElement(PawIcon, { size: 14, color: "var(--driftwood)" }), "Please refer to the notes below for grooming duration, appointment policies, and important grooming guidelines. Add-on services are available exclusively alongside a full grooming package.")), /* @__PURE__ */ React.createElement("style", null, `
-        .g-packages { background: var(--cream-bg); padding-top: 0; }
+        .g-packages { background: var(--cream-bg); padding-top: 0; padding-bottom: 24px; }
         .g-pkg-head {
           display: flex; justify-content: space-between; align-items: end; gap: 32px;
           flex-wrap: wrap; margin-bottom: 48px;
@@ -338,7 +338,7 @@ function GroomingNotes() {
     { t: "Cancellation", d: "Give us 24 hours where possible \u2014 we hold spots so other anxious pets get the long slots they need." }
   ];
   return /* @__PURE__ */ React.createElement("section", { className: "g-notes" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement("div", { className: "g-notes-head reveal" }, /* @__PURE__ */ React.createElement("p", { className: "eyebrow" }, "Before you book"), /* @__PURE__ */ React.createElement("h2", { className: "h-1", style: { marginTop: 18, maxWidth: "20ch" } }, "A few small things that ", /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "help a lot"))), /* @__PURE__ */ React.createElement("div", { className: "g-notes-grid" }, notes.map((n, i) => /* @__PURE__ */ React.createElement("div", { key: n.t, className: "g-note-card reveal", style: { transitionDelay: `${i * 70}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "g-note-no" }, "0", i + 1), /* @__PURE__ */ React.createElement("h4", { className: "h-3" }, n.t), /* @__PURE__ */ React.createElement("p", null, n.d))))), /* @__PURE__ */ React.createElement("style", null, `
-        .g-notes { background: var(--cream-bg); }
+        .g-notes { background: var(--cream-bg); padding-top: 24px; padding-bottom: 20px; }
         .g-notes-head { max-width: 720px; margin-bottom: 48px; }
         .g-notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
         .g-note-card {

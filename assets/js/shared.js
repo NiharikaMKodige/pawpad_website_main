@@ -38,73 +38,8 @@ function useReveal() {
   }, []);
 }
 function CursorTrail() {
-  const dotRef = useRef(null);
-  const trailRef = useRef(null);
-  const stateRef = useRef({ lastX: -100, lastY: -100, lastStamp: 0, alt: 0 });
-  useEffect(() => {
-    if (window.matchMedia && !window.matchMedia("(pointer: fine)").matches) return;
-    const dot = dotRef.current;
-    const trail = trailRef.current;
-    if (!dot || !trail) return;
-    let raf;
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    let dx = mx, dy = my;
-    function onMove(e) {
-      mx = e.clientX;
-      my = e.clientY;
-      const t = e.target;
-      if (t.closest && t.closest("a, button, .hover-zone")) dot.classList.add("hover");
-      else dot.classList.remove("hover");
-      const s = stateRef.current;
-      const dist = Math.hypot(mx - s.lastX, my - s.lastY);
-      const now = performance.now();
-      if (dist > 70 && now - s.lastStamp > 60) {
-        s.lastX = mx;
-        s.lastY = my;
-        s.lastStamp = now;
-        const paw = document.createElement("div");
-        const angle = Math.atan2(my - dy, mx - dx) * 180 / Math.PI + 90;
-        const side = s.alt ? -10 : 10;
-        s.alt = 1 - s.alt;
-        const offX = Math.cos((angle - 90) * Math.PI / 180 + Math.PI / 2) * side;
-        const offY = Math.sin((angle - 90) * Math.PI / 180 + Math.PI / 2) * side;
-        paw.className = "paw-print";
-        paw.style.cssText = `
-          position:absolute; left:${mx + offX}px; top:${my + offY}px;
-          width:22px; height:22px; transform:translate(-50%,-50%) rotate(${angle}deg);
-          opacity:.42; transition:opacity 1.4s ease, transform 1.4s ease;
-          pointer-events:none;
-        `;
-        paw.innerHTML = `<svg viewBox="0 0 64 64" width="22" height="22">
-          <ellipse cx="32" cy="16" rx="5.5" ry="7.5" fill="#B18D4E"/>
-          <ellipse cx="20" cy="24" rx="6" ry="8" fill="#B18D4E"/>
-          <ellipse cx="44" cy="24" rx="6" ry="8" fill="#B18D4E"/>
-          <ellipse cx="11" cy="38" rx="5" ry="6.5" fill="#B18D4E"/>
-          <ellipse cx="53" cy="38" rx="5" ry="6.5" fill="#B18D4E"/>
-          <ellipse cx="32" cy="46" rx="13" ry="11" fill="#B18D4E"/>
-        </svg>`;
-        trail.appendChild(paw);
-        requestAnimationFrame(() => {
-          paw.style.opacity = "0";
-          paw.style.transform += " scale(1.2)";
-        });
-        setTimeout(() => paw.remove(), 1500);
-      }
-    }
-    function tick() {
-      dx += (mx - dx) * 0.22;
-      dy += (my - dy) * 0.22;
-      dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%,-50%)`;
-      raf = requestAnimationFrame(tick);
-    }
-    tick();
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "paw-trail", ref: trailRef }), /* @__PURE__ */ React.createElement("div", { className: "cursor-dot", ref: dotRef }));
+  // Handled globally by assets/js/cursor.js for unified desktop cursor & paw trail across all pages & forms
+  return null;
 }
 const NAV_ITEMS = [
   { key: "home", label: "Home" },

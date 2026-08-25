@@ -84,8 +84,8 @@ function Hero({ onBook }) {
       /* @__PURE__ */ React.createElement("div", { className: "hero-image-wrap" },
         /* @__PURE__ */ React.createElement("div", { className: "hero-image blob-1", style: { transform: `translateY(${par * -0.03}px) scale(1)` } },
           /* @__PURE__ */ React.createElement("img", {
-            src: "assets/img/pawpad/hero-cover-bernese-cat.png",
-            alt: "A sleeping puppy and kitten resting together",
+            src: "assets/img/pawpad/hero-cover-dog-cat.webp",
+            alt: "A dachshund dog and cat resting together with lilac flowers in a basket",
             fetchpriority: "high",
             decoding: "async"
           })
