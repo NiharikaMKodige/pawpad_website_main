@@ -181,6 +181,7 @@ const GROOM_PACKAGES = [
     title: "Bath & Brush Subscription package",
     sub: "Essential Wash",
     price: "₹3,496.50",
+    priceNum: 3496.5,
     duration: "VALID 2 MONTHS",
     img: "assets/img/pawpad/bath-brush-subscription.jpg",
     includes: [
@@ -246,7 +247,7 @@ function GroomingHero({ onBook }) {
   );
 }
 
-function GroomingPackages({ onBook }) {
+function GroomingPackages({ onBook, onAddToCart }) {
   const cats = ["Puppy", "Dog", "Cat", "Care", "Wellness", "Styling"];
   const [filter, setFilter] = useStateG("All");
   const [open, setOpen] = useStateG(null);
@@ -315,7 +316,8 @@ function GroomingPackages({ onBook }) {
                       {isOpen ? "Show less" : "Show more"} <span className="g-pkg-arrow">{isOpen ? "−" : "+"}</span>
                     </button>
                     <button className="btn btn-primary btn-sm" onClick={() => {
-                      const priceNum = parseInt(String(p.price).replace(/[^0-9]/g, ""), 10) || 1000;
+                      const cleanStr = String(p.price || "").replace(/,/g, "").replace(/[^0-9.]/g, "");
+                      const priceNum = p.priceNum !== undefined ? p.priceNum : (parseFloat(cleanStr) || 1000);
                       const cartItem = { id: p.key, title: p.title, category: "Grooming", price: priceNum, priceDisplay: p.price, desc: p.sub || p.note, img: p.img, requiresPetInfo: true };
                       if (typeof onAddToCart === "function") onAddToCart(cartItem);
                       else if (typeof window.addToCart === "function") window.addToCart(cartItem);

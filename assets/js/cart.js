@@ -67,6 +67,7 @@ const CART_CATALOG = [
     desc: "Mandatory assessment trial day for small dogs before overnight stays",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/boarding-sleeping-puppy-toy.webp"
   },
   {
@@ -78,10 +79,11 @@ const CART_CATALOG = [
     desc: "Calm, supervised overnight stay for small dogs (trial day mandatory)",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     requiresTrialDayCheck: true,
     img: "assets/img/pawpad/boarding-dog-sleep-mask.webp"
   },
-  // Dog Grooming & Add-ons
+  // Grooming Services & Add-ons
   {
     id: "nail-clipping",
     title: "Nail Clipping",
@@ -90,6 +92,7 @@ const CART_CATALOG = [
     priceDisplay: "₹250",
     desc: "Slow, gentle nail care for pets who need a quick maintenance visit",
     requiresPetInfo: true,
+    allowPetTypeSelection: true,
     img: "assets/img/pawpad/grooming-nail-clipping-new.webp"
   },
   {
@@ -100,7 +103,7 @@ const CART_CATALOG = [
     priceDisplay: "₹1,500",
     desc: "A quiet pre & post grooming relaxation massage add-on",
     requiresPetInfo: true,
-    isDogOnly: true,
+    allowPetTypeSelection: true,
     img: "assets/img/pawpad/grooming-page-grooming-massage.webp"
   },
   {
@@ -111,6 +114,7 @@ const CART_CATALOG = [
     priceDisplay: "₹850",
     desc: "Focused sanitary trimming and paw tidying",
     requiresPetInfo: true,
+    allowPetTypeSelection: true,
     img: "assets/img/pawpad/grooming-page-grooming-hygine-clip.webp"
   },
   {
@@ -122,6 +126,7 @@ const CART_CATALOG = [
     desc: "A complete grooming reset for short-coated dogs",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-dog-short-hair-image.webp"
   },
   {
@@ -133,6 +138,7 @@ const CART_CATALOG = [
     desc: "Maintenance and detailed coat care for longer coats",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-gromming-long-hair-dog.webp"
   },
   {
@@ -144,6 +150,7 @@ const CART_CATALOG = [
     desc: "Full styling session with scissoring & haircut for long-coated dogs",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-dog-long-hair-haircut.webp"
   },
   {
@@ -155,6 +162,7 @@ const CART_CATALOG = [
     desc: "Gentle introductions for puppies below 3 months",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-puppy-short-hair-image.webp"
   },
   {
@@ -166,6 +174,7 @@ const CART_CATALOG = [
     desc: "Extra coat care & deshedding for long-coated puppies",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-puppy-long-hair-image.webp"
   },
   {
@@ -177,6 +186,7 @@ const CART_CATALOG = [
     desc: "Careful support and assessment for tangled coats",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-grooming-matted-dogs.webp"
   },
   // Cat Grooming
@@ -189,6 +199,7 @@ const CART_CATALOG = [
     desc: "Calm coat and hygiene care for short-haired cats",
     requiresPetInfo: true,
     isCatOnly: true,
+    petType: "Cat",
     img: "assets/img/pawpad/cat-grooming-short-hair.webp"
   },
   {
@@ -200,6 +211,7 @@ const CART_CATALOG = [
     desc: "Extra support for long coats, sanitary trim & dematting",
     requiresPetInfo: true,
     isCatOnly: true,
+    petType: "Cat",
     img: "assets/img/pawpad/cat-grooming-long-hair.webp"
   },
   {
@@ -211,6 +223,7 @@ const CART_CATALOG = [
     desc: "Complete haircut and gentle care session for cats",
     requiresPetInfo: true,
     isCatOnly: true,
+    petType: "Cat",
     img: "assets/img/pawpad/cat-hair-cut.webp"
   },
   {
@@ -222,6 +235,7 @@ const CART_CATALOG = [
     desc: "A fast, no-fuss clean for dogs who don't need a full groom — just a wash, dry, and brush-out between full sessions.",
     requiresPetInfo: true,
     isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/bath-brush-dogs.jpg"
   },
   {
@@ -233,6 +247,7 @@ const CART_CATALOG = [
     desc: "A fast, no-fuss clean for cats who don't need a full groom — just a wash, dry, and brush-out between full sessions.",
     requiresPetInfo: true,
     isCatOnly: true,
+    petType: "Cat",
     img: "assets/img/pawpad/bath-brush-cats.jpg"
   },
   {
@@ -243,6 +258,7 @@ const CART_CATALOG = [
     priceDisplay: "₹3,496.50",
     desc: "Keep your pet's coat consistently clean and healthy with regular bath-and-brush visits, spaced through the month.",
     requiresPetInfo: true,
+    allowPetTypeSelection: true,
     img: "assets/img/pawpad/bath-brush-subscription.jpg"
   }
 ];
@@ -389,13 +405,39 @@ function getRecommendedAdditions(cartItems) {
   return recommendations.slice(0, 3);
 }
 
+function formatInr(amount) {
+  const num = Number(amount) || 0;
+  if (num % 1 !== 0) {
+    return num.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  return num.toLocaleString("en-IN");
+}
+
 const CART_STORAGE_KEY = "pawpad_cart_v1";
 
 const PawpadCartStore = {
   getItems() {
     try {
       const stored = localStorage.getItem(CART_STORAGE_KEY);
-      return stored ? JSON.parse(stored) : [];
+      const items = stored ? JSON.parse(stored) : [];
+      let modified = false;
+      const catalog = typeof CART_CATALOG !== "undefined" ? CART_CATALOG : [];
+      const sanitized = items.map((item) => {
+        const cat = catalog.find((c) => c.id === item.id);
+        if (cat && cat.price !== undefined && (item.price === 349650 || (item.price > 100000 && cat.price < 10000))) {
+          modified = true;
+          return {
+            ...item,
+            price: cat.price,
+            priceDisplay: cat.priceDisplay || `₹${formatInr(cat.price)}`
+          };
+        }
+        return item;
+      });
+      if (modified) {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(sanitized));
+      }
+      return sanitized;
     } catch (e) {
       console.warn("Could not read cart from localStorage", e);
       return [];
@@ -412,20 +454,42 @@ const PawpadCartStore = {
   addItem(item) {
     const items = this.getItems();
     const existingIndex = items.findIndex((i) => i.id === item.id);
+    const catalogItem = (typeof CART_CATALOG !== "undefined" ? CART_CATALOG : []).find((c) => c.id === item.id) || {};
+
+    const isDogOnly = item.isDogOnly !== undefined ? !!item.isDogOnly : (catalogItem.isDogOnly !== undefined ? !!catalogItem.isDogOnly : item.category === "Boarding");
+    const isCatOnly = item.isCatOnly !== undefined ? !!item.isCatOnly : (catalogItem.isCatOnly !== undefined ? !!catalogItem.isCatOnly : false);
+    const petType = item.petType || catalogItem.petType || (isDogOnly ? "Dog" : isCatOnly ? "Cat" : undefined);
+    const allowPetTypeSelection = item.allowPetTypeSelection !== undefined ? !!item.allowPetTypeSelection : (catalogItem.allowPetTypeSelection !== undefined ? !!catalogItem.allowPetTypeSelection : false);
+
+    const priceNum = typeof item.price === "number" && !isNaN(item.price)
+      ? item.price
+      : (catalogItem.price !== undefined
+        ? catalogItem.price
+        : parseFloat(String(item.price || "0").replace(/,/g, "").replace(/[^0-9.]/g, "")) || 1000);
+
     if (existingIndex > -1) {
       items[existingIndex].quantity = (items[existingIndex].quantity || 1) + 1;
+      if (item.isDogOnly !== undefined) items[existingIndex].isDogOnly = isDogOnly;
+      if (item.isCatOnly !== undefined) items[existingIndex].isCatOnly = isCatOnly;
+      if (item.petType !== undefined) items[existingIndex].petType = petType;
+      if (item.allowPetTypeSelection !== undefined) items[existingIndex].allowPetTypeSelection = allowPetTypeSelection;
+      if (item.img) items[existingIndex].img = item.img;
+      if (priceNum) items[existingIndex].price = priceNum;
     } else {
       items.push({
         id: item.id || `item-${Date.now()}`,
-        title: item.title || "Custom Service",
-        category: item.category || "Service",
-        price: Number(item.price) || 1000,
-        priceDisplay: item.priceDisplay || `₹${(Number(item.price) || 1000).toLocaleString("en-IN")}`,
-        desc: item.desc || "",
-        requiresPetInfo: item.requiresPetInfo !== false,
-        isDogOnly: item.isDogOnly !== undefined ? !!item.isDogOnly : (item.category === "Boarding"),
-        requiresTrialDayCheck: item.requiresTrialDayCheck !== undefined ? !!item.requiresTrialDayCheck : (item.id === "boarding-overnight"),
-        img: item.img || "assets/img/pawpad/landing-page-cover.webp",
+        title: item.title || catalogItem.title || "Custom Service",
+        category: item.category || catalogItem.category || "Service",
+        price: priceNum,
+        priceDisplay: item.priceDisplay || catalogItem.priceDisplay || `₹${formatInr(priceNum)}`,
+        desc: item.desc || catalogItem.desc || "",
+        requiresPetInfo: item.requiresPetInfo !== undefined ? item.requiresPetInfo !== false : (catalogItem.requiresPetInfo !== false),
+        isDogOnly: isDogOnly,
+        isCatOnly: isCatOnly,
+        petType: petType,
+        allowPetTypeSelection: allowPetTypeSelection,
+        requiresTrialDayCheck: item.requiresTrialDayCheck !== undefined ? !!item.requiresTrialDayCheck : (catalogItem.requiresTrialDayCheck !== undefined ? !!catalogItem.requiresTrialDayCheck : (item.id === "boarding-overnight")),
+        img: item.img || catalogItem.img || "assets/img/pawpad/landing-page-cover.webp",
         quantity: 1
       });
     }
@@ -608,7 +672,7 @@ function CartDrawer({ open, onClose, onCheckout }) {
                   React.createElement(
                     "div",
                     { className: "cart-item-bottom" },
-                    React.createElement("span", { className: "cart-item-price" }, `₹${(item.price * (item.quantity || 1)).toLocaleString("en-IN")}`),
+                    React.createElement("span", { className: "cart-item-price" }, `₹${formatInr(item.price * (item.quantity || 1))}`),
                     React.createElement(
                       "div",
                       { className: "cart-qty-stepper" },
@@ -680,7 +744,7 @@ function CartDrawer({ open, onClose, onCheckout }) {
           "div",
           { className: "cart-subtotal-row" },
           React.createElement("span", { className: "cart-subtotal-label" }, "Subtotal"),
-          React.createElement("span", { className: "cart-subtotal-val" }, `₹${subtotal.toLocaleString("en-IN")}`)
+          React.createElement("span", { className: "cart-subtotal-val" }, `₹${formatInr(subtotal)}`)
         ),
         React.createElement(
           "p",
@@ -713,10 +777,19 @@ function CartDrawer({ open, onClose, onCheckout }) {
 }
 
 // Checkout Modal Component
-const PET_TYPES_CHECKOUT = ["Dog", "Cat", "Other"];
+const PET_TYPES_CHECKOUT = ["Dog", "Cat"];
 const COAT_TYPES_CHECKOUT = ["Short", "Medium", "Long"];
-const SIZES_CHECKOUT = ["Small (<10kg)", "Medium (10–25kg)", "Large (25kg+)"];
+const SIZES_DOG_CHECKOUT = ["Small (<10kg)", "Medium (10–25kg)", "Large (25kg+)"];
+const SIZES_CAT_CHECKOUT = ["Kitten / Small (<3kg)", "Medium (3–6kg)", "Large (6kg+)"];
+const SIZES_CHECKOUT = SIZES_DOG_CHECKOUT;
 const TEMPERAMENTS_CHECKOUT = ["Chill & Friendly", "Excitable / Playful", "Anxious / Sensitive", "First-time visit"];
+
+const FLEXIBLE_PET_TYPE_SERVICES = [
+  "hygiene-clip",
+  "nail-clipping",
+  "massage",
+  "bath-brush-subscription"
+];
 
 function generateCheckoutDates() {
   const days = [];
@@ -731,31 +804,63 @@ function generateCheckoutDates() {
 
 const CHECKOUT_TIMES = ["11:00 AM", "12:00 PM", "1:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"];
 
+function derivePetSlots(items) {
+  const petItems = (items || []).filter(
+    (i) => i.requiresPetInfo !== false && i.category !== "Courses"
+  );
+  if (petItems.length === 0) return [];
+
+  const hasCat = petItems.some((i) => i.isCatOnly || i.petType === "Cat");
+  const hasDog = petItems.some((i) => i.isDogOnly || i.petType === "Dog" || i.category === "Boarding");
+
+  const slots = [];
+
+  petItems.forEach((item) => {
+    const qty = Math.max(1, parseInt(item.quantity, 10) || 1);
+    const isCat = !!(item.isCatOnly || item.petType === "Cat");
+    const isDog = !!(item.isDogOnly || item.petType === "Dog" || item.category === "Boarding");
+    const isFlexible = !!(item.allowPetTypeSelection || (!isCat && !isDog));
+    const isOvernight = item.id === "boarding-overnight" || !!item.requiresTrialDayCheck;
+
+    // Default pet type for flexible service: if only cat services exist in cart, default to Cat, else Dog
+    const defaultFlexibleType = (hasCat && !hasDog) ? "Cat" : "Dog";
+
+    for (let q = 0; q < qty; q++) {
+      slots.push({
+        id: `${item.id}-${slots.length}`,
+        serviceId: item.id,
+        serviceTitle: item.title + (qty > 1 ? ` (Slot #${q + 1})` : ""),
+        petType: isCat ? "Cat" : (isDog ? "Dog" : defaultFlexibleType),
+        isDogOnly: isDog && !isFlexible,
+        isCatOnly: isCat && !isFlexible,
+        allowPetTypeSelection: isFlexible,
+        isOvernight: isOvernight
+      });
+    }
+  });
+
+  return slots;
+}
+
 function CheckoutModal({ open, onClose }) {
   const [items, setItems] = useStateC(PawpadCartStore.getItems());
   const [step, setStep] = useStateC(0);
   const [completedOrder, setCompletedOrder] = useStateC(null);
 
-  const [formData, setFormData] = useStateC({
-    // Personal Info
+  const [customerData, setCustomerData] = useStateC({
     name: "",
     email: "",
     phone: "",
     area: "",
     contactMethod: "WhatsApp",
-    petType: "Dog",
-    petName: "",
-    breed: "",
-    age: "",
-    coat: "Short",
-    size: "Small (<10kg)",
-    temperament: "Chill & Friendly",
-    healthNotes: "",
-    hasCompletedTrialDay: false,
     date: null,
     time: null,
     notes: ""
   });
+
+  const [petSlots, setPetSlots] = useStateC([]);
+  const [pets, setPets] = useStateC([]);
+  const [activePetIndex, setActivePetIndex] = useStateC(0);
 
   useEffectC(() => {
     if (open) {
@@ -763,6 +868,31 @@ function CheckoutModal({ open, onClose }) {
       setItems(currentItems);
       setStep(0);
       setCompletedOrder(null);
+      setActivePetIndex(0);
+
+      const slots = derivePetSlots(currentItems);
+      setPetSlots(slots);
+      setPets(
+        slots.map((s) => ({
+          id: s.id,
+          serviceTitle: s.serviceTitle,
+          petType: s.petType || "Dog",
+          allowPetTypeSelection: !!s.allowPetTypeSelection,
+          isDogOnly: !!s.isDogOnly,
+          isCatOnly: !!s.isCatOnly,
+          isOvernight: !!s.isOvernight,
+          name: "",
+          breed: "",
+          age: "",
+          coat: "Short",
+          size: s.petType === "Cat" ? "Medium (3–6kg)" : "Small (<10kg)",
+          temperament: "Chill & Friendly",
+          healthNotes: "",
+          hasCompletedTrialDay: false,
+          sameAsPrevious: false
+        }))
+      );
+
       document.body.style.overflow = "hidden";
       const onKeyDown = (e) => {
         if (e.key === "Escape") onClose();
@@ -779,21 +909,116 @@ function CheckoutModal({ open, onClose }) {
 
   if (!open) return null;
 
-  const requiresPetInfo = items.length === 0 || items.some((i) => i.requiresPetInfo !== false);
+  const requiresPetInfo = petSlots.length > 0;
   const hasOvernight = items.some((i) => i.id === "boarding-overnight" || i.requiresTrialDayCheck);
   const hasTrialDay = items.some((i) => i.id === "boarding-trial-day");
-  const isDogOnlyCart = items.length > 0 && items.every((i) => i.isDogOnly || i.category === "Boarding");
 
-  const mandatoryTrialDayFee = (hasOvernight && !formData.hasCompletedTrialDay && !hasTrialDay) ? 850 : 0;
+  const anyPetHasCompletedTrial = pets.some((p) => p.isOvernight && p.hasCompletedTrialDay);
+  const mandatoryTrialDayFee = (hasOvernight && !anyPetHasCompletedTrial && !hasTrialDay) ? 850 : 0;
   const subtotal = items.reduce((acc, i) => acc + (Number(i.price) || 0) * (i.quantity || 1), 0);
   const finalTotal = subtotal + mandatoryTrialDayFee;
 
-  const upd = (k, v) => setFormData((d) => ({ ...d, [k]: v }));
+  const updCustomer = (k, v) => setCustomerData((d) => ({ ...d, [k]: v }));
 
-  // Steps definition based on whether pet info is required
+  const updPet = (index, field, value) => {
+    setPets((prev) => {
+      const next = [...prev];
+      if (!next[index]) return prev;
+
+      if (field === "sameAsPrevious") {
+        const isSame = !!value;
+        const source = next[0];
+        const currentSlot = petSlots[index] || {};
+        const isCompatible = source && next[index] && (source.petType === next[index].petType || currentSlot.allowPetTypeSelection);
+        if (isSame && index > 0 && isCompatible) {
+          next[index] = {
+            ...next[index],
+            sameAsPrevious: true,
+            petType: source.petType,
+            name: source.name,
+            breed: source.breed,
+            age: source.age,
+            coat: source.coat,
+            size: source.size,
+            temperament: source.temperament,
+            healthNotes: source.healthNotes,
+            hasCompletedTrialDay: source.hasCompletedTrialDay
+          };
+        } else {
+          next[index] = {
+            ...next[index],
+            sameAsPrevious: false
+          };
+        }
+      } else if (field === "petType") {
+        let newSize = next[index].size;
+        if (value === "Cat" && !SIZES_CAT_CHECKOUT.includes(newSize)) {
+          newSize = "Medium (3–6kg)";
+        } else if (value === "Dog" && !SIZES_DOG_CHECKOUT.includes(newSize)) {
+          newSize = "Small (<10kg)";
+        }
+        next[index] = {
+          ...next[index],
+          petType: value,
+          size: newSize
+        };
+        // If petType changes and no longer matches pet 0, disable sameAsPrevious
+        if (index > 0 && next[0] && value !== next[0].petType) {
+          next[index].sameAsPrevious = false;
+        }
+        // If editing pet 0 and subsequent pets have sameAsPrevious enabled, check compatibility
+        if (index === 0) {
+          for (let i = 1; i < next.length; i++) {
+            if (next[i].sameAsPrevious) {
+              const slot_i = petSlots[i] || {};
+              if ((slot_i.isDogOnly && value !== "Dog") || (slot_i.isCatOnly && value !== "Cat")) {
+                next[i].sameAsPrevious = false;
+              } else {
+                next[i] = {
+                  ...next[i],
+                  petType: value,
+                  size: newSize
+                };
+              }
+            }
+          }
+        }
+      } else {
+        next[index] = {
+          ...next[index],
+          [field]: value
+        };
+        // If editing pet 0 and subsequent pets have sameAsPrevious enabled, sync them
+        if (index === 0) {
+          for (let i = 1; i < next.length; i++) {
+            if (next[i].sameAsPrevious) {
+              next[i] = {
+                ...next[i],
+                [field]: value
+              };
+            }
+          }
+        }
+      }
+      return next;
+    });
+  };
+
+  const isMultiPet = pets.length > 1;
+  const allDogs = pets.length > 0 && pets.every((p) => p.petType === "Dog");
+  const allCats = pets.length > 0 && pets.every((p) => p.petType === "Cat");
+
+  const petStepLabel = isMultiPet
+    ? `Pet Details (${pets.length} Pets)`
+    : allDogs
+    ? "Dog Details"
+    : allCats
+    ? "Cat Details"
+    : "Pet Details";
+
   const CHECKOUT_STEPS = [
     { label: "Your Info" },
-    ...(requiresPetInfo ? [{ label: isDogOnlyCart ? "Dog Details" : "Pet Details" }] : []),
+    ...(requiresPetInfo ? [{ label: petStepLabel }] : []),
     { label: "Schedule" },
     { label: "Review" }
   ];
@@ -802,16 +1027,27 @@ function CheckoutModal({ open, onClose }) {
   const scheduleStepIndex = requiresPetInfo ? 2 : 1;
   const reviewStepIndex = requiresPetInfo ? 3 : 2;
 
+  const isPetValid = (p, idx) => {
+    if (!p) return false;
+    const petIdx = typeof idx === "number" ? idx : pets.indexOf(p);
+    const slot = petSlots[petIdx] || {};
+    const isCompatible = pets[0] && (p.petType === pets[0].petType || slot.allowPetTypeSelection);
+    if (p.sameAsPrevious && petIdx > 0 && isCompatible) {
+      return !!(pets[0].name && pets[0].name.trim().length > 0);
+    }
+    return !!(p.name && p.name.trim().length > 0);
+  };
+
   const isStepValid = () => {
     if (step === 0) {
       return (
-        formData.name.trim().length > 1 &&
-        formData.phone.trim().length >= 8 &&
-        formData.email.includes("@")
+        customerData.name.trim().length > 1 &&
+        customerData.phone.trim().length >= 8 &&
+        customerData.email.includes("@")
       );
     }
     if (requiresPetInfo && step === petStepIndex) {
-      return formData.petName.trim().length > 0;
+      return pets.length > 0 && pets.every((p, idx) => isPetValid(p, idx));
     }
     if (step === scheduleStepIndex) {
       return true;
@@ -820,6 +1056,18 @@ function CheckoutModal({ open, onClose }) {
   };
 
   const handleNext = () => {
+    if (requiresPetInfo && step === petStepIndex && isMultiPet) {
+      const currentPet = pets[activePetIndex];
+      if (!isPetValid(currentPet, activePetIndex)) {
+        return;
+      }
+      const firstIncompleteIdx = pets.findIndex((p, idx) => !isPetValid(p, idx));
+      if (firstIncompleteIdx !== -1 && firstIncompleteIdx !== activePetIndex) {
+        setActivePetIndex(firstIncompleteIdx);
+        return;
+      }
+    }
+
     if (!isStepValid()) return;
     if (step < CHECKOUT_STEPS.length - 1) {
       setStep((s) => s + 1);
@@ -827,6 +1075,10 @@ function CheckoutModal({ open, onClose }) {
   };
 
   const handlePrev = () => {
+    if (requiresPetInfo && step === petStepIndex && isMultiPet && activePetIndex > 0) {
+      setActivePetIndex((i) => i - 1);
+      return;
+    }
     if (step > 0) {
       setStep((s) => s - 1);
     }
@@ -834,37 +1086,47 @@ function CheckoutModal({ open, onClose }) {
 
   const handlePlaceOrder = () => {
     const orderRef = "PAW-" + Math.floor(100000 + Math.random() * 900000);
+    const resolvedPets = pets.map((p, idx) => {
+      const slot = petSlots[idx] || {};
+      const isCompatible = pets[0] && (p.petType === pets[0].petType || slot.allowPetTypeSelection);
+      const isSameAsFirst = p.sameAsPrevious && idx > 0 && isCompatible;
+      const source = isSameAsFirst ? pets[0] : p;
+      return {
+        slot: idx + 1,
+        serviceTitle: p.serviceTitle,
+        name: source.name,
+        type: source.petType,
+        breed: source.breed,
+        age: source.age,
+        coat: source.coat,
+        size: source.size,
+        temperament: source.temperament,
+        healthNotes: source.healthNotes,
+        hasCompletedTrialDay: !!source.hasCompletedTrialDay,
+        isSamePetAsPrevious: !!isSameAsFirst
+      };
+    });
+
     const orderPayload = {
       orderId: orderRef,
       items: [...items],
       subtotal: subtotal,
       mandatoryTrialDayFee: mandatoryTrialDayFee,
-      hasCompletedTrialDay: !!formData.hasCompletedTrialDay,
+      hasCompletedTrialDay: anyPetHasCompletedTrial,
       totalAmount: finalTotal,
       customer: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        area: formData.area,
-        contactMethod: formData.contactMethod
+        name: customerData.name,
+        email: customerData.email,
+        phone: customerData.phone,
+        area: customerData.area,
+        contactMethod: customerData.contactMethod
       },
-      pet: requiresPetInfo
-        ? {
-          name: formData.petName,
-          type: isDogOnlyCart ? "Dog" : (formData.petType || "Dog"),
-          breed: formData.breed,
-          age: formData.age,
-          coat: formData.coat,
-          size: formData.size,
-          temperament: formData.temperament,
-          healthNotes: formData.healthNotes,
-          hasCompletedTrialDay: !!formData.hasCompletedTrialDay
-        }
-        : null,
+      pets: resolvedPets,
+      pet: resolvedPets.length > 0 ? resolvedPets[0] : null,
       appointment: {
-        date: formData.date ? new Date(formData.date).toLocaleDateString("en-IN", { weekday: "short", month: "short", day: "numeric" }) : "To be scheduled",
-        time: formData.time || "Flexible",
-        notes: formData.notes
+        date: customerData.date ? new Date(customerData.date).toLocaleDateString("en-IN", { weekday: "short", month: "short", day: "numeric" }) : "To be scheduled",
+        time: customerData.time || "Flexible",
+        notes: customerData.notes
       },
       createdAt: new Date().toISOString()
     };
@@ -877,6 +1139,13 @@ function CheckoutModal({ open, onClose }) {
     PawpadCartStore.clearCart();
     setStep(99); // Completed confirmation state
   };
+
+  const currentPet = pets[activePetIndex] || pets[0] || {};
+  const currentSlot = petSlots[activePetIndex] || petSlots[0] || {};
+  const isCurrentDog = currentPet.petType === "Dog";
+  const isCurrentCat = currentPet.petType === "Cat";
+  const firstPet = pets[0] || {};
+  const isSamePetTypeAsFirst = isMultiPet && activePetIndex > 0 && firstPet.petType && (currentPet.petType === firstPet.petType || currentSlot.allowPetTypeSelection);
 
   return React.createElement(
     "div",
@@ -927,13 +1196,13 @@ function CheckoutModal({ open, onClose }) {
                   "div",
                   { className: "ref-row" },
                   React.createElement("span", null, "Services Subtotal"),
-                  React.createElement("strong", null, `₹${completedOrder.subtotal.toLocaleString("en-IN")}`)
+                  React.createElement("strong", null, `₹${formatInr(completedOrder.subtotal)}`)
                 ),
                 React.createElement(
                   "div",
                   { className: "ref-row" },
                   React.createElement("span", { style: { color: "var(--driftwood-deep)" } }, "Mandatory First-Time Trial Day"),
-                  React.createElement("strong", { style: { color: "var(--driftwood-deep)" } }, `+₹${completedOrder.mandatoryTrialDayFee.toLocaleString("en-IN")}`)
+                  React.createElement("strong", { style: { color: "var(--driftwood-deep)" } }, `+₹${formatInr(completedOrder.mandatoryTrialDayFee)}`)
                 )
               )
               : null,
@@ -941,14 +1210,20 @@ function CheckoutModal({ open, onClose }) {
               "div",
               { className: "ref-row" },
               React.createElement("span", null, "Total Estimated"),
-              React.createElement("strong", null, `₹${completedOrder.totalAmount.toLocaleString("en-IN")}`)
+              React.createElement("strong", null, `₹${formatInr(completedOrder.totalAmount)}`)
             ),
-            completedOrder.pet &&
+            completedOrder.pets && completedOrder.pets.length > 0 &&
             React.createElement(
               "div",
-              { className: "ref-row" },
-              React.createElement("span", null, isDogOnlyCart ? "Dog" : "Pet"),
-              React.createElement("strong", null, `${completedOrder.pet.name} (${completedOrder.pet.type}, ${completedOrder.pet.temperament})`)
+              { className: "ref-row", style: { alignItems: "flex-start" } },
+              React.createElement("span", null, completedOrder.pets.length > 1 ? "Pets" : "Pet"),
+              React.createElement(
+                "strong",
+                { style: { textAlign: "right" } },
+                completedOrder.pets.map((p) => (
+                  `${p.name} (${p.type}${p.breed ? ` · ${p.breed}` : ""})`
+                )).join(" | ")
+              )
             ),
             completedOrder.appointment &&
             React.createElement(
@@ -964,8 +1239,12 @@ function CheckoutModal({ open, onClose }) {
             React.createElement(
               "a",
               {
-                href: `https://wa.me/919663077496?text=${encodeURIComponent(
-                  `Hi Pawpad! I placed booking ref ${completedOrder.orderId} for ${completedOrder.pet ? completedOrder.pet.name : "my booking"}. Total: ₹${completedOrder.totalAmount.toLocaleString("en-IN")}${completedOrder.mandatoryTrialDayFee > 0 ? " (includes ₹850 mandatory Trial Day fee)" : ""}.`
+                href: `https://wa.me/918885349267?text=${encodeURIComponent(
+                  `Hi Pawpad! I placed booking ref ${completedOrder.orderId} for ${
+                    completedOrder.pets && completedOrder.pets.length > 0
+                      ? completedOrder.pets.map((p) => `${p.name} (${p.type})`).join(", ")
+                      : "my booking"
+                  }. Total: ₹${formatInr(completedOrder.totalAmount)}${completedOrder.mandatoryTrialDayFee > 0 ? " (includes ₹850 mandatory Trial Day fee)" : ""}.`
                 )}`,
                 target: "_blank",
                 rel: "noopener",
@@ -1036,8 +1315,8 @@ function CheckoutModal({ open, onClose }) {
                     type: "text",
                     required: true,
                     placeholder: "e.g. Maya Shankar",
-                    value: formData.name,
-                    onChange: (e) => upd("name", e.target.value)
+                    value: customerData.name,
+                    onChange: (e) => updCustomer("name", e.target.value)
                   })
                 ),
                 React.createElement(
@@ -1048,8 +1327,8 @@ function CheckoutModal({ open, onClose }) {
                     type: "tel",
                     required: true,
                     placeholder: "e.g. 9876543210",
-                    value: formData.phone,
-                    onChange: (e) => upd("phone", e.target.value)
+                    value: customerData.phone,
+                    onChange: (e) => updCustomer("phone", e.target.value)
                   })
                 ),
                 React.createElement(
@@ -1060,8 +1339,8 @@ function CheckoutModal({ open, onClose }) {
                     type: "email",
                     required: true,
                     placeholder: "e.g. maya@example.com",
-                    value: formData.email,
-                    onChange: (e) => upd("email", e.target.value)
+                    value: customerData.email,
+                    onChange: (e) => updCustomer("email", e.target.value)
                   })
                 ),
                 React.createElement(
@@ -1071,8 +1350,8 @@ function CheckoutModal({ open, onClose }) {
                   React.createElement("input", {
                     type: "text",
                     placeholder: "e.g. Kalyan Nagar, Indiranagar, HRBR Layout",
-                    value: formData.area,
-                    onChange: (e) => upd("area", e.target.value)
+                    value: customerData.area,
+                    onChange: (e) => updCustomer("area", e.target.value)
                   })
                 ),
                 React.createElement(
@@ -1088,8 +1367,8 @@ function CheckoutModal({ open, onClose }) {
                         {
                           type: "button",
                           key: mode,
-                          className: "chip-btn " + (formData.contactMethod === mode ? "active" : ""),
-                          onClick: () => upd("contactMethod", mode)
+                          className: "chip-btn " + (customerData.contactMethod === mode ? "active" : ""),
+                          onClick: () => updCustomer("contactMethod", mode)
                         },
                         mode
                       )
@@ -1099,7 +1378,7 @@ function CheckoutModal({ open, onClose }) {
               )
             ),
 
-            // Step 1: Pet Details
+            // Step 1: Pet Details (Single or Multi-Pet)
             requiresPetInfo &&
             step === petStepIndex &&
             React.createElement(
@@ -1108,23 +1387,113 @@ function CheckoutModal({ open, onClose }) {
               React.createElement(
                 "div",
                 { className: "step-head" },
-                React.createElement("p", { className: "eyebrow" }, isDogOnlyCart ? "Step 2 · Dog Details" : "Step 2 · Pet Details"),
-                React.createElement("h4", { className: "h-3" }, isDogOnlyCart ? "Tell Us About Your Dog" : "Tell Us About Your Pet"),
+                React.createElement(
+                  "p",
+                  { className: "eyebrow" },
+                  isMultiPet
+                    ? `Step 2 · Pet Details (${pets.length} Pets)`
+                    : isCurrentDog
+                    ? "Step 2 · Dog Details"
+                    : isCurrentCat
+                    ? "Step 2 · Cat Details"
+                    : "Step 2 · Pet Details"
+                ),
+                React.createElement(
+                  "h4",
+                  { className: "h-3" },
+                  isMultiPet
+                    ? `Tell Us About Your Pets (Pet ${activePetIndex + 1} of ${pets.length})`
+                    : isCurrentDog
+                    ? "Tell Us About Your Dog"
+                    : isCurrentCat
+                    ? "Tell Us About Your Cat"
+                    : "Tell Us About Your Pet"
+                ),
                 React.createElement(
                   "p",
                   { className: "lead-sm" },
-                  isDogOnlyCart
-                    ? "Pawpad Boarding is open exclusively to small dogs. Knowing your dog's coat and temperament helps us ensure an intimate, stress-free stay."
+                  isMultiPet
+                    ? `Configure the profile for ${currentPet.name || `Pet #${activePetIndex + 1}`} (${currentPet.serviceTitle || currentPet.petType}). Switch tabs above if you have multiple pets.`
+                    : isCurrentDog
+                    ? (items.some((i) => i.category === "Boarding")
+                      ? "Pawpad Boarding is open exclusively to small dogs. Knowing your dog's coat and temperament helps us ensure an intimate, stress-free stay."
+                      : "Pawpad sessions are paced around your dog's comfort. Knowing their coat and temperament helps us tailor the session pace.")
+                    : isCurrentCat
+                    ? "Sessions at Pawpad are never rushed. Knowing your cat’s temperament and coat type helps us tailor the session pace in a quiet, low-stress environment."
                     : "Sessions at Pawpad are never rushed. Knowing your pet’s temperament and coat type helps us tailor the session pace."
                 )
               ),
+
+              // Multi-Pet Navigation Tabs
+              isMultiPet &&
+              React.createElement(
+                "div",
+                { className: "pet-tabs-bar" },
+                pets.map((p, idx) => {
+                  const isCurrent = idx === activePetIndex;
+                  const isDone = isPetValid(p, idx);
+                  const icon = p.petType === "Cat" ? "🐱" : "🐕";
+                  const tabLabel = p.sameAsPrevious && p.petType === pets[0]?.petType
+                    ? `${pets[0]?.name || "Pet 1"} (Same)`
+                    : (p.name ? p.name : `Pet ${idx + 1}`);
+                  return React.createElement(
+                    "button",
+                    {
+                      key: idx,
+                      type: "button",
+                      className: `pet-tab-btn ${isCurrent ? "active" : ""} ${isDone ? "completed" : ""}`,
+                      onClick: () => setActivePetIndex(idx)
+                    },
+                    React.createElement("span", { className: "pet-tab-icon" }, icon),
+                    React.createElement("span", null, `${tabLabel} · ${p.petType}`),
+                    React.createElement("span", { className: "pet-tab-badge" }, isDone ? "✓" : idx + 1)
+                  );
+                })
+              ),
+
+              // Same as previous pet details checkbox (shown for Pet 2 onwards ONLY when same pet category/species)
+              isSamePetTypeAsFirst &&
+              React.createElement(
+                "div",
+                {
+                  className: "same-pet-card",
+                  onClick: () => updPet(activePetIndex, "sameAsPrevious", !currentPet.sameAsPrevious)
+                },
+                React.createElement(
+                  "label",
+                  {
+                    className: "same-pet-label",
+                    onClick: (e) => e.stopPropagation()
+                  },
+                  React.createElement("input", {
+                    type: "checkbox",
+                    className: "same-pet-checkbox",
+                    checked: !!currentPet.sameAsPrevious,
+                    onChange: (e) => updPet(activePetIndex, "sameAsPrevious", e.target.checked)
+                  }),
+                  React.createElement(
+                    "span",
+                    null,
+                    `Both for same pet (Use ${pets[0]?.name || "Pet 1"}'s details)`
+                  )
+                ),
+                React.createElement(
+                  "p",
+                  { className: "same-pet-subtext" },
+                  currentPet.sameAsPrevious
+                    ? `✓ Using ${pets[0]?.name || "Pet 1"}'s profile for this service.`
+                    : `Check this box if this service is for the same pet as Pet 1 (${pets[0]?.name || "Pet 1"}).`
+                )
+              ),
+
               React.createElement(
                 "div",
                 { className: "form-grid" },
-                !isDogOnlyCart &&
+                // Pet Type Selector if service allows flexible pet selection
+                currentSlot.allowPetTypeSelection && !currentPet.sameAsPrevious &&
                 React.createElement(
                   "div",
-                  { className: "field" },
+                  { className: "field full-span" },
                   React.createElement("label", null, "Pet Type *"),
                   React.createElement(
                     "div",
@@ -1135,8 +1504,8 @@ function CheckoutModal({ open, onClose }) {
                         {
                           type: "button",
                           key: t,
-                          className: "chip-btn " + (formData.petType === t ? "active" : ""),
-                          onClick: () => upd("petType", t)
+                          className: "chip-btn " + ((currentPet.petType || "Dog") === t ? "active" : ""),
+                          onClick: () => updPet(activePetIndex, "petType", t)
                         },
                         t
                       )
@@ -1145,14 +1514,25 @@ function CheckoutModal({ open, onClose }) {
                 ),
                 React.createElement(
                   "div",
-                  { className: isDogOnlyCart ? "field full-span" : "field" },
-                  React.createElement("label", null, isDogOnlyCart ? "Dog Name *" : "Pet Name *"),
+                  { className: "field" },
+                  React.createElement(
+                    "label",
+                    null,
+                    isMultiPet
+                      ? `Pet #${activePetIndex + 1} (${currentPet.petType}) Name *`
+                      : isCurrentDog
+                      ? "Dog Name *"
+                      : isCurrentCat
+                      ? "Cat Name *"
+                      : "Pet Name *"
+                  ),
                   React.createElement("input", {
                     type: "text",
                     required: true,
-                    placeholder: "e.g. Leo, Bruno, Maya",
-                    value: formData.petName,
-                    onChange: (e) => upd("petName", e.target.value)
+                    placeholder: isCurrentDog ? "e.g. Leo, Bruno, Maya" : isCurrentCat ? "e.g. Luna, Oliver, Simba" : "e.g. Leo, Bruno, Luna",
+                    value: currentPet.name || "",
+                    disabled: !!currentPet.sameAsPrevious,
+                    onChange: (e) => updPet(activePetIndex, "name", e.target.value)
                   })
                 ),
                 React.createElement(
@@ -1161,9 +1541,14 @@ function CheckoutModal({ open, onClose }) {
                   React.createElement("label", null, "Breed / Mix"),
                   React.createElement("input", {
                     type: "text",
-                    placeholder: isDogOnlyCart ? "e.g. Shih Tzu, Indie, Lhasa Apso, Beagle" : "e.g. Indie, Golden Retriever, Shih Tzu, Persian Cat",
-                    value: formData.breed,
-                    onChange: (e) => upd("breed", e.target.value)
+                    placeholder: isCurrentDog
+                      ? "e.g. Shih Tzu, Indie, Lhasa Apso, Beagle"
+                      : isCurrentCat
+                      ? "e.g. Persian Cat, Indie, Siamese, British Shorthair"
+                      : "e.g. Indie, Golden Retriever, Shih Tzu, Persian Cat",
+                    value: currentPet.breed || "",
+                    disabled: !!currentPet.sameAsPrevious,
+                    onChange: (e) => updPet(activePetIndex, "breed", e.target.value)
                   })
                 ),
                 React.createElement(
@@ -1173,25 +1558,27 @@ function CheckoutModal({ open, onClose }) {
                   React.createElement("input", {
                     type: "text",
                     placeholder: "e.g. 2 years, 4 months",
-                    value: formData.age,
-                    onChange: (e) => upd("age", e.target.value)
+                    value: currentPet.age || "",
+                    disabled: !!currentPet.sameAsPrevious,
+                    onChange: (e) => updPet(activePetIndex, "age", e.target.value)
                   })
                 ),
                 React.createElement(
                   "div",
                   { className: "field full-span" },
-                  React.createElement("label", null, "Size / Weight Category"),
+                  React.createElement("label", null, isCurrentCat ? "Cat Size / Weight Category" : "Dog Size / Weight Category"),
                   React.createElement(
                     "div",
                     { className: "chip-select" },
-                    SIZES_CHECKOUT.map((s) =>
+                    (isCurrentCat ? SIZES_CAT_CHECKOUT : SIZES_DOG_CHECKOUT).map((s) =>
                       React.createElement(
                         "button",
                         {
                           type: "button",
                           key: s,
-                          className: "chip-btn " + (formData.size === s ? "active" : ""),
-                          onClick: () => upd("size", s)
+                          className: "chip-btn " + (currentPet.size === s ? "active" : ""),
+                          disabled: !!currentPet.sameAsPrevious,
+                          onClick: () => updPet(activePetIndex, "size", s)
                         },
                         s
                       )
@@ -1211,8 +1598,9 @@ function CheckoutModal({ open, onClose }) {
                         {
                           type: "button",
                           key: c,
-                          className: "chip-btn " + (formData.coat === c ? "active" : ""),
-                          onClick: () => upd("coat", c)
+                          className: "chip-btn " + (currentPet.coat === c ? "active" : ""),
+                          disabled: !!currentPet.sameAsPrevious,
+                          onClick: () => updPet(activePetIndex, "coat", c)
                         },
                         `${c} Coat`
                       )
@@ -1232,8 +1620,9 @@ function CheckoutModal({ open, onClose }) {
                         {
                           type: "button",
                           key: t,
-                          className: "chip-btn " + (formData.temperament === t ? "active" : ""),
-                          onClick: () => upd("temperament", t)
+                          className: "chip-btn " + (currentPet.temperament === t ? "active" : ""),
+                          disabled: !!currentPet.sameAsPrevious,
+                          onClick: () => updPet(activePetIndex, "temperament", t)
                         },
                         t
                       )
@@ -1247,11 +1636,12 @@ function CheckoutModal({ open, onClose }) {
                   React.createElement("textarea", {
                     rows: 2,
                     placeholder: "e.g. Dislikes loud noises, food allergies, vet medicines, etc.",
-                    value: formData.healthNotes,
-                    onChange: (e) => upd("healthNotes", e.target.value)
+                    value: currentPet.healthNotes || "",
+                    disabled: !!currentPet.sameAsPrevious,
+                    onChange: (e) => updPet(activePetIndex, "healthNotes", e.target.value)
                   })
                 ),
-                hasOvernight &&
+                currentSlot.isOvernight &&
                 React.createElement(
                   "div",
                   { className: "field full-span" },
@@ -1280,8 +1670,8 @@ function CheckoutModal({ open, onClose }) {
                         type: "checkbox",
                         className: "trial-day-checkbox",
                         id: "trial-day-verify-checkbox",
-                        checked: !!formData.hasCompletedTrialDay,
-                        onChange: (e) => upd("hasCompletedTrialDay", e.target.checked)
+                        checked: !!currentPet.hasCompletedTrialDay,
+                        onChange: (e) => updPet(activePetIndex, "hasCompletedTrialDay", e.target.checked)
                       }),
                       React.createElement(
                         "span",
@@ -1292,13 +1682,41 @@ function CheckoutModal({ open, onClose }) {
                     React.createElement(
                       "div",
                       {
-                        className: `trial-day-helper-badge ${formData.hasCompletedTrialDay ? "verified" : "fee-notice"}`
+                        className: `trial-day-helper-badge ${currentPet.hasCompletedTrialDay ? "verified" : "fee-notice"}`
                       },
-                      formData.hasCompletedTrialDay
+                      currentPet.hasCompletedTrialDay
                         ? "A verification will be done by our team and you might be asked to provide the previous Trial day visit proof if required. If no previous records are found, your Trial Day might be booked at the discretion of our team and the fee will be applicable"
                         : "Since your pet hasn't had a trial day before, the mandatory Trial Day fee (₹850) will be added to your final bill summary."
                     )
                   )
+                )
+              ),
+
+              // Multi-Pet Tab switcher footer helper inside Step 2
+              isMultiPet &&
+              React.createElement(
+                "div",
+                { style: { display: "flex", justifyContent: "space-between", marginTop: 14, paddingTop: 14, borderTop: "1px dashed color-mix(in oklab, var(--ink), transparent 88%)" } },
+                activePetIndex > 0
+                  ? React.createElement(
+                    "button",
+                    {
+                      type: "button",
+                      className: "btn btn-ghost btn-sm",
+                      onClick: () => setActivePetIndex((i) => Math.max(0, i - 1))
+                    },
+                    "← Previous Pet"
+                  )
+                  : React.createElement("div", null),
+                activePetIndex < pets.length - 1 &&
+                React.createElement(
+                  "button",
+                  {
+                    type: "button",
+                    className: "btn btn-ghost btn-sm",
+                    onClick: () => setActivePetIndex((i) => Math.min(pets.length - 1, i + 1))
+                  },
+                  `Next Pet (${activePetIndex + 2} of ${pets.length}) →`
                 )
               )
             ),
@@ -1329,14 +1747,14 @@ function CheckoutModal({ open, onClose }) {
                   generateCheckoutDates().map((d, i) => {
                     const isClosed = d.getDay() === 4;
                     const dateStr = d.toISOString();
-                    const isSel = !isClosed && formData.date && new Date(formData.date).toDateString() === d.toDateString();
+                    const isSel = !isClosed && customerData.date && new Date(customerData.date).toDateString() === d.toDateString();
                     return React.createElement(
                       "button",
                       {
                         type: "button",
                         key: i,
                         className: "date-chip " + (isSel ? "active " : "") + (isClosed ? "closed" : ""),
-                        onClick: () => !isClosed && upd("date", dateStr),
+                        onClick: () => !isClosed && updCustomer("date", dateStr),
                         disabled: isClosed,
                         title: isClosed ? "Closed on Thursdays" : undefined
                       },
@@ -1361,8 +1779,8 @@ function CheckoutModal({ open, onClose }) {
                       {
                         type: "button",
                         key: t,
-                        className: "time-chip " + (formData.time === t ? "active" : ""),
-                        onClick: () => upd("time", t)
+                        className: "time-chip " + (customerData.time === t ? "active" : ""),
+                        onClick: () => updCustomer("time", t)
                       },
                       t
                     )
@@ -1376,8 +1794,8 @@ function CheckoutModal({ open, onClose }) {
                 React.createElement("textarea", {
                   rows: 2,
                   placeholder: "Any specific requests or questions for our team?",
-                  value: formData.notes,
-                  onChange: (e) => upd("notes", e.target.value)
+                  value: customerData.notes,
+                  onChange: (e) => updCustomer("notes", e.target.value)
                 })
               )
             ),
@@ -1419,7 +1837,7 @@ function CheckoutModal({ open, onClose }) {
                           React.createElement("strong", null, item.title),
                           React.createElement("span", { className: "review-item-qty" }, ` × ${item.quantity || 1}`)
                         ),
-                        React.createElement("span", { className: "review-item-price" }, `₹${(item.price * (item.quantity || 1)).toLocaleString("en-IN")}`)
+                        React.createElement("span", { className: "review-item-price" }, `₹${formatInr(item.price * (item.quantity || 1))}`)
                       )
                     ),
                     mandatoryTrialDayFee > 0 &&
@@ -1432,7 +1850,7 @@ function CheckoutModal({ open, onClose }) {
                         React.createElement("strong", { style: { color: "var(--driftwood-deep)" } }, "Mandatory First-Time Trial Day"),
                         React.createElement("span", { className: "review-item-qty" }, " · Required assessment")
                       ),
-                      React.createElement("span", { className: "review-item-price", style: { color: "var(--driftwood-deep)" } }, `+₹${mandatoryTrialDayFee.toLocaleString("en-IN")}`)
+                      React.createElement("span", { className: "review-item-price", style: { color: "var(--driftwood-deep)" } }, `+₹${formatInr(mandatoryTrialDayFee)}`)
                     )
                   ),
                   mandatoryTrialDayFee > 0 &&
@@ -1440,13 +1858,13 @@ function CheckoutModal({ open, onClose }) {
                     "div",
                     { className: "review-item-row", style: { padding: "10px 0 0", color: "var(--ink-mute)", fontSize: "13px" } },
                     React.createElement("span", null, "Services Subtotal"),
-                    React.createElement("span", null, `₹${subtotal.toLocaleString("en-IN")}`)
+                    React.createElement("span", null, `₹${formatInr(subtotal)}`)
                   ),
                   React.createElement(
                     "div",
                     { className: "review-subtotal-row" },
                     React.createElement("strong", null, "Total Estimated"),
-                    React.createElement("strong", { className: "review-total-price" }, `₹${finalTotal.toLocaleString("en-IN")}`)
+                    React.createElement("strong", { className: "review-total-price" }, `₹${formatInr(finalTotal)}`)
                   )
                 ),
 
@@ -1462,24 +1880,51 @@ function CheckoutModal({ open, onClose }) {
                       "div",
                       null,
                       React.createElement("span", { className: "review-label" }, "Client:"),
-                      React.createElement("p", null, formData.name, " (", formData.phone, ")")
+                      React.createElement("p", null, customerData.name, " (", customerData.phone, ")")
                     ),
                     React.createElement(
                       "div",
                       null,
                       React.createElement("span", { className: "review-label" }, "Email:"),
-                      React.createElement("p", null, formData.email)
+                      React.createElement("p", null, customerData.email)
                     ),
                     requiresPetInfo &&
                     React.createElement(
                       "div",
-                      null,
-                      React.createElement("span", { className: "review-label" }, isDogOnlyCart ? "Dog:" : "Pet:"),
-                      React.createElement(
-                        "p",
-                        null,
-                        `${formData.petName} (${formData.petType || "Dog"} · ${formData.breed || "Small Dog"} · ${formData.temperament})`
-                      )
+                      { style: { gridColumn: "1 / -1" } },
+                      React.createElement("span", { className: "review-label" }, isMultiPet ? `Pets (${pets.length}):` : `${pets[0]?.petType || "Pet"}:`),
+                      pets.map((p, idx) => {
+                        const isSameAsFirst = p.sameAsPrevious && idx > 0 && pets[0] && p.petType === pets[0].petType;
+                        const source = isSameAsFirst ? pets[0] : p;
+                        const icon = source.petType === "Cat" ? "🐱" : "🐕";
+                        return React.createElement(
+                          "div",
+                          { key: idx, className: "review-pet-card" },
+                          React.createElement(
+                            "div",
+                            { className: "review-pet-title" },
+                            React.createElement("span", null, icon),
+                            React.createElement("span", null, `${source.name || `Pet #${idx + 1}`} (${source.petType})`),
+                            isSameAsFirst && React.createElement("span", { style: { fontSize: 11, color: "var(--driftwood-deep)", fontWeight: 600 } }, "· Same pet as Pet 1")
+                          ),
+                          React.createElement(
+                            "div",
+                            { className: "review-pet-service" },
+                            p.serviceTitle || "Grooming / Wellness"
+                          ),
+                          React.createElement(
+                            "div",
+                            { className: "review-pet-details" },
+                            `${source.breed || "Indie/Mix"} · ${source.coat} Coat · ${source.size} · ${source.temperament}`
+                          ),
+                          source.healthNotes &&
+                          React.createElement(
+                            "div",
+                            { className: "review-pet-details", style: { marginTop: 4, fontStyle: "italic" } },
+                            `Note: ${source.healthNotes}`
+                          )
+                        );
+                      })
                     ),
                     hasOvernight &&
                     React.createElement(
@@ -1488,8 +1933,8 @@ function CheckoutModal({ open, onClose }) {
                       React.createElement("span", { className: "review-label" }, "Trial Day Status:"),
                       React.createElement(
                         "p",
-                        { style: { color: formData.hasCompletedTrialDay ? "#2e7d32" : "var(--driftwood-deep)", fontWeight: 600 } },
-                        formData.hasCompletedTrialDay
+                        { style: { color: anyPetHasCompletedTrial ? "#2e7d32" : "var(--driftwood-deep)", fontWeight: 600 } },
+                        anyPetHasCompletedTrial
                           ? "✓ Completed & Verified (No trial fee)"
                           : (hasTrialDay ? "Trial Day included in cart" : "First-Time Stay (+₹850 Assessment Fee added)")
                       )
@@ -1501,8 +1946,8 @@ function CheckoutModal({ open, onClose }) {
                       React.createElement(
                         "p",
                         null,
-                        formData.date
-                          ? `${new Date(formData.date).toLocaleDateString("en-IN", { weekday: "short", month: "short", day: "numeric" })} · ${formData.time || "Morning"}`
+                        customerData.date
+                          ? `${new Date(customerData.date).toLocaleDateString("en-IN", { weekday: "short", month: "short", day: "numeric" })} · ${customerData.time || "Morning"}`
                           : "To be coordinated on WhatsApp/Call"
                       )
                     )

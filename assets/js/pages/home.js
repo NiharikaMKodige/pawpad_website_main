@@ -302,7 +302,7 @@ function ServiceCards({ navigate, onBook }) {
         .svc-points li { display: flex; align-items: center; gap: 8px; }
         .svc-foot {
           display: flex; justify-content: space-between; align-items: center;
-          gap: 16px; flex-wrap: wrap;
+          gap: 12px; flex-wrap: nowrap;
           padding-top: 18px;
           border-top: 1px dashed color-mix(in oklab, var(--ink), transparent 80%);
         }
@@ -310,8 +310,9 @@ function ServiceCards({ navigate, onBook }) {
           font-family: var(--f-display);
           font-size: 22px;
           color: var(--acc, var(--driftwood));
+          white-space: nowrap;
         }
-        .svc-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .svc-actions { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
         .svc-link {
           display: inline-flex; align-items: center; gap: 6px;
           font-size: 13px; font-weight: 600;
@@ -319,6 +320,7 @@ function ServiceCards({ navigate, onBook }) {
           text-decoration: underline;
           text-decoration-color: color-mix(in oklab, var(--ink), transparent 70%);
           text-underline-offset: 4px;
+          white-space: nowrap;
         }
         .svc-link:hover { color: var(--driftwood); }
         .svc-link.disabled { text-decoration: none; color: var(--ink-mute); cursor: default; }
@@ -326,6 +328,11 @@ function ServiceCards({ navigate, onBook }) {
           .services-head { grid-template-columns: 1fr; gap: 24px; }
           .services-grid { grid-template-columns: 1fr; }
           .svc-points { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 520px) {
+          .svc-body { padding: 22px 20px 24px; }
+          .svc-price { font-size: 18px; }
+          .svc-link { font-size: 12.5px; }
         }
       `));
 }

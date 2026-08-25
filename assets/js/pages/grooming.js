@@ -6,8 +6,10 @@ const GROOM_PACKAGES = [
     key: "puppy-short",
     title: "Puppy Grooming | Short Hair",
     sub: "Gentle introductions for puppies below 3 months",
-    price: "\u20B91,000",
+    price: "₹1,000",
     duration: "Gentle intro",
+    isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-puppy-short-hair-image.webp",
     includes: ["Eye & ear cleaning", "Teeth brushing", "Nail clipping", "Bath & coat conditioning", "Complete blow dry", "Coat brushing", "Paw & snout butter", "Organic leave-in conditioner"],
     note: "A calm first grooming experience that helps puppies get comfortable with handling, bathing, drying, and basic care routines."
@@ -17,8 +19,10 @@ const GROOM_PACKAGES = [
     key: "puppy-long",
     title: "Puppy Grooming | Long Hair",
     sub: "Extra coat care for long-coated puppies",
-    price: "\u20B91,500",
+    price: "₹1,500",
     duration: "Long coat care",
+    isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-puppy-long-hair-image.webp",
     includes: ["Eye & ear cleaning", "Teeth brushing", "Nail clipping", "Bath & coat conditioning", "Complete blow dry", "Coat brushing & deshedding", "Hygiene clip", "Face trimming", "Paw & snout butter", "Organic leave-in conditioner"],
     note: "Designed for long-coated puppies who need additional brushing, deshedding support, and a patient introduction to coat maintenance."
@@ -28,8 +32,10 @@ const GROOM_PACKAGES = [
     key: "dog-short",
     title: "Dog Grooming | Short Hair",
     sub: "Clean, comfortable care for short coats",
-    price: "\u20B91,600",
+    price: "₹1,600",
     duration: "Coat care",
+    isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-dog-short-hair-image.webp",
     includes: ["Bath & coat conditioning", "Complete blow dry", "Coat brushing", "Eye & ear cleaning", "Nail clipping", "Paw care"],
     note: "A complete grooming reset for short-coated dogs, focused on skin health, hygiene, shedding control, and comfort."
@@ -39,8 +45,10 @@ const GROOM_PACKAGES = [
     key: "dog-long",
     title: "Dog Grooming | Long Hair",
     sub: "Maintenance for longer coats",
-    price: "\u20B92,000",
+    price: "₹2,000",
     duration: "Detailed coat care",
+    isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-gromming-long-hair-dog.webp",
     includes: ["Bath & conditioning", "Full blow dry", "Coat brushing", "Deshedding support", "Face trimming", "Hygiene clip"],
     note: "For dogs who need more detailed coat work, careful brushing, and slow handling so longer sessions remain comfortable."
@@ -50,19 +58,23 @@ const GROOM_PACKAGES = [
     key: "dog-grooming-long-hair",
     title: "Dog Grooming Long Hair with haircut",
     sub: "Full styling session for long-coated dogs",
-    price: "\u20B92,500",
+    price: "₹2,500",
     duration: "Styling session",
+    isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-dog-long-hair-haircut.webp",
     includes: ["Bath & Conditioning", "Coat trimming & scissoring", "Face and paw tidying", "Breed-aware styling", "Comfort breaks", "Deshedding support", "Finish & coat treatment"],
-    note: "A complete styling session for long-coated dogs \u2014 balancing breed-specific shape, coat health, and your dog's comfort throughout."
+    note: "A complete styling session for long-coated dogs — balancing breed-specific shape, coat health, and your dog's comfort throughout."
   },
   {
     cat: "Care",
     key: "matted-dogs",
     title: "Matted Dogs",
     sub: "Careful support for tangled coats",
-    price: "\u20B9850",
+    price: "₹850",
     duration: "Assessment first",
+    isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/grooming-page-grooming-matted-dogs.webp",
     includes: ["Coat assessment", "Gentle dematting where possible", "Clip-down when needed", "Aftercare guidance"],
     note: "For coats with matting or tangles. We prioritise comfort and skin safety over cosmetic results."
@@ -72,8 +84,10 @@ const GROOM_PACKAGES = [
     key: "cat-short",
     title: "Cat Grooming | Short Hair",
     sub: "Calm coat and hygiene care for short-haired cats",
-    price: "\u20B91,500",
+    price: "₹1,500",
     duration: "Feline care",
+    isCatOnly: true,
+    petType: "Cat",
     img: "assets/img/pawpad/cat-grooming-short-hair.webp",
     includes: ["Coat brushing", "Eye & ear cleaning", "Nail clipping", "Gentle bath", "Hygiene check", "Low-stress handling"],
     note: "For cats who need careful coat maintenance, hygiene support, and patient handling in a quiet environment."
@@ -83,8 +97,10 @@ const GROOM_PACKAGES = [
     key: "cat-long",
     title: "Cat Grooming | Long Hair",
     sub: "Extra support for long coats and tangles",
-    price: "\u20B92,000",
+    price: "₹2,000",
     duration: "Detailed feline care",
+    isCatOnly: true,
+    petType: "Cat",
     img: "assets/img/pawpad/cat-grooming-long-hair.webp",
     includes: ["Coat brushing", "Mat assessment", "Gentle dematting where possible", "Sanitary trim", "Nail clipping", "Gentle bath", "Aftercare guidance"],
     note: "For long-haired cats who need detailed coat work, with comfort and consent guiding every step."
@@ -94,8 +110,10 @@ const GROOM_PACKAGES = [
     key: "cat-haircut",
     title: "Cat Hair Cut",
     sub: "Complete haircut and hygiene care for cats",
-    price: "\u20B91,500",
+    price: "₹1,500",
     duration: "Feline styling",
+    isCatOnly: true,
+    petType: "Cat",
     img: "assets/img/pawpad/cat-hair-cut.webp",
     includes: ["Nail clipping", "Hair cut", "Ear cleaning", "Eye cleaning"],
     note: "A complete haircut and gentle care session for cats, including nail clipping, hair cut, ear cleaning, and eye cleaning with patient handling."
@@ -105,8 +123,9 @@ const GROOM_PACKAGES = [
     key: "hygiene-clip",
     title: "Hygiene Clip",
     sub: "Focused hygiene maintenance",
-    price: "\u20B9850",
+    price: "₹850",
     duration: "Targeted care",
+    allowPetTypeSelection: true,
     img: "assets/img/pawpad/grooming-page-grooming-hygine-clip.webp",
     includes: ["Sanitary trimming", "Paw tidying", "Comfort-led handling", "Coat check"],
     note: "A targeted service for pets who need hygiene-focused trimming without a full grooming session."
@@ -116,8 +135,9 @@ const GROOM_PACKAGES = [
     key: "nail-clipping",
     title: "Nail Clipping",
     sub: "Slow, gentle nail care",
-    price: "\u20B9250",
+    price: "₹250",
     duration: "Quick visit",
+    allowPetTypeSelection: true,
     img: "assets/img/pawpad/grooming-nail-clipping-new.webp",
     includes: ["Nail trimming", "Paw handling support", "Breaks for anxious pets", "Comfort checks"],
     note: "Gentle nail care for pets who need a quick maintenance visit or extra patience around paw handling."
@@ -127,8 +147,9 @@ const GROOM_PACKAGES = [
     key: "massage",
     title: "Massage",
     sub: "Pre & post grooming wellness add-on",
-    price: "\u20B91,500",
+    price: "₹1,500",
     duration: "Wellness add-on",
+    allowPetTypeSelection: true,
     img: "assets/img/pawpad/grooming-page-grooming-massage.webp",
     includes: ["Gentle pre-grooming settling", "Grooming begins only when they're ready", "Post-grooming relaxation massage", "Led by your dog's comfort, never the clock"],
     note: "A quiet moment of care that helps your dog settle before grooming and gently unwind afterwards. Available exclusively as a pre and post grooming add-on."
@@ -138,8 +159,10 @@ const GROOM_PACKAGES = [
     key: "bath-brush-dogs",
     title: "Bath & Brush | Dogs",
     sub: "Essential Wash",
-    price: "\u20B9999",
+    price: "₹999",
     duration: "BATH & BRUSH",
+    isDogOnly: true,
+    petType: "Dog",
     img: "assets/img/pawpad/bath-brush-dogs.jpg",
     includes: [
       "Bath",
@@ -151,15 +174,17 @@ const GROOM_PACKAGES = [
       "Hygiene clip, scissoring, or clipping",
       "Matted coats or dogs needing extra care"
     ],
-    note: "A fast, no-fuss clean for dogs who don't need a full groom \u2014 just a wash, dry, and brush-out between full sessions."
+    note: "A fast, no-fuss clean for dogs who don't need a full groom — just a wash, dry, and brush-out between full sessions."
   },
   {
     cat: "Care",
     key: "bath-brush-cats",
     title: "Bath & Brush | Cats",
     sub: "Essential Wash",
-    price: "\u20B9999",
+    price: "₹999",
     duration: "BATH & BRUSH",
+    isCatOnly: true,
+    petType: "Cat",
     img: "assets/img/pawpad/bath-brush-cats.jpg",
     includes: [
       "Bath",
@@ -171,15 +196,17 @@ const GROOM_PACKAGES = [
       "Hygiene clip, scissoring, or clipping",
       "Matted coats or cats needing extra care"
     ],
-    note: "A fast, no-fuss clean for cats who don't need a full groom \u2014 just a wash, dry, and brush-out between full sessions."
+    note: "A fast, no-fuss clean for cats who don't need a full groom — just a wash, dry, and brush-out between full sessions."
   },
   {
     cat: "Care",
     key: "bath-brush-subscription",
     title: "Bath & Brush Subscription package",
     sub: "Essential Wash",
-    price: "\u20B93,496.50",
+    price: "₹3,496.50",
+    priceNum: 3496.5,
     duration: "VALID 2 MONTHS",
+    allowPetTypeSelection: true,
     img: "assets/img/pawpad/bath-brush-subscription.jpg",
     includes: [
       "4 Bath & Brush sessions",
@@ -196,15 +223,15 @@ const GROOM_PACKAGES = [
   }
 ];
 const ADD_ONS = [
-  { name: "Deep deshedding (FURminator+)", price: "+ \u20B9500" },
-  { name: "Hot oil & coat mask", price: "+ \u20B9400" },
-  { name: "Anti-tick herbal bath", price: "+ \u20B9300" },
-  { name: "Blueberry facial", price: "+ \u20B9250" },
-  { name: "Teeth scaling (cosmetic)", price: "+ \u20B9350" },
-  { name: "Pawpad signature pamper-pack", price: "+ \u20B9900" }
+  { name: "Deep deshedding (FURminator+)", price: "+ ₹500" },
+  { name: "Hot oil & coat mask", price: "+ ₹400" },
+  { name: "Anti-tick herbal bath", price: "+ ₹300" },
+  { name: "Blueberry facial", price: "+ ₹250" },
+  { name: "Teeth scaling (cosmetic)", price: "+ ₹350" },
+  { name: "Pawpad signature pamper-pack", price: "+ ₹900" }
 ];
 function GroomingHero({ onBook }) {
-  return /* @__PURE__ */ React.createElement("section", { className: "g-hero" }, /* @__PURE__ */ React.createElement("div", { className: "container g-hero-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "eyebrow reveal in" }, "Grooming services"), /* @__PURE__ */ React.createElement("h1", { className: "h-display reveal in", style: { marginTop: 24 } }, "Stress-free ", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "grooming")), /* @__PURE__ */ React.createElement("p", { className: "lead reveal in", style: { marginTop: 24, maxWidth: "54ch" } }, "Conscious pet grooming in Bangalore \u2014 built around coat health, hygiene, gentle handling, and emotional wellbeing. Every session is paced around your pet's comfort."), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 } }, /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary", onClick: onBook }, "Book a grooming session ", /* @__PURE__ */ React.createElement(Arrow, null)), /* @__PURE__ */ React.createElement("a", {
+  return /* @__PURE__ */ React.createElement("section", { className: "g-hero" }, /* @__PURE__ */ React.createElement("div", { className: "container g-hero-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "eyebrow reveal in" }, "Grooming services"), /* @__PURE__ */ React.createElement("h1", { className: "h-display reveal in", style: { marginTop: 24 } }, "Stress-free ", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("em", { className: "italic", style: { color: "var(--driftwood)" } }, "grooming")), /* @__PURE__ */ React.createElement("p", { className: "lead reveal in", style: { marginTop: 24, maxWidth: "54ch" } }, "Conscious pet grooming in Bangalore — built around coat health, hygiene, gentle handling, and emotional wellbeing. Every session is paced around your pet's comfort."), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 } }, /* @__PURE__ */ React.createElement("button", { className: "btn btn-primary", onClick: onBook }, "Book a grooming session ", /* @__PURE__ */ React.createElement(Arrow, null)), /* @__PURE__ */ React.createElement("a", {
     href: "#packages", className: "btn btn-ghost", onClick: (e) => {
       var _a;
       e.preventDefault();
@@ -231,7 +258,16 @@ function GroomingPackages({ onBook, onAddToCart }) {
   const filtered = filter === "All" ? GROOM_PACKAGES : GROOM_PACKAGES.filter((p) => p.cat === filter);
 
   const handleAddToCart = (p) => {
-    const priceNum = parseInt(String(p.price).replace(/[^0-9]/g, ""), 10) || 1000;
+    const catalogItem = (typeof CART_CATALOG !== "undefined" ? CART_CATALOG : []).find((c) => c.id === p.key);
+    let priceNum = p.priceNum;
+    if (priceNum === undefined) {
+      if (catalogItem && catalogItem.price !== undefined) {
+        priceNum = catalogItem.price;
+      } else {
+        const cleanStr = String(p.price || "").replace(/,/g, "").replace(/[^0-9.]/g, "");
+        priceNum = parseFloat(cleanStr) || 1000;
+      }
+    }
     const cartItem = {
       id: p.key,
       title: p.title,
@@ -240,7 +276,11 @@ function GroomingPackages({ onBook, onAddToCart }) {
       priceDisplay: p.price,
       desc: p.sub || p.note,
       img: p.img,
-      requiresPetInfo: true
+      requiresPetInfo: true,
+      isDogOnly: !!p.isDogOnly,
+      isCatOnly: !!p.isCatOnly,
+      petType: p.petType,
+      allowPetTypeSelection: !!p.allowPetTypeSelection
     };
     if (typeof onAddToCart === "function") {
       onAddToCart(cartItem);

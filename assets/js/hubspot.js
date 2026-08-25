@@ -48,11 +48,31 @@
         });
       }
 
-      if (data.subtotal) lines.push('Subtotal: ₹' + data.subtotal.toLocaleString('en-IN'));
-      if (data.mandatoryTrialDayFee) lines.push('Mandatory Trial Day Fee: +₹' + data.mandatoryTrialDayFee.toLocaleString('en-IN'));
-      if (data.totalAmount) lines.push('Total Amount Estimated: ₹' + data.totalAmount.toLocaleString('en-IN'));
+      function formatAmount(amt) {
+        var num = Number(amt) || 0;
+        return num % 1 !== 0 ? num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : num.toLocaleString('en-IN');
+      }
 
-      if (data.pet) {
+      if (data.subtotal) lines.push('Subtotal: ₹' + formatAmount(data.subtotal));
+      if (data.mandatoryTrialDayFee) lines.push('Mandatory Trial Day Fee: +₹' + formatAmount(data.mandatoryTrialDayFee));
+      if (data.totalAmount) lines.push('Total Amount Estimated: ₹' + formatAmount(data.totalAmount));
+
+      if (data.pets && data.pets.length) {
+        lines.push('\n--- Pet Details (' + data.pets.length + ' Pet' + (data.pets.length > 1 ? 's' : '') + ') ---');
+        data.pets.forEach(function (pet, idx) {
+          lines.push('\n[Pet #' + (idx + 1) + (pet.serviceTitle ? ' · ' + pet.serviceTitle : '') + ']');
+          if (pet.name) lines.push('Pet Name: ' + pet.name);
+          if (pet.type) lines.push('Pet Type: ' + pet.type);
+          if (pet.breed) lines.push('Breed: ' + pet.breed);
+          if (pet.age) lines.push('Age: ' + pet.age);
+          if (pet.size) lines.push('Size: ' + pet.size);
+          if (pet.coat) lines.push('Coat: ' + pet.coat);
+          if (pet.temperament) lines.push('Temperament: ' + pet.temperament);
+          if (pet.healthNotes) lines.push('Special Needs / Health Notes: ' + pet.healthNotes);
+          if (pet.hasCompletedTrialDay !== undefined) lines.push('Completed Previous Trial Day: ' + (pet.hasCompletedTrialDay ? 'Yes' : 'No'));
+          if (pet.isSamePetAsPrevious) lines.push('Note: Uses same pet profile as previous slot');
+        });
+      } else if (data.pet) {
         lines.push('\n--- Pet Details ---');
         if (data.pet.name) lines.push('Pet Name: ' + data.pet.name);
         if (data.pet.type) lines.push('Pet Type: ' + data.pet.type);
