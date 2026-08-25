@@ -338,9 +338,10 @@ body[data-motion="still"] .paw-trail {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--driftwood);
+  background: #b18d4e;
+  background: var(--driftwood, #b18d4e);
   pointer-events: none;
-  z-index: 10000;
+  z-index: 999999;
   transform: translate(-50%, -50%);
   mix-blend-mode: multiply;
   transition: transform .15s var(--ease), width .2s var(--ease), height .2s var(--ease), background .2s var(--ease), opacity .2s var(--ease);
@@ -349,7 +350,8 @@ body[data-motion="still"] .paw-trail {
 .cursor-dot.hover {
   width: 50px;
   height: 50px;
-  background: var(--driftwood);
+  background: #b18d4e;
+  background: var(--driftwood, #b18d4e);
   opacity: .25;
 }
 
@@ -357,6 +359,9 @@ body[data-motion="still"] .paw-trail {
   body,
   a,
   button,
+  input,
+  textarea,
+  label,
   [role="button"],
   .nav-link,
   .m-link,
@@ -367,6 +372,7 @@ body[data-motion="still"] .paw-trail {
   .back-link,
   .nav-pill,
   .chip-btn,
+  .cta,
   select,
   summary {
     cursor: none !important;

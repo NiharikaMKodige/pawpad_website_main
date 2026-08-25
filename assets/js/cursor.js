@@ -10,39 +10,89 @@
   function initCursor() {
     if (window.matchMedia && !window.matchMedia("(pointer: fine)").matches) return;
 
-    let trail = document.querySelector(".paw-trail");
+    // Inject self-contained cursor styles to guarantee visibility on all pages & forms
+    if (!document.getElementById("pawpad-cursor-styles")) {
+      var style = document.createElement("style");
+      style.id = "pawpad-cursor-styles";
+      style.textContent = `
+        @media (pointer: fine) {
+          body, a, button, input, select, textarea, label, [role="button"],
+          .nav-link, .m-link, .btn, .nav-cart-btn, .hamburger, .hover-zone,
+          .back-link, .nav-pill, .chip-btn, .cta, summary {
+            cursor: none !important;
+          }
+          .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #b18d4e !important;
+            pointer-events: none;
+            z-index: 999999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+            transition: transform .12s cubic-bezier(.2,.7,.2,1), width .2s ease, height .2s ease, opacity .2s ease;
+          }
+          .cursor-dot.hover {
+            width: 48px;
+            height: 48px;
+            background: #b18d4e !important;
+            opacity: 0.28;
+          }
+          .paw-trail {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999998;
+          }
+        }
+        @media (hover: none), (pointer: coarse) {
+          .cursor-dot, .paw-trail {
+            display: none !important;
+          }
+          body, a, button, input, select, textarea, label {
+            cursor: auto !important;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    var trail = document.querySelector(".paw-trail");
     if (!trail) {
       trail = document.createElement("div");
       trail.className = "paw-trail";
       document.body.appendChild(trail);
     }
 
-    let dot = document.querySelector(".cursor-dot");
+    var dot = document.querySelector(".cursor-dot");
     if (!dot) {
       dot = document.createElement("div");
       dot.className = "cursor-dot";
       document.body.appendChild(dot);
     }
 
-    let lastX = -100,
+    var lastX = -100,
       lastY = -100,
       lastStamp = 0,
       alt = 0;
-    let mx = window.innerWidth / 2,
+    var mx = window.innerWidth / 2,
       my = window.innerHeight / 2;
-    let dx = mx,
+    var dx = mx,
       dy = my;
-    let raf;
+    var raf;
 
     function onMove(e) {
       mx = e.clientX;
       my = e.clientY;
-      const t = e.target;
+      var t = e.target;
       if (
         t &&
         t.closest &&
         t.closest(
-          "a, button, .hover-zone, input, select, textarea, label, [role='button'], .nav-cart-btn, .hamburger, .m-link, .nav-link, .btn, .chip-btn, .back-link, .nav-pill"
+          "a, button, .hover-zone, input, select, textarea, label, [role='button'], .nav-cart-btn, .hamburger, .m-link, .nav-link, .btn, .chip-btn, .back-link, .nav-pill, .cta, summary"
         )
       ) {
         dot.classList.add("hover");
@@ -50,18 +100,18 @@
         dot.classList.remove("hover");
       }
 
-      const dist = Math.hypot(mx - lastX, my - lastY);
-      const now = performance.now();
+      var dist = Math.hypot(mx - lastX, my - lastY);
+      var now = performance.now();
       if (dist > 65 && now - lastStamp > 55) {
         lastX = mx;
         lastY = my;
         lastStamp = now;
-        const paw = document.createElement("div");
-        const angle = (Math.atan2(my - dy, mx - dx) * 180) / Math.PI + 90;
-        const side = alt ? -10 : 10;
+        var paw = document.createElement("div");
+        var angle = (Math.atan2(my - dy, mx - dx) * 180) / Math.PI + 90;
+        var side = alt ? -10 : 10;
         alt = 1 - alt;
-        const offX = Math.cos(((angle - 90) * Math.PI) / 180 + Math.PI / 2) * side;
-        const offY = Math.sin(((angle - 90) * Math.PI) / 180 + Math.PI / 2) * side;
+        var offX = Math.cos(((angle - 90) * Math.PI) / 180 + Math.PI / 2) * side;
+        var offY = Math.sin(((angle - 90) * Math.PI) / 180 + Math.PI / 2) * side;
         paw.className = "paw-print";
         paw.style.cssText =
           "position:fixed; left:" +
@@ -70,7 +120,7 @@
           (my + offY) +
           "px; width:22px; height:22px; transform:translate(-50%,-50%) rotate(" +
           angle +
-          "deg); opacity:.42; transition:opacity 1.4s ease, transform 1.4s ease; pointer-events:none; z-index:9999;";
+          "deg); opacity:.42; transition:opacity 1.4s ease, transform 1.4s ease; pointer-events:none; z-index:999998;";
         paw.innerHTML =
           '<svg viewBox="0 0 64 64" width="22" height="22" style="display:block;"><ellipse cx="32" cy="16" rx="5.5" ry="7.5" fill="#B18D4E"/><ellipse cx="20" cy="24" rx="6" ry="8" fill="#B18D4E"/><ellipse cx="44" cy="24" rx="6" ry="8" fill="#B18D4E"/><ellipse cx="11" cy="38" rx="5" ry="6.5" fill="#B18D4E"/><ellipse cx="53" cy="38" rx="5" ry="6.5" fill="#B18D4E"/><ellipse cx="32" cy="46" rx="13" ry="11" fill="#B18D4E"/></svg>';
         trail.appendChild(paw);

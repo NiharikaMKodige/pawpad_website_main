@@ -13,7 +13,7 @@
 <style>
   :root{
     --bg:#F8F6EF;--ink:#1C1B19;--ink-soft:#5B5546;
-    --gold:#B08D4E;--gold-deep:#96702E;--rule:#E3DCC9;--field-bg:#FFFFFF;--max:680px;
+    --gold:#B08D4E;--driftwood:#b18d4e;--gold-deep:#96702E;--rule:#E3DCC9;--field-bg:#FFFFFF;--max:680px;
     --f-display:"Fraunces","Boston Angel",Georgia,serif;
     --f-body:"Source Serif 4",Georgia,serif;
   }
@@ -80,6 +80,13 @@
   .cta:hover{background:#3A3835;}
   .note{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-soft);font-style:italic;}
   @media(max-width:900px){.page{padding:130px 20px 70px;}}
+
+  @media (pointer: fine) {
+    body, a, button, input, select, textarea, label, [role="button"], .nav-link, .m-link, .nav-cart-btn, .hamburger, .back-link, .cta {
+      cursor: none !important;
+    }
+  }
+
 </style>
 </head>
 <body data-palette="warm" data-motion="lively" data-density="default">
