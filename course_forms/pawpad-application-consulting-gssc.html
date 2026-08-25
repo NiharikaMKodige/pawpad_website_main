@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>PACGC Application — Pawpad Applied Canine & Feline Grooming Certification</title>
+<title>Book Consulting — Grooming Studio Setup &amp; Business Consulting</title>
 <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 <link rel="apple-touch-icon" href="../assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
-  
+
   .desktop-only { display: flex; }
   .mobile-only { display: none; }
   @media (max-width: 900px) {
@@ -187,8 +187,35 @@
   .note{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-soft);font-style:italic;}
   @media (max-width:900px){.page{padding:130px 20px 70px;}}
 
+  /* Consultation-format option cards */
+  .option-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px;}
+  @media (max-width:600px){.option-cards{grid-template-columns:1fr;}}
+  .option-card{
+    position:relative;display:block;cursor:pointer;
+    border:1.5px solid var(--rule);border-radius:10px;
+    background:#FFFFFF;padding:22px 20px;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .option-card input[type=radio]{
+    position:absolute;top:18px;right:18px;margin:0;width:18px;height:18px;accent-color:var(--gold-deep);
+  }
+  .option-card .opt-title{font-family:"Fraunces",serif;font-weight:500;font-size:18px;color:var(--ink);margin:0 0 6px;padding-right:26px;}
+  .option-card .opt-price{font-weight:600;font-size:16px;color:var(--gold-deep);margin:0 0 8px;}
+  .option-card .opt-desc{font-weight:400;font-size:13.5px;color:var(--ink-soft);margin:0;line-height:1.55;}
+  .option-card:hover{border-color:var(--gold);}
+  .option-card:has(input:checked){
+    border-color:var(--gold-deep);
+    background:#FDF8EC;
+    box-shadow:0 2px 10px rgba(150,112,46,0.12);
+  }
+  .option-card.selected{
+    border-color:var(--gold-deep);
+    background:#FDF8EC;
+    box-shadow:0 2px 10px rgba(150,112,46,0.12);
+  }
+
   @media (pointer: fine) {
-    body, a, button, input, select, textarea, label, [role="button"], .nav-link, .m-link, .nav-cart-btn, .hamburger, .back-link, .cta {
+    body, a, button, input, select, textarea, label, [role="button"], .nav-link, .m-link, .nav-cart-btn, .hamburger, .back-link, .cta, .option-card {
       cursor: none !important;
     }
   }
@@ -249,14 +276,32 @@
     <a href="../courses.html" class="back-link">← Back to Courses</a>
   </div>
 
-  <div class="eyebrow">Application · PACGC</div>
-  <h1>Pawpad Applied Canine &amp; Feline Grooming Certification</h1>
-  <p class="sub">7-week programme · ₹95,000 · Cohort of 3 · Stage 1 of 4 in our admissions process</p>
+  <div class="eyebrow">Booking · Studio Setup &amp; Business Consulting</div>
+  <h1>Grooming Studio Setup &amp; Business Consulting</h1>
+  <p class="sub">Online ₹20,000 · In-Person ₹35,000 / day · Choose your preferred format below</p>
   <hr>
 
   <form action="https://formsubmit.co/courses@pawpad.in" method="POST">
     <input type="hidden" name="_next" value="success.html">
-    <input type="hidden" name="_subject" value="New PACGC Application">
+    <input type="hidden" name="_subject" value="New Studio Consulting Booking Request">
+
+    <fieldset>
+      <legend>Choose your consultation format</legend>
+      <div class="option-cards">
+        <label class="option-card" id="card-online" for="format-online">
+          <input type="radio" id="format-online" name="consultation_format" value="Online Consultation (₹20,000)" required>
+          <p class="opt-title">Online Consultation</p>
+          <p class="opt-price">₹20,000</p>
+          <p class="opt-desc">Two video calls plus a written equipment and space brief, based on your plans, photos, or floor plan.</p>
+        </label>
+        <label class="option-card" id="card-in-person" for="format-in-person">
+          <input type="radio" id="format-in-person" name="consultation_format" value="In-Person Studio Visit (₹35,000/day)" required>
+          <p class="opt-title">In-Person Studio Visit</p>
+          <p class="opt-price">₹35,000 / day</p>
+          <p class="opt-desc">A full day on-site assessing your actual space in person before giving equipment and layout recommendations. Travel and accommodation billed separately, at actuals.</p>
+        </label>
+      </div>
+    </fieldset>
 
     <fieldset>
       <legend>Your details</legend>
@@ -264,54 +309,38 @@
       <div class="field"><label for="phone">Phone number</label><input type="tel" id="phone" name="phone" required></div>
       <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
       <div class="field"><label for="city">City</label><input type="text" id="city" name="city" required>
-        <div class="hint">This is an in-person programme run in Bengaluru.</div></div>
+        <div class="hint">In-person visits are scheduled based on your location; travel is billed separately.</div></div>
     </fieldset>
 
     <fieldset>
-      <legend>About you</legend>
-      <div class="field"><label for="why">Why do you want to take this course?</label><textarea id="why" name="why" required></textarea></div>
-      <div class="field"><label for="experience">Any prior experience with grooming, or hands-on work with dogs or cats? Have you completed any Pawpad Essentials or Practitioner course?</label><textarea id="experience" name="experience"></textarea>
-        <div class="hint">Prior courses aren't required to apply, but tell us if you've done any.</div></div>
-      <div class="field"><label for="handling">How would you currently handle a dog or cat that's resisting or struggling during a task?</label><textarea id="handling" name="handling" required></textarea></div>
-    </fieldset>
-
-    <fieldset>
-      <legend>Fit &amp; expectations</legend>
+      <legend>About your studio</legend>
       <div class="field">
-        <label>This is a career-pathway programme, not designed for personal/hobbyist use. Does this match what you're looking for?</label>
-        <div class="radio-row"><input type="radio" id="career-yes" name="career_fit" value="yes" required><label for="career-yes" style="font-weight:400;">Yes</label></div>
-        <div class="radio-row"><input type="radio" id="career-no" name="career_fit" value="no"><label for="career-no" style="font-weight:400;">No</label></div>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <legend>What this course actually involves — please confirm you understand</legend>
-      <div class="ack"><div class="check-row"><input type="checkbox" id="ack1" name="ack_both_species" required><label for="ack1" style="font-weight:400;">This course covers both dogs and cats within the same 210 hours, taught at full depth for each.</label></div></div>
-      <div class="ack"><div class="check-row"><input type="checkbox" id="ack2" name="ack_nail_trim" required><label for="ack2" style="font-weight:400;">Nail trimming has no practice-model step — I will watch this performed on a live animal several times before practicing myself. All other technique skills follow demo → model → live.</label></div></div>
-      <div class="ack"><div class="check-row"><input type="checkbox" id="ack3" name="ack_cat_clip_gate" required><label for="ack3" style="font-weight:400;">Cat clipping is gated behind demonstrated clipper-hold competence, not the course calendar — I may or may not reach live cat clipping within the 7 weeks, depending on my own progress.</label></div></div>
-      <div class="ack"><div class="check-row"><input type="checkbox" id="ack4" name="ack_foundation_level" required><label for="ack4" style="font-weight:400;">Grooming skill develops at different paces for different people — some pick it up quickly, others need more time. Pawpad's advice, regardless of pace: gain supervised experience before working independently. Pawpad offers placement support into a supervised role if I'd like it.</label></div></div>
-      <div class="ack"><div class="check-row"><input type="checkbox" id="ack5" name="ack_exam_optional" required><label for="ack5" style="font-weight:400;">I may optionally sit an internationally recognised certification exam (species-specific — dog or cat) at my own additional cost, billed at actuals, with no guarantee of readiness.</label></div></div>
-      <div class="ack"><div class="check-row"><input type="checkbox" id="ack6" name="ack_fees" required><label for="ack6" style="font-weight:400;">I understand the course fee (₹95,000), deposit (₹23,750, non-refundable, due on acceptance), and cancellation policy.</label></div></div>
-    </fieldset>
-
-    <fieldset>
-      <legend>Physical readiness &amp; wellbeing</legend>
-      <div class="field">
-        <label>This course involves standing for extended periods, lifting and holding animals, and repetitive hand movements. Are you able to do this safely?</label>
-        <div class="radio-row"><input type="radio" id="phys-yes" name="physical_capability" value="yes" required><label for="phys-yes" style="font-weight:400;">Yes</label></div>
-        <div class="radio-row"><input type="radio" id="phys-no" name="physical_capability" value="no"><label for="phys-no" style="font-weight:400;">No</label></div>
-        <div class="field" style="margin-top:12px;"><label for="phys-context" style="font-weight:400;">Optional — add context if you would like</label><textarea id="phys-context" name="physical_capability_context"></textarea></div>
+        <label>What stage are you at?</label>
+        <div class="radio-row"><input type="radio" id="stage-new" name="studio_stage" value="Planning a new studio" required><label for="stage-new" style="font-weight:400;">Planning a new studio</label></div>
+        <div class="radio-row"><input type="radio" id="stage-rework" name="studio_stage" value="Reworking an existing studio"><label for="stage-rework" style="font-weight:400;">Reworking an existing studio</label></div>
       </div>
       <div class="field">
-        <label for="health-optional">Optional and confidential — not used in the acceptance decision: is there anything about your health we should be aware of for your safety during hands-on activities (e.g., a recent surgery, an allergy, or a condition that could be affected by physical exertion or animal contact)?</label>
-        <textarea id="health-optional" name="health_disclosure"></textarea>
+        <label>Which species will your studio focus on?</label>
+        <div class="radio-row"><input type="radio" id="species-dog" name="species_focus" value="Dogs only" required><label for="species-dog" style="font-weight:400;">Dogs only</label></div>
+        <div class="radio-row"><input type="radio" id="species-cat" name="species_focus" value="Cats only"><label for="species-cat" style="font-weight:400;">Cats only</label></div>
+        <div class="radio-row"><input type="radio" id="species-both" name="species_focus" value="Both dogs and cats"><label for="species-both" style="font-weight:400;">Both dogs and cats</label></div>
       </div>
+      <div class="field"><label for="space-details">Tell us a bit about your space and plans</label><textarea id="space-details" name="space_details" required></textarea>
+        <div class="hint">Approximate size, location, current layout, floor plan or photos if you have them — you can also share files over WhatsApp after submitting.</div></div>
+      <div class="field"><label for="budget" style="font-weight:400;">Optional — rough budget range in mind for equipment</label><textarea id="budget" name="budget_range"></textarea></div>
     </fieldset>
 
-    <button type="submit" class="cta">Submit Application</button>
+    <fieldset>
+      <legend>What this covers — please confirm you understand</legend>
+      <div class="ack"><div class="check-row"><input type="checkbox" id="ack1" name="ack_deliverables" required><label for="ack1" style="font-weight:400;">Deliverables are equipment/budget guidance and space recommendations — this does not include a full architectural floor plan design.</label></div></div>
+      <div class="ack"><div class="check-row"><input type="checkbox" id="ack2" name="ack_travel" required><label for="ack2" style="font-weight:400;">For in-person visits, travel and accommodation are billed separately, at actuals, in addition to the ₹35,000/day consulting fee.</label></div></div>
+      <div class="ack"><div class="check-row"><input type="checkbox" id="ack3" name="ack_pricing" required><label for="ack3" style="font-weight:400;">Pricing shown is a starting point being tested, not a fixed rate card, and may be confirmed with me before booking is finalised.</label></div></div>
+    </fieldset>
+
+    <button type="submit" class="cta">Submit Booking Request</button>
   </form>
 
-  <div class="note">This form is not connected to a submission backend yet — it needs to be wired to an email service, Google Form, or your site platform's native form handling before it goes live. Submitting this covers Stage 1 only; interview scheduling, the prerequisite check, and the temperament/safety assessment happen after review.</div>
+  <div class="note">Submitting this sends a booking request — we'll follow up to confirm your selected format, schedule a date, and finalise pricing before anything is charged.</div>
 </div>
 
 <a href="https://wa.me/918885349267?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="wa-float hover-zone" aria-label="Chat with Pawpad on WhatsApp">
@@ -345,6 +374,19 @@
         if (e.target === menu) menu.style.display = 'none';
       });
     }
+
+    // Toggle .selected class on option cards for browsers without :has() support
+    const optionCards = document.querySelectorAll('.option-card');
+    optionCards.forEach(function(card) {
+      const input = card.querySelector('input[type=radio]');
+      if (!input) return;
+      input.addEventListener('change', function() {
+        document.querySelectorAll('input[name="consultation_format"]').forEach(function(r) {
+          const parentCard = r.closest('.option-card');
+          if (parentCard) parentCard.classList.toggle('selected', r.checked);
+        });
+      });
+    });
   })();
 </script>
   <script src="../assets/js/cursor.js"></script>
