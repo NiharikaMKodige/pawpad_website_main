@@ -39,9 +39,22 @@ function main() {
   rmSync(DIST, { recursive: true, force: true });
   mkdirSync(DIST, { recursive: true });
 
-  // Copy everything deployable (html at root + assets/) as a starting point.
+  // Copy everything deployable (html at root, favicons, manifests, CNAME + assets/) as a starting point.
+  const rootFilesToCopy = new Set([
+    "CNAME",
+    "favicon.ico",
+    "favicon.png",
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "apple-touch-icon.png",
+    "apple-touch-icon-precomposed.png",
+    "site.webmanifest",
+    "robots.txt",
+    "sitemap.xml",
+  ]);
+
   for (const entry of readdirSync(ROOT)) {
-    if (entry.endsWith(".html") || entry === "CNAME" || entry === "favicon.png") {
+    if (entry.endsWith(".html") || rootFilesToCopy.has(entry)) {
       const src = path.join(ROOT, entry);
       try {
         cpSync(src, path.join(DIST, entry));
