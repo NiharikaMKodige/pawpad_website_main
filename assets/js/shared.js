@@ -7,7 +7,8 @@ const ROUTE_HREF = {
   grooming: "grooming.html",
   courses: "courses.html",
   boarding: "boarding.html",
-  myotherapy: "myotherapy.html"
+  myotherapy: "myotherapy.html",
+  contact: "contact.html"
 };
 function hrefFor(key) {
   return ROUTE_HREF[key] || ROUTE_HREF.home;
@@ -112,7 +113,8 @@ const NAV_ITEMS = [
   { key: "grooming", label: "Grooming" },
   { key: "courses", label: "Courses" },
   { key: "boarding", label: "Boarding" },
-  { key: "myotherapy", label: "Myotherapy" }
+  { key: "myotherapy", label: "Myotherapy" },
+  { key: "contact", label: "Contact" }
 ];
 function TopNav({ route, onBook, onOpenCart }) {
   const [scrolled, setScrolled] = useState(false);

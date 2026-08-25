@@ -165,6 +165,7 @@ const NAV_ITEMS = [
   { key: "courses", label: "Courses" },
   { key: "boarding", label: "Boarding" },
   { key: "myotherapy", label: "Myotherapy" },
+  { key: "contact", label: "Contact" },
 ];
 
 function TopNav({ route, onBook }) {

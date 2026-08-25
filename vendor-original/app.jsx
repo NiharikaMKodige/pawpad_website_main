@@ -67,6 +67,7 @@ function App() {
     courses: <CoursesPage onBook={openBooking} />,
     boarding: <BoardingPage onBook={openBooking} />,
     myotherapy: <MyotherapyPage onBook={openBooking} />,
+    contact: <ContactPage onBook={openBooking} />,
   };
 
   const page = pages[route] || pages.home;

@@ -343,7 +343,7 @@ body[data-motion="still"] .paw-trail {
   z-index: 10000;
   transform: translate(-50%, -50%);
   mix-blend-mode: multiply;
-  transition: transform .15s var(--ease), width .2s var(--ease), height .2s var(--ease), background .2s var(--ease);
+  transition: transform .15s var(--ease), width .2s var(--ease), height .2s var(--ease), background .2s var(--ease), opacity .2s var(--ease);
 }
 
 .cursor-dot.hover {
@@ -353,11 +353,35 @@ body[data-motion="still"] .paw-trail {
   opacity: .25;
 }
 
-@media (hover: none) {
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [role="button"],
+  .nav-link,
+  .m-link,
+  .btn,
+  .nav-cart-btn,
+  .hamburger,
+  .hover-zone,
+  .back-link,
+  .nav-pill,
+  .chip-btn,
+  select,
+  summary {
+    cursor: none !important;
+  }
+}
 
+@media (hover: none), (pointer: coarse) {
+  body,
+  a,
+  button {
+    cursor: auto !important;
+  }
   .cursor-dot,
   .paw-trail {
-    display: none;
+    display: none !important;
   }
 }
 
