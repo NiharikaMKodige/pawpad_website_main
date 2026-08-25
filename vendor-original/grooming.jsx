@@ -239,7 +239,7 @@ function GroomingPackages({ onBook }) {
                   </div>
                   <div className="g-pkg-actions">
                     <button className="g-pkg-toggle" onClick={() => setOpen(isOpen ? null : p.key)}>
-                      {isOpen ? "Show less" : "What's included"} <span className="g-pkg-arrow">{isOpen ? "−" : "+"}</span>
+                      {isOpen ? "Show less" : "Show more"} <span className="g-pkg-arrow">{isOpen ? "−" : "+"}</span>
                     </button>
                     <button className="btn btn-primary btn-sm" onClick={() => {
                       const priceNum = parseInt(String(p.price).replace(/[^0-9]/g, ""), 10) || 1000;
