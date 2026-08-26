@@ -108,6 +108,7 @@ function TopNav({ route, onBook, onOpenCart }) {
           border-bottom: 1px solid color-mix(in oklab, var(--ink), transparent 92%);
         }
         .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .nav-brand { display: flex; align-items: center; flex-shrink: 0; }
         .nav-brand img {
           height: 140px;
           width: auto;
@@ -133,7 +134,7 @@ function TopNav({ route, onBook, onOpenCart }) {
           content: ""; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
           width: 4px; height: 4px; background: var(--driftwood); border-radius: 50%;
         }
-        .nav-cta { display: flex; align-items: center; gap: 12px; }
+        .nav-cta { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
         .nav-cart-btn {
           position: relative;
           display: inline-flex; align-items: center; justify-content: center;
@@ -143,6 +144,7 @@ function TopNav({ route, onBook, onOpenCart }) {
           color: var(--ink);
           border: 1px solid color-mix(in oklab, var(--ink), transparent 85%);
           cursor: pointer;
+          flex-shrink: 0;
           transition: all var(--t-fast) var(--ease);
         }
         .nav-cart-btn:hover {
@@ -168,7 +170,24 @@ function TopNav({ route, onBook, onOpenCart }) {
           80% { transform: scale(1.15); }
           100% { transform: scale(1); }
         }
-        .mobile-nav-actions { display: flex; align-items: center; gap: 8px; }
+        .mobile-nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        @media (min-width: 1025px) and (max-width: 1280px) {
+          .nav-inner { gap: 12px; }
+          .nav-brand img { height: 95px; }
+          .nav.scrolled .nav-brand img { height: 75px; }
+          .nav-links { gap: 2px; }
+          .nav-link { padding: 8px 10px; font-size: 13px; }
+        }
+        @media (max-width: 1024px) {
+          .nav { padding: 12px 0; }
+          .nav.scrolled { padding: 8px 0; }
+          .nav-brand img { height: 85px; max-width: min(50vw, 240px); }
+          .nav.scrolled .nav-brand img { height: 68px; }
+        }
+        @media (max-width: 480px) {
+          .nav-brand img { height: 72px; max-width: min(55vw, 190px); }
+          .nav.scrolled .nav-brand img { height: 58px; }
+        }
         .hamburger {
           display: flex; flex-direction: column; gap: 5px; padding: 10px;
         }

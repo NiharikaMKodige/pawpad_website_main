@@ -884,11 +884,11 @@ function CheckoutModal({ open, onClose }) {
           name: "",
           breed: "",
           age: "",
-          coat: "Short",
-          size: s.petType === "Cat" ? "Medium (3–6kg)" : "Small (<10kg)",
-          temperament: "Chill & Friendly",
+          coat: "",
+          size: "",
+          temperament: "",
           healthNotes: "",
-          hasCompletedTrialDay: false,
+          hasCompletedTrialDay: null,
           sameAsPrevious: false
         }))
       );
@@ -953,9 +953,9 @@ function CheckoutModal({ open, onClose }) {
       } else if (field === "petType") {
         let newSize = next[index].size;
         if (value === "Cat" && !SIZES_CAT_CHECKOUT.includes(newSize)) {
-          newSize = "Medium (3–6kg)";
+          newSize = "";
         } else if (value === "Dog" && !SIZES_DOG_CHECKOUT.includes(newSize)) {
-          newSize = "Small (<10kg)";
+          newSize = "";
         }
         next[index] = {
           ...next[index],
@@ -1011,10 +1011,10 @@ function CheckoutModal({ open, onClose }) {
   const petStepLabel = isMultiPet
     ? `Pet Details (${pets.length} Pets)`
     : allDogs
-    ? "Dog Details"
-    : allCats
-    ? "Cat Details"
-    : "Pet Details";
+      ? "Dog Details"
+      : allCats
+        ? "Cat Details"
+        : "Pet Details";
 
   const CHECKOUT_STEPS = [
     { label: "Your Info" },
@@ -1032,10 +1032,19 @@ function CheckoutModal({ open, onClose }) {
     const petIdx = typeof idx === "number" ? idx : pets.indexOf(p);
     const slot = petSlots[petIdx] || {};
     const isCompatible = pets[0] && (p.petType === pets[0].petType || slot.allowPetTypeSelection);
-    if (p.sameAsPrevious && petIdx > 0 && isCompatible) {
-      return !!(pets[0].name && pets[0].name.trim().length > 0);
+    const isSame = p.sameAsPrevious && petIdx > 0 && isCompatible;
+    const target = isSame ? pets[0] : p;
+    if (!target.name || !target.name.trim()) return false;
+    if (!target.breed || !target.breed.trim()) return false;
+    if (!target.size || !target.size.trim()) return false;
+    if (!target.coat || !target.coat.trim()) return false;
+    if (!target.temperament || !target.temperament.trim()) return false;
+    if (slot.isOvernight || p.isOvernight) {
+      if (target.hasCompletedTrialDay !== true && target.hasCompletedTrialDay !== false) {
+        return false;
+      }
     }
-    return !!(p.name && p.name.trim().length > 0);
+    return true;
   };
 
   const isStepValid = () => {
@@ -1240,10 +1249,9 @@ function CheckoutModal({ open, onClose }) {
               "a",
               {
                 href: `https://wa.me/918885349267?text=${encodeURIComponent(
-                  `Hi Pawpad! I placed booking ref ${completedOrder.orderId} for ${
-                    completedOrder.pets && completedOrder.pets.length > 0
-                      ? completedOrder.pets.map((p) => `${p.name} (${p.type})`).join(", ")
-                      : "my booking"
+                  `Hi Pawpad! I placed booking ref ${completedOrder.orderId} for ${completedOrder.pets && completedOrder.pets.length > 0
+                    ? completedOrder.pets.map((p) => `${p.name} (${p.type})`).join(", ")
+                    : "my booking"
                   }. Total: ₹${formatInr(completedOrder.totalAmount)}${completedOrder.mandatoryTrialDayFee > 0 ? " (includes ₹850 mandatory Trial Day fee)" : ""}.`
                 )}`,
                 target: "_blank",
@@ -1393,10 +1401,10 @@ function CheckoutModal({ open, onClose }) {
                   isMultiPet
                     ? `Step 2 · Pet Details (${pets.length} Pets)`
                     : isCurrentDog
-                    ? "Step 2 · Dog Details"
-                    : isCurrentCat
-                    ? "Step 2 · Cat Details"
-                    : "Step 2 · Pet Details"
+                      ? "Step 2 · Dog Details"
+                      : isCurrentCat
+                        ? "Step 2 · Cat Details"
+                        : "Step 2 · Pet Details"
                 ),
                 React.createElement(
                   "h4",
@@ -1404,10 +1412,10 @@ function CheckoutModal({ open, onClose }) {
                   isMultiPet
                     ? `Tell Us About Your Pets (Pet ${activePetIndex + 1} of ${pets.length})`
                     : isCurrentDog
-                    ? "Tell Us About Your Dog"
-                    : isCurrentCat
-                    ? "Tell Us About Your Cat"
-                    : "Tell Us About Your Pet"
+                      ? "Tell Us About Your Dog"
+                      : isCurrentCat
+                        ? "Tell Us About Your Cat"
+                        : "Tell Us About Your Pet"
                 ),
                 React.createElement(
                   "p",
@@ -1415,12 +1423,12 @@ function CheckoutModal({ open, onClose }) {
                   isMultiPet
                     ? `Configure the profile for ${currentPet.name || `Pet #${activePetIndex + 1}`} (${currentPet.serviceTitle || currentPet.petType}). Switch tabs above if you have multiple pets.`
                     : isCurrentDog
-                    ? (items.some((i) => i.category === "Boarding")
-                      ? "Pawpad Boarding is open exclusively to small dogs. Knowing your dog's coat and temperament helps us ensure an intimate, stress-free stay."
-                      : "Pawpad sessions are paced around your dog's comfort. Knowing their coat and temperament helps us tailor the session pace.")
-                    : isCurrentCat
-                    ? "Sessions at Pawpad are never rushed. Knowing your cat’s temperament and coat type helps us tailor the session pace in a quiet, low-stress environment."
-                    : "Sessions at Pawpad are never rushed. Knowing your pet’s temperament and coat type helps us tailor the session pace."
+                      ? (items.some((i) => i.category === "Boarding")
+                        ? "Pawpad Boarding is open exclusively to small dogs. Knowing your dog's coat and temperament helps us ensure an intimate, stress-free stay."
+                        : "Pawpad sessions are paced around your dog's comfort. Knowing their coat and temperament helps us tailor the session pace.")
+                      : isCurrentCat
+                        ? "Sessions at Pawpad are never rushed. Knowing your cat’s temperament and coat type helps us tailor the session pace in a quiet, low-stress environment."
+                        : "Sessions at Pawpad are never rushed. Knowing your pet’s temperament and coat type helps us tailor the session pace."
                 )
               ),
 
@@ -1521,10 +1529,10 @@ function CheckoutModal({ open, onClose }) {
                     isMultiPet
                       ? `Pet #${activePetIndex + 1} (${currentPet.petType}) Name *`
                       : isCurrentDog
-                      ? "Dog Name *"
-                      : isCurrentCat
-                      ? "Cat Name *"
-                      : "Pet Name *"
+                        ? "Dog Name *"
+                        : isCurrentCat
+                          ? "Cat Name *"
+                          : "Pet Name *"
                   ),
                   React.createElement("input", {
                     type: "text",
@@ -1538,14 +1546,14 @@ function CheckoutModal({ open, onClose }) {
                 React.createElement(
                   "div",
                   { className: "field" },
-                  React.createElement("label", null, "Breed / Mix"),
+                  React.createElement("label", null, "Breed / Mix *"),
                   React.createElement("input", {
                     type: "text",
                     placeholder: isCurrentDog
                       ? "e.g. Shih Tzu, Indie, Lhasa Apso, Beagle"
                       : isCurrentCat
-                      ? "e.g. Persian Cat, Indie, Siamese, British Shorthair"
-                      : "e.g. Indie, Golden Retriever, Shih Tzu, Persian Cat",
+                        ? "e.g. Persian Cat, Indie, Siamese, British Shorthair"
+                        : "e.g. Indie, Golden Retriever, Shih Tzu, Persian Cat",
                     value: currentPet.breed || "",
                     disabled: !!currentPet.sameAsPrevious,
                     onChange: (e) => updPet(activePetIndex, "breed", e.target.value)
@@ -1566,7 +1574,7 @@ function CheckoutModal({ open, onClose }) {
                 React.createElement(
                   "div",
                   { className: "field full-span" },
-                  React.createElement("label", null, isCurrentCat ? "Cat Size / Weight Category" : "Dog Size / Weight Category"),
+                  React.createElement("label", null, isCurrentCat ? "Cat Size / Weight Category *" : "Dog Size / Weight Category *"),
                   React.createElement(
                     "div",
                     { className: "chip-select" },
@@ -1588,7 +1596,7 @@ function CheckoutModal({ open, onClose }) {
                 React.createElement(
                   "div",
                   { className: "field full-span" },
-                  React.createElement("label", null, "Coat Type"),
+                  React.createElement("label", null, "Coat Type *"),
                   React.createElement(
                     "div",
                     { className: "chip-select" },
@@ -1610,7 +1618,7 @@ function CheckoutModal({ open, onClose }) {
                 React.createElement(
                   "div",
                   { className: "field full-span" },
-                  React.createElement("label", null, "Temperament / Handling"),
+                  React.createElement("label", null, "Temperament / Handling *"),
                   React.createElement(
                     "div",
                     { className: "chip-select" },
@@ -1664,30 +1672,60 @@ function CheckoutModal({ open, onClose }) {
                       )
                     ),
                     React.createElement(
-                      "label",
-                      { className: "trial-day-checkbox-label" },
-                      React.createElement("input", {
-                        type: "checkbox",
-                        className: "trial-day-checkbox",
-                        id: "trial-day-verify-checkbox",
-                        checked: !!currentPet.hasCompletedTrialDay,
-                        onChange: (e) => updPet(activePetIndex, "hasCompletedTrialDay", e.target.checked)
-                      }),
+                      "div",
+                      { className: "trial-day-question-wrap" },
                       React.createElement(
-                        "span",
-                        { className: "trial-day-checkbox-text" },
-                        "My pet has already completed a trial day at Pawpad before"
+                        "label",
+                        { className: "trial-day-question-label" },
+                        "Has your pet already completed a trial day at Pawpad before? ",
+                        React.createElement("span", { className: "trial-day-required-star" }, "*")
+                      ),
+                      React.createElement(
+                        "div",
+                        { className: "trial-day-btn-group" },
+                        React.createElement(
+                          "button",
+                          {
+                            type: "button",
+                            id: "trial-day-btn-yes",
+                            className: "trial-day-toggle-btn trial-day-toggle-yes " + (currentPet.hasCompletedTrialDay === true ? "active" : ""),
+                            disabled: !!currentPet.sameAsPrevious,
+                            onClick: () => updPet(activePetIndex, "hasCompletedTrialDay", true)
+                          },
+                          React.createElement("span", { className: "trial-day-toggle-check" }, currentPet.hasCompletedTrialDay === true ? "✓ " : ""),
+                          "Yes, Completed Before"
+                        ),
+                        React.createElement(
+                          "button",
+                          {
+                            type: "button",
+                            id: "trial-day-btn-no",
+                            className: "trial-day-toggle-btn trial-day-toggle-no " + (currentPet.hasCompletedTrialDay === false ? "active" : ""),
+                            disabled: !!currentPet.sameAsPrevious,
+                            onClick: () => updPet(activePetIndex, "hasCompletedTrialDay", false)
+                          },
+                          React.createElement("span", { className: "trial-day-toggle-check" }, currentPet.hasCompletedTrialDay === false ? "✓ " : ""),
+                          "No, First-Time Stay"
+                        )
                       )
                     ),
-                    React.createElement(
-                      "div",
-                      {
-                        className: `trial-day-helper-badge ${currentPet.hasCompletedTrialDay ? "verified" : "fee-notice"}`
-                      },
-                      currentPet.hasCompletedTrialDay
-                        ? "A verification will be done by our team and you might be asked to provide the previous Trial day visit proof if required. If no previous records are found, your Trial Day might be booked at the discretion of our team and the fee will be applicable"
-                        : "Since your pet hasn't had a trial day before, the mandatory Trial Day fee (₹850) will be added to your final bill summary."
-                    )
+                    currentPet.hasCompletedTrialDay === null
+                      ? React.createElement(
+                        "div",
+                        { className: "trial-day-helper-badge unselected" },
+                        "⚠️ Please select Yes or No above to proceed with your booking."
+                      )
+                      : currentPet.hasCompletedTrialDay === true
+                        ? React.createElement(
+                          "div",
+                          { className: "trial-day-helper-badge verified" },
+                          "✓ Previous Trial Day Recorded: A verification will be done by our team and you might be asked to provide the previous Trial day visit proof if required. If no previous records are found, your Trial Day might be booked at the discretion of our team and the fee will be applicable."
+                        )
+                        : React.createElement(
+                          "div",
+                          { className: "trial-day-helper-badge fee-notice" },
+                          "ℹ️ First-Time Stay: Since your pet hasn't had a trial day before, the mandatory Trial Day fee (₹850) will be added to your final bill summary."
+                        )
                   )
                 )
               ),

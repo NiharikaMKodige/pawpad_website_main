@@ -42,7 +42,7 @@
   
   .desktop-only { display: flex; }
   .mobile-only { display: none; }
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: flex !important; }
   }
@@ -61,6 +61,8 @@
   }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .nav-brand { display: flex; align-items: center; flex-shrink: 0; }
+  .nav-cta, .mobile-nav-actions, .nav-cart-btn { flex-shrink: 0; }
   .nav-brand img {
     height: 140px;
     width: auto;
@@ -70,7 +72,7 @@
     display: block;
   }
   .nav.scrolled .nav-brand img { height: 105px; }
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     .nav-brand img { height: 80px; }
     .nav.scrolled .nav-brand img { height: 65px; }
   }

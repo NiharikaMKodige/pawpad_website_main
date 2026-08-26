@@ -589,15 +589,78 @@ body[data-palette="dark"] .card {
 }
 
 /* Hide on mobile / desktop */
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
   .desktop-only {
     display: none !important;
   }
 }
 
-@media (min-width: 801px) {
+@media (min-width: 1025px) {
   .mobile-only {
     display: none !important;
+  }
+}
+
+/* Nav responsiveness & cart button protection */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav-cta,
+.mobile-nav-actions,
+.nav-cart-btn {
+  flex-shrink: 0;
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .nav-inner {
+    gap: 12px;
+  }
+  .nav-brand img {
+    height: 95px !important;
+    max-width: 220px !important;
+  }
+  .nav.scrolled .nav-brand img {
+    height: 75px !important;
+  }
+  .nav-links {
+    gap: 2px !important;
+  }
+  .nav-link {
+    padding: 8px 10px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    padding: 12px 0;
+  }
+  .nav.scrolled {
+    padding: 8px 0;
+  }
+  .nav-brand img {
+    height: 85px;
+    max-width: min(50vw, 240px);
+  }
+  .nav.scrolled .nav-brand img {
+    height: 68px;
+  }
+  .mobile-nav-actions {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand img {
+    height: 72px;
+    max-width: min(55vw, 190px);
+  }
+  .nav.scrolled .nav-brand img {
+    height: 58px;
   }
 }
 
@@ -1782,36 +1845,84 @@ body[data-palette="dark"] .card {
   margin: 0;
 }
 
-.trial-day-checkbox-label {
+.trial-day-question-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trial-day-question-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: var(--white);
-  padding: 12px 16px;
+  gap: 4px;
+}
+
+.trial-day-required-star {
+  color: #e65100;
+  font-weight: 800;
+}
+
+.trial-day-btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 520px) {
+  .trial-day-btn-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trial-day-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 16px;
   border-radius: 14px;
+  background: var(--white);
   border: 1.5px solid color-mix(in oklab, var(--ink), transparent 85%);
-  cursor: pointer;
-  user-select: none;
-  transition: all var(--t-fast) var(--ease);
-}
-
-.trial-day-checkbox-label:hover {
-  border-color: var(--driftwood);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-}
-
-.trial-day-checkbox {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--driftwood);
-  cursor: pointer;
-}
-
-.trial-day-checkbox-text {
+  color: var(--ink);
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--ink);
-  flex: 1;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--t-fast) var(--ease);
+  user-select: none;
+  text-align: center;
+}
+
+.trial-day-toggle-btn:hover:not(:disabled) {
+  border-color: var(--driftwood);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.trial-day-toggle-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.trial-day-toggle-btn.trial-day-toggle-yes.active {
+  background: #1b5e20;
+  border-color: #1b5e20;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(27, 94, 32, 0.25);
+}
+
+.trial-day-toggle-btn.trial-day-toggle-no.active {
+  background: #bf360c;
+  border-color: #bf360c;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(191, 54, 12, 0.25);
+}
+
+.trial-day-toggle-check {
+  font-weight: 800;
 }
 
 .trial-day-helper-badge {
@@ -1824,6 +1935,13 @@ body[data-palette="dark"] .card {
   gap: 8px;
   font-weight: 500;
   transition: all var(--t-fast) var(--ease);
+}
+
+.trial-day-helper-badge.unselected {
+  background: color-mix(in oklab, #f59e0b, transparent 88%);
+  color: #b45309;
+  border: 1px solid color-mix(in oklab, #f59e0b, transparent 65%);
+  font-weight: 600;
 }
 
 .trial-day-helper-badge.fee-notice {
@@ -1870,9 +1988,28 @@ body[data-palette="dark"] .trial-day-verify-card {
 }
 
 body[data-palette="dark"] .trial-day-verify-icon,
-body[data-palette="dark"] .trial-day-checkbox-label {
+body[data-palette="dark"] .trial-day-toggle-btn {
   background: color-mix(in oklab, var(--champagne), black 5%);
   border-color: color-mix(in oklab, var(--ink), transparent 80%);
+  color: var(--ink);
+}
+
+body[data-palette="dark"] .trial-day-toggle-btn.trial-day-toggle-yes.active {
+  background: #2e7d32;
+  border-color: #2e7d32;
+  color: #ffffff;
+}
+
+body[data-palette="dark"] .trial-day-toggle-btn.trial-day-toggle-no.active {
+  background: #d84315;
+  border-color: #d84315;
+  color: #ffffff;
+}
+
+body[data-palette="dark"] .trial-day-helper-badge.unselected {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.35);
 }
 
 body[data-palette="dark"] .trial-day-helper-badge.fee-notice {
