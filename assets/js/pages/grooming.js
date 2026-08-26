@@ -163,7 +163,7 @@ const GROOM_PACKAGES = [
     duration: "BATH & BRUSH",
     isDogOnly: true,
     petType: "Dog",
-    img: "assets/img/pawpad/bath-brush-dogs.jpg",
+    img: "assets/img/pawpad/grooming-page-dog-long-hair-haircut.webp",
     includes: [
       "Bath",
       "Full blow dry",
@@ -185,7 +185,7 @@ const GROOM_PACKAGES = [
     duration: "BATH & BRUSH",
     isCatOnly: true,
     petType: "Cat",
-    img: "assets/img/pawpad/bath-brush-cats.jpg",
+    img: "assets/img/pawpad/bath-brush-cats.jpg?v=2",
     includes: [
       "Bath",
       "Full blow dry",
@@ -207,7 +207,7 @@ const GROOM_PACKAGES = [
     priceNum: 3496.5,
     duration: "VALID 2 MONTHS",
     allowPetTypeSelection: true,
-    img: "assets/img/pawpad/bath-brush-subscription.jpg",
+    img: "assets/img/pawpad/bath-brush-subscription.jpg?v=2",
     includes: [
       "4 Bath & Brush sessions",
       "For dogs & cats",

@@ -44,22 +44,17 @@ Tracking against the 4-week plan agreed with Pawpad. Updated 12 Aug 2026.
       `assets/js/hubspot.js` can be replaced. It's untouched and still live
       for now so lead capture isn't broken in the meantime.
 - [ ] **Razorpay Key ID.** Needed for the checkout build in Week 3.
-- [ ] **Logo/favicon files.** You're supplying these directly — the site
-      still references the original `favicon.png` (the low-res one flagged
-      in the audit) until you hand over the new files.
+- [x] **Logo/favicon files.** Comprehensive favicon assets, SVG, Apple Touch Icons, Web App Manifest, and head links added across all pages.
 - [ ] **Instagram/Facebook URLs.** Footer icons are marked with a
       `TODO(RIED)` comment in `assets/js/shared.js` and still point at `#` —
       real client accounts not yet provided.
-- [ ] **GitHub repo target.** This build needs to be pushed to Pawpad's
-      actual GitHub repo (create one if it doesn't exist yet), with the
-      Pages source set per your preference — see README's "Deployment"
-      section for the zero-build vs. Actions choice.
+- [x] **GitHub repo target.** Active repository: `https://github.com/Ranjana0521/Paw-Pad-Website.git` on `main`.
 
-## Weeks 2–4 (not started)
+## Weeks 2–4
 
 - [ ] Full CSS/responsive fix pass beyond what was touched incidentally this
       week
-- [ ] Favicon/icon set generation once logo files arrive
+- [x] Favicon/icon set generation & manifest integration
 - [x] WhatsApp floating click-to-chat widget across all pages (integrated in `assets/js/shared.js` & `page-shell.js`)
 - [ ] Web3Forms integration replacing `assets/js/hubspot.js`
 - [x] Cart/checkout page and drawer with Razorpay links & full validation (`assets/js/cart.js`)

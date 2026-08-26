@@ -142,7 +142,7 @@ const GROOM_PACKAGES = [
     sub: "Essential Wash",
     price: "₹999",
     duration: "BATH & BRUSH",
-    img: "assets/img/pawpad/bath-brush-dogs.jpg",
+    img: "assets/img/pawpad/grooming-page-dog-long-hair-haircut.webp",
     includes: [
       "Bath",
       "Full blow dry",
@@ -162,7 +162,9 @@ const GROOM_PACKAGES = [
     sub: "Essential Wash",
     price: "₹999",
     duration: "BATH & BRUSH",
-    img: "assets/img/pawpad/bath-brush-cats.jpg",
+    isCatOnly: true,
+    petType: "Cat",
+    img: "assets/img/pawpad/bath-brush-cats.jpg?v=2",
     includes: [
       "Bath",
       "Full blow dry",
@@ -183,7 +185,8 @@ const GROOM_PACKAGES = [
     price: "₹3,496.50",
     priceNum: 3496.5,
     duration: "VALID 2 MONTHS",
-    img: "assets/img/pawpad/bath-brush-subscription.jpg",
+    allowPetTypeSelection: true,
+    img: "assets/img/pawpad/bath-brush-subscription.jpg?v=2",
     includes: [
       "4 Bath & Brush sessions",
       "For dogs & cats",

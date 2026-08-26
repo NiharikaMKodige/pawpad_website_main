@@ -236,7 +236,7 @@ const CART_CATALOG = [
     requiresPetInfo: true,
     isDogOnly: true,
     petType: "Dog",
-    img: "assets/img/pawpad/bath-brush-dogs.jpg"
+    img: "assets/img/pawpad/grooming-page-dog-long-hair-haircut.webp"
   },
   {
     id: "bath-brush-cats",
@@ -248,7 +248,7 @@ const CART_CATALOG = [
     requiresPetInfo: true,
     isCatOnly: true,
     petType: "Cat",
-    img: "assets/img/pawpad/bath-brush-cats.jpg"
+    img: "assets/img/pawpad/bath-brush-cats.jpg?v=2"
   },
   {
     id: "bath-brush-subscription",
@@ -259,7 +259,7 @@ const CART_CATALOG = [
     desc: "Keep your pet's coat consistently clean and healthy with regular bath-and-brush visits, spaced through the month.",
     requiresPetInfo: true,
     allowPetTypeSelection: true,
-    img: "assets/img/pawpad/bath-brush-subscription.jpg"
+    img: "assets/img/pawpad/bath-brush-subscription.jpg?v=2"
   }
 ];
 
