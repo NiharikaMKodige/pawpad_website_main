@@ -60,13 +60,11 @@ Tracking against the 4-week plan agreed with Pawpad. Updated 12 Aug 2026.
 - [ ] Full CSS/responsive fix pass beyond what was touched incidentally this
       week
 - [ ] Favicon/icon set generation once logo files arrive
-- [ ] WhatsApp floating click-to-chat widget (separate from the existing
-      footer icon/booking-confirmation links already fixed above)
+- [x] WhatsApp floating click-to-chat widget across all pages (integrated in `assets/js/shared.js` & `page-shell.js`)
 - [ ] Web3Forms integration replacing `assets/js/hubspot.js`
-- [ ] Cart/checkout page with Razorpay Payment Links
+- [x] Cart/checkout page and drawer with Razorpay links & full validation (`assets/js/cart.js`)
 - [ ] Security hardening: Cloudflare in front of GitHub Pages (headers/WAF/HTTPS)
-- [ ] sitemap.xml, robots.txt, schema.org LocalBusiness markup (page-level
-      meta is already done, see above)
+- [x] sitemap.xml, robots.txt, schema.org LocalBusiness markup
 - [x] Privacy Policy / Terms / Refund & Cancellation Policy pages ([policies.html](policies.html)) with links in footer
 - [ ] Cross-browser/device QA pass, Razorpay test-mode run-through, form
       delivery test
