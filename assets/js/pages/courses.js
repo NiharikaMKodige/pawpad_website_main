@@ -58,6 +58,7 @@ const COURSE_LIST = [
     priceNum: 95000,
     duration: "7 weeks",
     knowMoreUrl: "course_forms/pawpad-foundations-page.html",
+    enrollUrl: "course_forms/pawpad-application-pfbgb.html",
     desc: "A 7-week foundation-level grooming certification for complete beginners building toward a professional grooming career with both dogs and cats. Learn consent-based handling, anatomy, stress signals, bathing, coat care, scissoring, and clipping without restraint or force."
   },
   {
