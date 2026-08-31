@@ -89,6 +89,59 @@
   }
 
 </style>
+
+  <style id="pawpad-spacing-fix">
+    /* Reduce section gaps without breaking header alignment */
+    section,
+    .section,
+    .content-block,
+    .know-more-container {
+      padding-top: 1.5rem !important;
+      padding-bottom: 1.5rem !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Keep top heading spaced safely below the nav */
+    main,
+    .main-content {
+      padding-top: 2rem !important;
+    }
+  </style>
+  <style id="pawpad-footer-fix">
+  .footer-cta-block a,
+  .footer-cta-btn, 
+  a.footer-cta-btn {
+    all: unset !important;
+    background: none !important;
+    background-color: transparent !important;
+    color: #ffffff !important;
+    font-family: var(--f-body, "Source Serif 4", serif) !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    letter-spacing: .1em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+  }
+  
+  .footer-cta-block a:hover,
+  .footer-cta-btn:hover, 
+  a.footer-cta-btn:hover {
+    background: transparent !important;
+    color: #B08D4E !important;
+    text-decoration: underline !important;
+  }
+.footer-headline em {
+color: #ffffff !important;
+}
+</style>
 </head>
 <body data-palette="warm" data-motion="lively" data-density="default">
 
@@ -219,5 +272,110 @@
   })();
 </script>
   <script src="../assets/js/cursor.js"></script>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-cta-block">
+        <p class="eyebrow">Ready when you are</p>
+        <h2 class="h-1">Soft hands<br><em class="italic" style="color: var(--white);">Calm pets</em></h2>
+        <p class="lead" style="margin-top: 24px;">Walk in with anxiety, leave with a wagging tail. Sessions are spaced, never rushed — and we plan around your pet's temperament, not our calendar.</p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px;">
+          <a href="../about.html" class="btn btn-primary footer-cta-btn">Read our story <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arr" style="margin-left: 6px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></a>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <h4 class="f-h">Hours</h4>
+          <p>Weekdays: 11 AM - 8 PM<br>Weekends: 10 AM - 8 PM<br>Thursdays: Closed</p>
+        </div>
+        <div>
+          <h4 class="f-h">Address</h4>
+          <p>#426, 5th Main Road,<br>HRBR 2nd Block, Kalyan Nagar<br>Bangalore - 560043 India</p>
+          <p style="margin-top: 14px;">Ph: <a href="tel:+919663077496">9663077496</a></p>
+          <div class="socials">
+            <a href="https://www.instagram.com/pawpad_grooming_studio?igsi=MTRranltYzh1cnVuZw%3D%3D&amp;utm_source=qr" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a href="https://www.facebook.com/share/19KxDx35E5/?mibextid=wwXIfr" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" stroke="none" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            <a href="https://x.com/Pawpad_Blore" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" stroke="none" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="f-h">Explore</h4>
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../experience.html">Experience</a></li>
+            <li><a href="../grooming.html">Grooming</a></li>
+            <li><a href="../courses.html">Courses</a></li>
+            <li><a href="../boarding.html">Boarding</a></li>
+            <li><a href="../myotherapy.html">Myotherapy</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="brand-mark">
+        <img src="../assets/img/logo-pawpad-03.png" alt="Pawpad">
+      </div>
+      <div class="footer-bottom-meta">
+        <p class="micro">© 2017 Pawpad. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="../policies.html#privacy">Privacy Policy</a>
+          <span class="sep">|</span>
+          <a href="../policies.html#terms">Terms and Conditions</a>
+          <span class="sep">|</span>
+          <a href="../policies.html#refund">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<style>
+  .site-footer {
+    background: #2e2e2e; color: var(--white, #ffffff);
+    padding: 100px 0 36px; margin-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .site-footer .eyebrow { color: var(--white, #ffffff); }
+  .site-footer .eyebrow::before { background: var(--white, #ffffff); }
+  .site-footer h2 { color: var(--white, #ffffff); }
+  .site-footer p { color: color-mix(in oklab, var(--white, #ffffff), transparent 20%); }
+  .site-footer a { color: var(--white, #ffffff); transition: color var(--t-fast, 0.2s) var(--ease, ease); }
+  .site-footer a:hover { color: var(--driftwood, #b18d4e); }
+  .footer-top { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; padding-bottom: 80px; }
+  .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 12px; }
+  .f-h { font-family: var(--f-body, "Source Serif 4", serif); font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--white, #ffffff); margin: 0 0 14px; }
+  .footer-grid ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .footer-grid p { margin: 0; line-height: 1.6; }
+  .socials { display: flex; gap: 8px; margin-top: 16px; }
+  .socials a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: color-mix(in oklab, var(--cream-bg, #F8F6EF), transparent 88%);
+    color: var(--white, #ffffff);
+    transition: background var(--t-fast, 0.2s) var(--ease, ease), color var(--t-fast, 0.2s) var(--ease, ease), transform var(--t-fast, 0.2s) var(--ease, ease);
+  }
+  .socials a:hover { background: var(--driftwood, #b18d4e); color: var(--white, #ffffff); transform: translateY(-2px); }
+  .socials a svg { display: block; }
+  .footer-bottom {
+    padding-top: 36px; border-top: 1px solid color-mix(in oklab, var(--cream-bg, #F8F6EF), transparent 88%);
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .brand-mark img { height: 88px; width: auto; max-width: 360px; object-fit: contain; opacity: .98; }
+  .footer-bottom-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .footer-bottom-meta .micro { margin: 0; font-size: 12px; letter-spacing: .04em; color: color-mix(in oklab, var(--white, #ffffff), transparent 25%); }
+  .footer-legal { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; }
+  .footer-legal a { color: color-mix(in oklab, var(--white, #ffffff), transparent 30%); font-size: 12px; text-decoration: none; transition: color var(--t-fast, 0.2s) var(--ease, ease); }
+  .footer-legal a:hover { color: var(--white, #ffffff); text-decoration: underline; }
+  .footer-legal .sep { color: color-mix(in oklab, var(--white, #ffffff), transparent 65%); font-size: 11px; }
+  @media (max-width: 900px) {
+    .footer-top { grid-template-columns: 1fr; gap: 48px; padding-bottom: 48px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .brand-mark img { height: 64px; max-width: 240px; }
+    .footer-bottom-meta { align-items: flex-start; }
+  }
+</style>
 </body>
 </html>
