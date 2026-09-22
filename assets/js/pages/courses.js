@@ -51,28 +51,6 @@ const COURSE_LIST = [
     knowMoreUrl: "course_forms/pawpad-foundations-page.html",
     enrollUrl: "course_forms/pawpad-application-pacgc.html",
     desc: "A 7-week comprehensive programme in conscious canine and feline grooming in Bengaluru. Small cohort of 3 students learning consent-based handling, anatomy, coat care, scissoring, and clipping without restraint."
-  },
-  {
-    key: "studio-consulting-online",
-    title: "Grooming Studio Setup — Option 1: Online Consultation",
-    price: "₹20,000",
-    priceNum: 20000,
-    duration: "2 Video Calls",
-    knowMoreUrl: "course_forms/pawpad-studio-consulting-page.html",
-    enrollUrl: "course_forms/pawpad-studio-consulting-page.html",
-    enrollText: "Book Now",
-    desc: "Two video calls plus a written equipment and space brief based on your floor plan or photos. Ideal for remote guidance on budgets, layout, and essential gear."
-  },
-  {
-    key: "studio-consulting-in-person",
-    title: "Grooming Studio Setup — Option 2: In-Person Studio Visit",
-    price: "₹35,000 / day",
-    priceNum: 35000,
-    duration: "Full Day On-Site",
-    knowMoreUrl: "course_forms/pawpad-studio-consulting-page.html",
-    enrollUrl: "course_forms/pawpad-studio-consulting-page.html",
-    enrollText: "Book Now",
-    desc: "A full day on-site assessing your actual space in person before providing customized equipment lists, space recommendations, and operational layout planning."
   }
 ];
 

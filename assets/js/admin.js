@@ -1446,6 +1446,7 @@
       { id: "about", label: "About Page" },
       { id: "grooming", label: "Grooming Service" },
       { id: "courses", label: "Courses & Academy" },
+      { id: "studioSetup", label: "Studio Setup & Consulting" },
       { id: "boarding", label: "Boarding Service" },
       { id: "myotherapy", label: "Myotherapy & Wellness" },
       { id: "contact", label: "Contact & Timings" }
@@ -3181,6 +3182,234 @@
           )
         ),
 
+        selectedPage === "studioSetup" &&
+        React.createElement(
+          "div",
+          { style: { display: "flex", flexDirection: "column", gap: "24px" } },
+
+          // 1. Header & Hero
+          React.createElement(
+            "div",
+            { style: { display: "flex", flexDirection: "column", gap: "16px", background: "var(--admin-bg)", padding: "18px", borderRadius: "10px", border: "1px solid var(--admin-border-subtle)" } },
+            React.createElement("h4", { style: { color: "var(--admin-gold)", fontSize: "15px" } }, "1. Hero Header & Overview"),
+            React.createElement(
+              "div",
+              { style: { display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px" } },
+              React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Eyebrow"), React.createElement("input", { className: "input-field", value: formData.eyebrow || "Studio Setup & Business Consulting", onChange: (e) => updateField("eyebrow", e.target.value) })),
+              React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Headline Title Prefix"), React.createElement("input", { className: "input-field", value: formData.title || "Planning your ", onChange: (e) => updateField("title", e.target.value) })),
+              React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Headline Accent (Italic Gold)"), React.createElement("input", { className: "input-field", value: formData.titleAccent !== undefined ? formData.titleAccent : "grooming space?", onChange: (e) => updateField("titleAccent", e.target.value) }))
+            ),
+            React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Hero Lead Paragraph"), React.createElement("textarea", { className: "input-field", style: { minHeight: "75px" }, value: formData.heroLead || "Get layout, equipment and budget guidance from PawPad, where many working studio owners got their start — not a generic checklist.", onChange: (e) => updateField("heroLead", e.target.value) })),
+            React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Secondary Intro Text"), React.createElement("textarea", { className: "input-field", style: { minHeight: "85px" }, value: formData.introText || "", onChange: (e) => updateField("introText", e.target.value) })),
+            React.createElement(ImageUploadWidget, {
+              label: "Studio Setup Hero / Layout Image (WebP Auto-Converted)",
+              currentUrl: formData.heroImage || "",
+              onSelectUrl: (newUrl) => updateField("heroImage", newUrl)
+            })
+          ),
+
+          // 2. Audience ("Who this is for") & Value ("What you get")
+          React.createElement(
+            "div",
+            { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" } },
+            // Left: Who this is for
+            React.createElement(
+              "div",
+              { style: { display: "flex", flexDirection: "column", gap: "14px", background: "var(--admin-bg)", padding: "18px", borderRadius: "10px", border: "1px solid var(--admin-border-subtle)" } },
+              React.createElement("h4", { style: { color: "var(--admin-gold)", fontSize: "15px" } }, "2. Who This Is For (Bullet Points)"),
+              React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "One item per line"),
+              React.createElement("textarea", {
+                className: "input-field",
+                style: { minHeight: "140px" },
+                value: Array.isArray(formData.whoThisIsFor) ? formData.whoThisIsFor.join("\n") : (formData.whoThisIsFor || ""),
+                onChange: (e) => updateField("whoThisIsFor", e.target.value.split("\n").filter((l) => l.trim().length > 0))
+              })
+            ),
+            // Right: What you get
+            React.createElement(
+              "div",
+              { style: { display: "flex", flexDirection: "column", gap: "14px", background: "var(--admin-bg)", padding: "18px", borderRadius: "10px", border: "1px solid var(--admin-border-subtle)" } },
+              React.createElement("h4", { style: { color: "var(--admin-gold)", fontSize: "15px" } }, "3. What You Get (Deliverables)"),
+              (formData.whatYouGet || []).map((item, idx) =>
+                React.createElement(
+                  "div",
+                  { key: idx, style: { display: "flex", flexDirection: "column", gap: "6px", background: "var(--admin-card-bg)", padding: "10px", borderRadius: "8px", border: "1px solid var(--admin-border-subtle)" } },
+                  React.createElement("input", {
+                    className: "input-field",
+                    style: { fontWeight: "600", fontSize: "13px" },
+                    placeholder: "Deliverable Title",
+                    value: item.title || "",
+                    onChange: (e) => {
+                      const list = [...(formData.whatYouGet || [])];
+                      list[idx] = { ...list[idx], title: e.target.value };
+                      updateField("whatYouGet", list);
+                    }
+                  }),
+                  React.createElement("textarea", {
+                    className: "input-field",
+                    style: { minHeight: "50px", fontSize: "12px" },
+                    placeholder: "Deliverable Description",
+                    value: item.desc || "",
+                    onChange: (e) => {
+                      const list = [...(formData.whatYouGet || [])];
+                      list[idx] = { ...list[idx], desc: e.target.value };
+                      updateField("whatYouGet", list);
+                    }
+                  })
+                )
+              )
+            )
+          ),
+
+          // 3. Consultation Packages (The 2 Options)
+          React.createElement(
+            "div",
+            { style: { display: "flex", flexDirection: "column", gap: "16px" } },
+            React.createElement("h4", { style: { color: "var(--admin-gold-light)", fontSize: "17px", fontFamily: "var(--font-display)" } }, "4. Consultation Packages (", (formData.packages || []).length, ")"),
+            (formData.packages || []).map((pkg, idx) =>
+              React.createElement(
+                "div",
+                { key: pkg.key || idx, className: "card", style: { display: "flex", flexDirection: "column", gap: "14px", border: "1px solid var(--admin-border-subtle)", background: "var(--admin-card-bg)" } },
+                React.createElement(
+                  "div",
+                  { style: { display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: "12px" } },
+                  React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Package Title"), React.createElement("input", { className: "input-field", value: pkg.title || "", onChange: (e) => { const list = [...formData.packages]; list[idx].title = e.target.value; updateField("packages", list); } })),
+                  React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Tag / Badge"), React.createElement("input", { className: "input-field", value: pkg.tag || "", onChange: (e) => { const list = [...formData.packages]; list[idx].tag = e.target.value; updateField("packages", list); } })),
+                  React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Price Display (e.g. ₹20,000)"), React.createElement("input", { className: "input-field", value: pkg.price || "", onChange: (e) => { const list = [...formData.packages]; list[idx].price = e.target.value; updateField("packages", list); } })),
+                  React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Duration / Format"), React.createElement("input", { className: "input-field", value: pkg.duration || "", onChange: (e) => { const list = [...formData.packages]; list[idx].duration = e.target.value; updateField("packages", list); } }))
+                ),
+                React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Description"), React.createElement("textarea", { className: "input-field", style: { minHeight: "65px" }, value: pkg.desc || "", onChange: (e) => { const list = [...formData.packages]; list[idx].desc = e.target.value; updateField("packages", list); } })),
+                React.createElement(
+                  "div",
+                  { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" } },
+                  React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Includes (One per line)"), React.createElement("textarea", { className: "input-field", style: { minHeight: "80px" }, value: Array.isArray(pkg.includes) ? pkg.includes.join("\n") : (pkg.includes || ""), onChange: (e) => { const list = [...formData.packages]; list[idx].includes = e.target.value.split("\n").filter((l) => l.trim().length > 0); updateField("packages", list); } })),
+                  React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Package Note / Travel Terms"), React.createElement("textarea", { className: "input-field", style: { minHeight: "80px" }, value: pkg.note || "", onChange: (e) => { const list = [...formData.packages]; list[idx].note = e.target.value; updateField("packages", list); } }))
+                ),
+                React.createElement(
+                  "div",
+                  { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" } },
+                  React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "CTA Button Text"), React.createElement("input", { className: "input-field", value: pkg.ctaText || "Book Now", onChange: (e) => { const list = [...formData.packages]; list[idx].ctaText = e.target.value; updateField("packages", list); } })),
+                  React.createElement("div", null, React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Booking Form URL"), React.createElement("input", { className: "input-field", value: pkg.applyUrl || "", onChange: (e) => { const list = [...formData.packages]; list[idx].applyUrl = e.target.value; updateField("packages", list); } }))
+                )
+              )
+            )
+          ),
+
+          // 4. Studio Infrastructure Gallery
+          React.createElement(
+            "div",
+            { style: { display: "flex", flexDirection: "column", gap: "16px", background: "var(--admin-bg)", padding: "18px", borderRadius: "10px", border: "1px solid var(--admin-border-subtle)" } },
+            React.createElement("h4", { style: { color: "var(--admin-gold)", fontSize: "15px" } }, "5. Studio Infrastructure Gallery Showcase"),
+            React.createElement(
+              "div",
+              { style: { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" } },
+              (formData.gallery || []).map((item, idx) =>
+                React.createElement(
+                  "div",
+                  { key: idx, style: { display: "flex", flexDirection: "column", gap: "8px", background: "var(--admin-card-bg)", padding: "12px", borderRadius: "10px", border: "1px solid var(--admin-border-subtle)" } },
+                  React.createElement(ImageUploadWidget, {
+                    label: `Photo 0${idx + 1}`,
+                    currentUrl: item.img || "",
+                    onSelectUrl: (newUrl) => {
+                      const list = [...(formData.gallery || [])];
+                      list[idx] = { ...list[idx], img: newUrl };
+                      updateField("gallery", list);
+                    }
+                  }),
+                  React.createElement("input", {
+                    className: "input-field",
+                    style: { fontSize: "12px" },
+                    placeholder: "Photo Caption",
+                    value: item.caption || "",
+                    onChange: (e) => {
+                      const list = [...(formData.gallery || [])];
+                      list[idx] = { ...list[idx], caption: e.target.value };
+                      updateField("gallery", list);
+                    }
+                  })
+                )
+              )
+            )
+          ),
+
+          // 5. Frequently Asked Questions (FAQ)
+          React.createElement(
+            "div",
+            { style: { display: "flex", flexDirection: "column", gap: "16px", background: "var(--admin-bg)", padding: "18px", borderRadius: "10px", border: "1px solid var(--admin-border-subtle)" } },
+            React.createElement(
+              "div",
+              { style: { display: "flex", justifyContent: "space-between", alignItems: "center" } },
+              React.createElement("h4", { style: { color: "var(--admin-gold)", fontSize: "15px" } }, "6. Frequently Asked Questions (", (formData.faqs || []).length, ")"),
+              React.createElement(
+                "button",
+                {
+                  className: "btn-admin btn-admin-secondary",
+                  style: { padding: "6px 12px", fontSize: "12px" },
+                  onClick: () => {
+                    const list = [...(formData.faqs || [])];
+                    list.push({ q: "New Question?", a: "Detailed answer..." });
+                    updateField("faqs", list);
+                  }
+                },
+                "+ Add Question"
+              )
+            ),
+            (formData.faqs || []).map((faq, idx) =>
+              React.createElement(
+                "div",
+                { key: idx, style: { display: "flex", flexDirection: "column", gap: "8px", background: "var(--admin-card-bg)", padding: "12px", borderRadius: "8px", border: "1px solid var(--admin-border-subtle)" } },
+                React.createElement(
+                  "div",
+                  { style: { display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px" } },
+                  React.createElement("input", {
+                    className: "input-field",
+                    style: { fontWeight: "600", fontSize: "13px" },
+                    placeholder: "Question",
+                    value: faq.q || "",
+                    onChange: (e) => {
+                      const list = [...(formData.faqs || [])];
+                      list[idx] = { ...list[idx], q: e.target.value };
+                      updateField("faqs", list);
+                    }
+                  }),
+                  React.createElement(
+                    "button",
+                    {
+                      className: "btn-admin btn-admin-danger",
+                      style: { padding: "6px 10px", fontSize: "11px", flexShrink: 0 },
+                      onClick: () => {
+                        const list = (formData.faqs || []).filter((_, i) => i !== idx);
+                        updateField("faqs", list);
+                      }
+                    },
+                    "Remove"
+                  )
+                ),
+                React.createElement("textarea", {
+                  className: "input-field",
+                  style: { minHeight: "55px", fontSize: "12.5px" },
+                  placeholder: "Answer",
+                  value: faq.a || "",
+                  onChange: (e) => {
+                    const list = [...(formData.faqs || [])];
+                    list[idx] = { ...list[idx], a: e.target.value };
+                    updateField("faqs", list);
+                  }
+                })
+              )
+            ),
+            React.createElement("div", { style: { marginTop: "12px" } },
+              React.createElement("label", { style: { fontSize: "12px", color: "var(--admin-text-muted)" } }, "Footer Disclaimer & Terms Note"),
+              React.createElement("textarea", {
+                className: "input-field",
+                style: { minHeight: "60px", fontSize: "12.5px" },
+                value: formData.disclaimer || "",
+                onChange: (e) => updateField("disclaimer", e.target.value)
+              })
+            )
+          )
+        ),
+
         selectedPage === "myotherapy" &&
         React.createElement(
           "div",
@@ -3369,6 +3598,7 @@
       { id: "home.heroImage", page: "home", field: "heroImage", label: "Home Page — Hero Cover Photo" },
       { id: "grooming.heroImage", page: "grooming", field: "heroImage", label: "Grooming Page — Banner Cover" },
       { id: "courses.heroImage", page: "courses", field: "heroImage", label: "Courses Page — Academy Banner" },
+      { id: "studioSetup.heroImage", page: "studioSetup", field: "heroImage", label: "Studio Setup Page — Hero Cover Photo" },
       { id: "about.founder.portrait", page: "about", field: "founder.portrait", label: "About Page — Founder Portrait Photo" },
       { id: "about.founder.dewImg", page: "about", field: "founder.dewImg", label: "About Page — Puchki Memory Photo" },
       { id: "boarding.heroImage", page: "boarding", field: "heroImage", label: "Boarding Page — Cover Photo" },

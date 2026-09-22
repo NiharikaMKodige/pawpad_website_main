@@ -517,36 +517,6 @@
           desc: "A 7-week comprehensive programme in conscious canine and feline grooming in Bengaluru. Small cohort of 3 students learning consent-based handling, anatomy, coat care, scissoring, and clipping without restraint.",
           includes: ["Live dog and cat handling", "Force-free coat styling & scissoring", "Skin & dermatology fundamentals", "Salon ergonomics & safety", "Business launch mentorship"],
           note: "Flagship practitioner certification for individuals looking to launch their own salon or lead conscious grooming practices."
-        },
-        {
-          key: "studio-consulting-online",
-          cat: "Mentorship",
-          title: "Grooming Studio Setup — Option 1: Online Consultation",
-          price: "₹20,000",
-          priceNum: 20000,
-          deposit: "₹5,000",
-          duration: "2 Video Calls",
-          knowMoreUrl: "course_forms/pawpad-studio-consulting-page.html",
-          enrollUrl: "course_forms/pawpad-studio-consulting-page.html",
-          enrollText: "Book Now",
-          desc: "Two video calls plus a written equipment and space brief based on your floor plan or photos. Ideal for remote guidance on budgets, layout, and essential gear.",
-          includes: ["2 comprehensive video consultation calls", "Customized equipment & space brief", "Floor plan & tool recommendations"],
-          note: "Ideal for remote guidance on budgets, layout, and essential gear."
-        },
-        {
-          key: "studio-consulting-in-person",
-          cat: "Mentorship",
-          title: "Grooming Studio Setup — Option 2: In-Person Studio Visit",
-          price: "₹35,000 / day",
-          priceNum: 35000,
-          deposit: "₹10,000",
-          duration: "Full Day On-Site",
-          knowMoreUrl: "course_forms/pawpad-studio-consulting-page.html",
-          enrollUrl: "course_forms/pawpad-studio-consulting-page.html",
-          enrollText: "Book Now",
-          desc: "A full day on-site assessing your actual space in person before providing customized equipment lists, space recommendations, and operational layout planning.",
-          includes: ["Full-day in-person site assessment", "Customized equipment & supplier lists", "Acoustic, ventilation & layout blueprint"],
-          note: "Hands-on site inspection and tailored spatial planning."
         }
       ]
     },
@@ -702,6 +672,122 @@
         pinterest: "https://pinterest.com"
       }
     },
+    studioSetup: {
+      eyebrow: "Studio Setup & Business Consulting",
+      title: "Planning your ",
+      titleAccent: "grooming space?",
+      heroLead: "Get layout, equipment and budget guidance from PawPad, where many working studio owners got their start — not a generic checklist.",
+      introText: "Whether you're setting up your first grooming space or reworking an existing one, the equipment you choose and the way you lay out your studio shape everything downstream — how efficiently you can work, how safe it is for you and the animals, and how much you spend fixing avoidable mistakes later. This consulting service gives you direct, practical guidance grounded in real operating experience, not a template.",
+      heroImage: "assets/img/pawpad/studio-setup-overview.webp",
+      whoThisIsFor: [
+        "Anyone planning to open a grooming studio, whether your first or a new location",
+        "Groomers reworking an existing space that isn't working well",
+        "Both dog and cat setups — the equipment and layout needs differ meaningfully between the two, and both are covered"
+      ],
+      whatYouGet: [
+        {
+          title: "Equipment guidance",
+          desc: "What you actually need for your setup and species mix, what you can skip, and a realistic budget estimate."
+        },
+        {
+          title: "Space and layout recommendations",
+          desc: "How to arrange your available space for workflow, safety, and animal comfort."
+        },
+        {
+          title: "Battle-tested experience",
+          desc: "Every recommendation grounded in what's actually been used and tested in a working studio, not a generic vendor list."
+        }
+      ],
+      packages: [
+        {
+          key: "studio-consulting-online",
+          title: "Option 1: Online Consultation",
+          tag: "Remote Guidance",
+          price: "₹20,000",
+          priceNum: 20000,
+          duration: "2 Video Calls",
+          desc: "Two video calls plus a written equipment and space brief, based on your plans, photos, or floor plan.",
+          includes: [
+            "Two 1-on-1 consultation calls",
+            "Written equipment list & budget estimate",
+            "Space and layout recommendations"
+          ],
+          note: "Ideal for remote guidance on budgets, layout, and essential gear.",
+          ctaText: "Book Online Consultation",
+          knowMoreUrl: "course_forms/pawpad-studio-consulting-page.html",
+          applyUrl: "course_forms/pawpad-application-consulting-gssc.html?format=online"
+        },
+        {
+          key: "studio-consulting-in-person",
+          title: "Option 2: In-Person Studio Visit",
+          tag: "On-Site Assessment",
+          price: "₹35,000",
+          priceUnit: "per day",
+          priceNum: 35000,
+          duration: "Full Day On-Site",
+          desc: "A full day on-site, assessing your actual space in person before giving recommendations.",
+          includes: [
+            "Full-day on-site visit",
+            "Written equipment list & budget estimate",
+            "Space and layout recommendations"
+          ],
+          note: "Travel and accommodation billed separately, at actuals.",
+          ctaText: "Book In-Person Visit",
+          knowMoreUrl: "course_forms/pawpad-studio-consulting-page.html",
+          applyUrl: "course_forms/pawpad-application-consulting-gssc.html?format=in-person"
+        }
+      ],
+      gallery: [
+        {
+          img: "assets/img/pawpad/studio-setup-overview.webp",
+          caption: "Spacious studio layout with dedicated washing & drying zones"
+        },
+        {
+          img: "assets/img/pawpad/studio-setup-grooming-area.webp",
+          caption: "Ergonomic grooming table & stainless steel bathing station"
+        },
+        {
+          img: "assets/img/pawpad/studio-setup-hydraulic-table.webp",
+          caption: "Hydraulic lift table and high-velocity dryer positioning"
+        }
+      ],
+      steps: [
+        {
+          step: "1",
+          title: "Get in touch",
+          desc: "Tell us a bit about your space, species focus, and plans."
+        },
+        {
+          step: "2",
+          title: "Choose the right format",
+          desc: "We'll recommend the online or in-person option based on what you need."
+        },
+        {
+          step: "3",
+          title: "Book & plan",
+          desc: "Book your session and (for in-person visits) confirm travel dates to begin."
+        }
+      ],
+      faqs: [
+        {
+          q: "What is the primary difference between Online and In-Person consulting?",
+          a: "The Online Consultation is conducted over 2 video calls using your floor plans and photos, ideal for remote guidance on equipment and budgets. The In-Person Visit involves a full day on-site assessing your actual space in person to give customized layout and workflow recommendations."
+        },
+        {
+          q: "Does this include a complete architectural floor plan design?",
+          a: "Deliverables are equipment/budget guidance and space recommendations. This does not include a full architectural floor plan design."
+        },
+        {
+          q: "Do you cover both dog and cat grooming setups?",
+          a: "Yes. Both dog and cat setups are covered — the equipment and layout needs differ meaningfully between the two, and we address both."
+        },
+        {
+          q: "How are travel and accommodation handled for in-person visits?",
+          a: "For in-person visits, travel and accommodation are billed separately, at actuals, in addition to the ₹35,000/day consulting fee."
+        }
+      ],
+      disclaimer: "Pricing shown is a starting point being tested, not a fixed rate card. Deliverables are equipment/budget guidance and space recommendations — this does not include a full architectural floor plan design."
+    },
     forms: {
       depositNotice: "A non-refundable deposit is required upon acceptance to secure your slot in the cohort.",
       pacgcFee: "₹95,000",
@@ -748,63 +834,19 @@
 
           if (parsed && parsed.courses && Array.isArray(parsed.courses.courseList)) {
             parsed.courses.courseList = parsed.courses.courseList.filter(
-              c => c && c.key !== "pgfc" && c.key !== "foundations" && !(c.title && (c.title.includes("Grooming Foundations Certificate (PGFC)") || c.title.includes("Pawpad Foundations")))
+              c => c && c.key !== "pgfc" && c.key !== "foundations" && c.key !== "consulting" && c.key !== "studio-consulting-online" && c.key !== "studio-consulting-in-person" && !(c.title && (c.title.includes("Grooming Foundations Certificate (PGFC)") || c.title.includes("Pawpad Foundations") || c.title.includes("Studio Setup")))
             );
-
-            // If old generic 'consulting' exists, replace with Option 1 and Option 2
-            const consultingIdx = parsed.courses.courseList.findIndex(c => c && c.key === "consulting");
-            if (consultingIdx !== -1) {
-              const onlineOption = {
-                key: "studio-consulting-online",
-                cat: "Mentorship",
-                title: "Grooming Studio Setup — Option 1: Online Consultation",
-                price: "₹20,000",
-                priceNum: 20000,
-                deposit: "₹5,000",
-                duration: "2 Video Calls",
-                knowMoreUrl: "course_forms/pawpad-studio-consulting-page.html",
-                enrollUrl: "course_forms/pawpad-studio-consulting-page.html",
-                enrollText: "Enroll / Book Now",
-                desc: "Two video calls plus a written equipment and space brief based on your floor plan or photos. Ideal for remote guidance on budgets, layout, and essential gear.",
-                includes: ["2 comprehensive video consultation calls", "Customized equipment & space brief", "Floor plan & tool recommendations"],
-                note: "Ideal for remote guidance on budgets, layout, and essential gear."
-              };
-              const inPersonOption = {
-                key: "studio-consulting-in-person",
-                cat: "Mentorship",
-                title: "Grooming Studio Setup — Option 2: In-Person Studio Visit",
-                price: "₹35,000 / day",
-                priceNum: 35000,
-                deposit: "₹10,000",
-                duration: "Full Day On-Site",
-                knowMoreUrl: "course_forms/pawpad-studio-consulting-page.html",
-                enrollUrl: "course_forms/pawpad-studio-consulting-page.html",
-                enrollText: "Enroll / Book Now",
-                desc: "A full day on-site assessing your actual space in person before providing customized equipment lists, space recommendations, and operational layout planning.",
-                includes: ["Full-day in-person site assessment", "Customized equipment & supplier lists", "Acoustic, ventilation & layout blueprint"],
-                note: "Hands-on site inspection and tailored spatial planning."
-              };
-              parsed.courses.courseList.splice(consultingIdx, 1, onlineOption, inPersonOption);
-            }
 
             parsed.courses.courseList.forEach(course => {
               if (course.key === "pacgc" || (course.title && course.title.includes("Applied Canine"))) {
                 course.knowMoreUrl = "course_forms/pawpad-foundations-page.html";
               }
-              if (course.key === "studio-consulting-online" || course.key === "studio-consulting-in-person") {
-                if (!course.enrollText || course.enrollText.includes("/")) {
-                  course.enrollText = "Book Now";
-                }
-              }
               if (course.knowMoreUrl === "course_forms/pawpad-advanced-dog-page.html") {
                 course.knowMoreUrl = "";
               }
-              if (course.enrollUrl === "course_forms/pawpad-application-consulting.html") {
-                course.enrollUrl = "course_forms/pawpad-studio-consulting-page.html";
-              }
             });
 
-            const targetOrder = ["pcgec", "pfgec", "pcgpc", "pfgpc", "pacgc", "studio-consulting-online", "studio-consulting-in-person"];
+            const targetOrder = ["pcgec", "pfgec", "pcgpc", "pfgpc", "pacgc"];
             parsed.courses.courseList.sort((a, b) => {
               const indexA = targetOrder.indexOf(a.key);
               const indexB = targetOrder.indexOf(b.key);
@@ -821,6 +863,21 @@
             if (!parsed.courses.lead || parsed.courses.lead.includes("Small cohorts") || parsed.courses.lead.includes("max 3 students") || parsed.courses.lead.includes("A hands-on grooming course") || parsed.courses.lead.includes("stress-free handling methods")) {
               parsed.courses.lead = DEFAULT_CONTENT.courses.lead;
             }
+          }
+
+          if (parsed && parsed.studioSetup) {
+            if (!parsed.studioSetup.eyebrow || parsed.studioSetup.eyebrow.includes("PAWPAD · STUDIO SETUP & BUSINESS CONSULTING")) {
+              parsed.studioSetup.eyebrow = DEFAULT_CONTENT.studioSetup.eyebrow;
+            }
+            if (!parsed.studioSetup.title || parsed.studioSetup.title === "Grooming Studio Setup & ") {
+              parsed.studioSetup.title = DEFAULT_CONTENT.studioSetup.title;
+              parsed.studioSetup.titleAccent = DEFAULT_CONTENT.studioSetup.titleAccent;
+            }
+            if (!parsed.studioSetup.heroLead || parsed.studioSetup.heroLead.includes("Thinking about opening a grooming studio") || parsed.studioSetup.heroLead === "Get layout, equipment and budget guidance from PawPad, where many working studio owners got their start — not a generic checklist" || parsed.studioSetup.heroLead === "Get layout, equipment and budget guidance from PawPad, where many working studio owners got their start.") {
+              parsed.studioSetup.heroLead = DEFAULT_CONTENT.studioSetup.heroLead;
+            }
+          } else if (parsed) {
+            parsed.studioSetup = JSON.parse(JSON.stringify(DEFAULT_CONTENT.studioSetup));
           }
 
           if (parsed && parsed.myotherapy) {

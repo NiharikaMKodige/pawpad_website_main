@@ -6,6 +6,7 @@ const ROUTE_HREF = {
   experience: "experience.html",
   grooming: "grooming.html",
   courses: "courses.html",
+  studioSetup: "studio-setup.html",
   boarding: "boarding.html",
   myotherapy: "myotherapy.html",
   contact: "contact.html"
@@ -48,6 +49,7 @@ const NAV_ITEMS = [
   { key: "experience", label: "Experience" },
   { key: "grooming", label: "Grooming" },
   { key: "courses", label: "Courses" },
+  { key: "studioSetup", label: "Studio Setup" },
   { key: "boarding", label: "Boarding" },
   { key: "myotherapy", label: "Myotherapy" },
   { key: "contact", label: "Contact" }
